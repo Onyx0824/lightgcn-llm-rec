@@ -93,6 +93,12 @@ def main():
     test_user_pos_items = {
         u: set(items) for u, items in build_user_pos_items(test_df, n_users).items()
     }
+    # 評估 test 時，除了 train 也要把 valid 的正樣本從候選排名中排除，
+    # 否則 valid 裡的正確答案會佔掉 test top-K 的名額，變相低估 test 指標。
+    train_and_valid_pos_items = {
+        u: train_user_pos_items[u] + list(valid_user_pos_items.get(u, []))
+        for u in range(n_users)
+    }
 
     norm_adj = build_norm_adj(
         n_users, n_items, train_df["user"].values, train_df["item"].values
@@ -171,7 +177,7 @@ def main():
         print(f"載入最佳checkpoint（epoch {best_epoch}, valid recall@{k}={best_recall:.4f}）")
 
     model.eval()
-    test_metrics = evaluate(model, train_user_pos_items, test_user_pos_items, k=k)
+    test_metrics = evaluate(model, train_and_valid_pos_items, test_user_pos_items, k=k)
     print(f"Test set 結果: {test_metrics}")
 
     results_dir = Path(cfg.get("results_dir", "results"))
