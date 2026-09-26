@@ -10,13 +10,30 @@
 **完成項目**
 - [x] Python 3.11 虛擬環境建立
 - [x] PyTorch (CUDA 12.6) 安裝，確認 GPU 可用（RTX 4060 Laptop）
-- [ ] Ollama 安裝與量化模型推論測試（延遲/tokens per sec 待補：跑 `src/llm_augmentation/test_ollama.py` 後填入）
-- [ ] sentence-transformers 測試（待補：跑 `tests/test_embedding.py` 後填入輸出向量維度）
+- [x] Ollama 安裝與量化模型推論測試：`qwen2.5:7b-instruct-q4_K_M`（4.7GB）
+- [x] sentence-transformers 測試：`all-MiniLM-L6-v2`
 - [x] 資料集選定：MovieLens-1M（`data/raw/ml-1m/`，含 movies.dat / ratings.dat / users.dat）
 - [x] GitHub repo 建立
 
+**Ollama 推論測試結果**（`src/llm_augmentation/test_ollama.py`）
+- 模型：qwen2.5:7b-instruct-q4_K_M（4.7GB，4-bit量化）
+- 第一次執行（含模型載入VRAM時間）：18.5 秒，53.1 tokens/sec
+- 第二次執行（模型已常駐VRAM，代表實際推論速度）：7.16 秒，46.7 tokens/sec
+- 輸出格式：繁體中文，符合system prompt指示
+
+**VRAM 監控結果**（`nvidia-smi -l 1`，總容量 8,188 MiB）
+- 待機：579 MiB
+- 模型載入VRAM後：4,832 MiB
+- 生成過程峰值：5,211 MiB（約64%，GPU-Util一度達86%）
+- 餘裕：約 3GB，第3-4週同時載入sentence-transformers做embedding應該不會超出8GB
+
+**sentence-transformers 測試結果**（`tests/test_embedding.py`）
+- 模型：all-MiniLM-L6-v2
+- 輸出embedding維度：(384,)，符合預期
+
 **觀察/決策**
-- （待補：VRAM佔用是否在8GB內、Ollama推論速度是否可接受）
+- 模型常駐VRAM後的生成速度（46.7 tokens/sec）比首次載入時（53.1，但含載入開銷）更能代表全量生成階段的實際速度，之後估算第3-4週生成總耗時應以此為準
+- VRAM峰值5.2GB/8GB，在預算內且有餘裕，暫不需要考慮換更小模型
 
 ---
 
