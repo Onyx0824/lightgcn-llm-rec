@@ -92,10 +92,10 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 
 - [x] Python 3.11 虛擬環境建立完成
 - [x] PyTorch（CUDA 12.6）安裝並驗證 GPU 可用（RTX 4060 Laptop）
-- [ ] Ollama 安裝與量化模型推論測試
-- [ ] sentence-transformers 安裝與測試
-- [ ] 資料集選定
-- [ ] LightGCN baseline 實作
+- [x] Ollama 安裝與量化模型推論測試
+- [x] sentence-transformers 安裝與測試
+- [x] 資料集選定（MovieLens-1M）
+- [x] LightGCN baseline 實作與訓練（詳見 [`docs/experiment-log.md`](./docs/experiment-log.md)）
 - [ ] LLM 增強模組（prompt 設計 → 全量生成 → embedding 整合）
 - [ ] 去噪/剪枝分析
 - [ ] 效益分析
@@ -105,11 +105,9 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 
 ## 主要結果
 
-實驗完成後將於此處補上：
-
 | 模型 | Recall@20 | NDCG@20 | 備註 |
 |---|---|---|---|
-| LightGCN (baseline) | TBD | TBD | |
+| LightGCN (baseline) | 0.0740 | 0.2535 | epoch20 early stop（Week 2） |
 | + LLM 增強（未去噪） | TBD | TBD | |
 | + LLM 增強（去噪後） | TBD | TBD | |
 
