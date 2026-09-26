@@ -107,7 +107,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 
 | 模型 | Recall@20 | NDCG@20 | 備註 |
 |---|---|---|---|
-| LightGCN (baseline) | 0.0740 | 0.2535 | epoch20 early stop（Week 2） |
+| LightGCN (baseline) | 0.0814 | 0.2721 | epoch30 early stop（Week 2） |
 | + LLM 增強（未去噪） | TBD | TBD | |
 | + LLM 增強（去噪後） | TBD | TBD | |
 

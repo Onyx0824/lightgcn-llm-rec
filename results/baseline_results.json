@@ -16,10 +16,10 @@
     "use_gpu": true,
     "save_checkpoint": true
   },
-  "best_epoch": 20,
-  "best_valid_recall": 0.08837299149070478,
+  "best_epoch": 30,
+  "best_valid_recall": 0.09109646517351742,
   "test_metrics": {
-    "recall@20": 0.07402530056370035,
-    "ndcg@20": 0.25347973010005076
+    "recall@20": 0.08137889453636171,
+    "ndcg@20": 0.272081749028325
   }
 }

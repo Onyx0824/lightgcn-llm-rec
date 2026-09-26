@@ -65,13 +65,15 @@
 - Early stopping patience=5（以每5個epoch評估一次為單位）
 
 **訓練結果**
-- 實際訓練 45 epoch 後 early stop，最佳 valid recall@20 落在 **epoch 20**
-- 訓練耗時：每epoch約8–13秒，總計約6–7分鐘（符合checkpoint「分鐘等級」要求）
-- **Test set：Recall@20 = 0.0740，NDCG@20 = 0.2535**
+- 實際訓練 55 epoch 後 early stop，最佳 valid recall@20 落在 **epoch 30**
+- 訓練耗時：每epoch約8.7–9.2秒，總計約8分鐘（符合checkpoint「分鐘等級」要求）
+- **Test set：Recall@20 = 0.0814，NDCG@20 = 0.2721**
+- 註：初次訓練誤把valid正樣本漏掉沒排除在test候選排名外，修正評估邏輯（test評估時改為排除train∪valid已互動項目）後重新訓練，數字由 Recall@20=0.0740/NDCG@20=0.2535 提升至上述修正後結果，此為最終正確版本
 
 **觀察/決策**
-- Valid recall@20 在 epoch20 後開始震盪、不再進步，train loss 仍持續下降 → 典型過擬合訊號，early stopping 正確地保留了 epoch20 的權重而非最終權重
+- Valid recall@20 在 epoch30 後開始震盪、不再進步，train loss 仍持續下降 → 典型過擬合訊號，early stopping 正確地保留了 epoch30 的權重而非最終權重
 - 時間切分導致 valid/test 冷啟動比例偏高（57–74%），推測原因：ML-1M 使用者常「一次性」評分一大批電影，較晚加入互動的user整批落在valid/test，訓練集完全沒看過 → 這點可以直接寫進報告「稀疏/冷啟動」商業問題的實證段落
+- 評估時必須同時排除 train 與 valid 的已互動項目才能正確計算 test 指標，否則 valid 正樣本會佔掉 test top-K 名額、變相低估指標——這點若第4-5週要重跑evaluate要記得延用同樣邏輯
 - 此結果為第4週LLM增強效果的比較基準（baseline）
 
 ---
