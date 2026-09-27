@@ -1,0 +1,2221 @@
+[
+  {
+    "item_idx": 1530,
+    "item_raw": 1853,
+    "title": "Alan Smithee Film: Burn Hollywood Burn, An (1997)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "諷刺",
+        "無厘頭",
+        "辛辣"
+      ],
+      "target_audience": "喜愛諷刺喜劇的成人",
+      "supplementary_genres": [],
+      "profile_summary": "這部電影以諷刺和無厘頭的方式批判電影業界，適合喜愛辛辣幽默的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.85,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"諷刺\", \"無厘頭\", \"辛辣\"], \"target_audience\": \"喜愛諷刺喜劇的成人\", \"supplementary_genres\": [], \"profile_summary\": \"這部電影以諷刺和無厘頭的方式批判電影業界，適合喜愛辛辣幽默的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1558,
+    "item_raw": 1885,
+    "title": "Opposite of Sex, The (1998)",
+    "genres": "Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "幽默",
+        "角色成長"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合了幽默與深刻角色成長元素的喜劇劇情片，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"幽默\", \"角色成長\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合了幽默與深刻角色成長元素的喜劇劇情片，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2621,
+    "item_raw": 3035,
+    "title": "Mister Roberts (1955)",
+    "genres": "Comedy|Drama|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "悲喜交加",
+        "戰爭"
+      ],
+      "target_audience": "成人",
+      "supplementary_genres": [],
+      "profile_summary": "融合幽默與悲劇元素的戰爭喜劇，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.49,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"悲喜交加\", \"戰爭\"], \"target_audience\": \"成人\", \"supplementary_genres\": [], \"profile_summary\": \"融合幽默與悲劇元素的戰爭喜劇，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 3249,
+    "item_raw": 3770,
+    "title": "Dreamscape (1984)",
+    "genres": "Adventure|Crime|Sci-Fi|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "驚悚",
+        "悬疑",
+        "冒險"
+      ],
+      "target_audience": "喜愛科幻及驚悚電影的成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合冒險與科幻元素的驚悚電影，適合喜愛探索未知與刺激情节的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.65,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"驚悚\", \"悬疑\", \"冒險\"], \"target_audience\": \"喜愛科幻及驚悚電影的成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合冒險與科幻元素的驚悚電影，適合喜愛探索未知與刺激情节的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1649,
+    "item_raw": 1980,
+    "title": "Friday the 13th Part VII: The New Blood (1988)",
+    "genres": "Horror",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "血腥"
+      ],
+      "target_audience": "恐懼喜愛者",
+      "supplementary_genres": [],
+      "profile_summary": "繼承前作緊張與懸疑氛圍，加入更多血腥場面，適合喜愛恐怖片的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.6,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"血腥\"], \"target_audience\": \"恐懼喜愛者\", \"supplementary_genres\": [], \"profile_summary\": \"繼承前作緊張與懸疑氛圍，加入更多血腥場面，適合喜愛恐怖片的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 645,
+    "item_raw": 741,
+    "title": "Ghost in the Shell (Kokaku kidotai) (1995)",
+    "genres": "Animation|Sci-Fi",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "未來感",
+        "懸疑",
+        "緊張"
+      ],
+      "target_audience": "科幻喜愛者及成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合動畫與科幻元素，帶有強烈未來感與緊張氛圍的動畫電影，適合喜愛科幻題材的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.81,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"未來感\", \"懸疑\", \"緊張\"], \"target_audience\": \"科幻喜愛者及成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合動畫與科幻元素，帶有強烈未來感與緊張氛圍的動畫電影，適合喜愛科幻題材的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2037,
+    "item_raw": 2401,
+    "title": "Pale Rider (1985)",
+    "genres": "Western",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "豪情",
+        "勇氣",
+        "孤獨"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以西部為背景，展現騎士風采與英雄情懷的冒險片，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.54,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"豪情\", \"勇氣\", \"孤獨\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以西部為背景，展現騎士風采與英雄情懷的冒險片，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2806,
+    "item_raw": 3255,
+    "title": "League of Their Own, A (1992)",
+    "genres": "Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "感動",
+        "幽默",
+        "奮鬥"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "一部結合幽默與感人的棒球題材電影，講述女性棒球選手的故事，適合喜愛運動與情感故事的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.72,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"感動\", \"幽默\", \"奮鬥\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"一部結合幽默與感人的棒球題材電影，講述女性棒球選手的故事，適合喜愛運動與情感故事的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 112,
+    "item_raw": 119,
+    "title": "Steal Big, Steal Little (1995)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "機智",
+        "滑稽",
+        "幽默"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部充滿機智對白與滑稽情節的幽默喜劇，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"機智\", \"滑稽\", \"幽默\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部充滿機智對白與滑稽情節的幽默喜劇，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2892,
+    "item_raw": 3365,
+    "title": "Searchers, The (1956)",
+    "genres": "Western",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "雄辯",
+        "緊張",
+        "史诗"
+      ],
+      "target_audience": "成年觀眾, 影迷",
+      "supplementary_genres": [],
+      "profile_summary": "1956年的西部冒險 epic，透過雄辯的對話和緊張的劇情發展，適合成年觀眾及影迷欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.83,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"雄辯\", \"緊張\", \"史诗\"], \"target_audience\": \"成年觀眾, 影迷\", \"supplementary_genres\": [], \"profile_summary\": \"1956年的西部冒險 epic，透過雄辯的對話和緊張的劇情發展，適合成年觀眾及影迷欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1267,
+    "item_raw": 1501,
+    "title": "Keys to Tulsa (1997)",
+    "genres": "Crime",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        " gritty"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "講述犯罪世界中的緊張懸疑故事，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.37,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \" gritty\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"講述犯罪世界中的緊張懸疑故事，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 3251,
+    "item_raw": 3773,
+    "title": "House Party (1990)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "歡樂",
+        "放鬆",
+        "青春"
+      ],
+      "target_audience": "青少年及年輕成人",
+      "supplementary_genres": [],
+      "profile_summary": "以校園生活為背景的喜劇電影，帶有青春放肆的幽默氛圍，適合青少年及年輕成人觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.57,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"歡樂\", \"放鬆\", \"青春\"], \"target_audience\": \"青少年及年輕成人\", \"supplementary_genres\": [], \"profile_summary\": \"以校園生活為背景的喜劇電影，帶有青春放肆的幽默氛圍，適合青少年及年輕成人觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1698,
+    "item_raw": 2029,
+    "title": "Billy's Hollywood Screen Kiss (1997)",
+    "genres": "Comedy|Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "浪漫",
+        "幽默",
+        "感動"
+      ],
+      "target_audience": "浪漫喜劇喜愛者",
+      "supplementary_genres": [],
+      "profile_summary": "結合幽默與浪漫元素的喜劇電影，適合喜愛浪漫故事與幽默橋段的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.54,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"浪漫\", \"幽默\", \"感動\"], \"target_audience\": \"浪漫喜劇喜愛者\", \"supplementary_genres\": [], \"profile_summary\": \"結合幽默與浪漫元素的喜劇電影，適合喜愛浪漫故事與幽默橋段的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2218,
+    "item_raw": 2600,
+    "title": "eXistenZ (1999)",
+    "genres": "Action|Sci-Fi|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "未來感"
+      ],
+      "target_audience": "喜愛科幻與動作片的成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "結合科幻與動作元素，故事緊張刺激，適合喜愛探索未來世界與激烈動作場景的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.69,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"未來感\"], \"target_audience\": \"喜愛科幻與動作片的成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"結合科幻與動作元素，故事緊張刺激，適合喜愛探索未來世界與激烈動作場景的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 165,
+    "item_raw": 181,
+    "title": "Mighty Morphin Power Rangers: The Movie (1995)",
+    "genres": "Action|Children's",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激昂",
+        "勇氣",
+        "冒險"
+      ],
+      "target_audience": "兒童及家庭",
+      "supplementary_genres": [
+        "Fantasy",
+        "Adventure"
+      ],
+      "profile_summary": "結合超人氣卡通角色的動畫特效和冒險元素，適合兒童及家庭一同欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.56,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激昂\", \"勇氣\", \"冒險\"], \"target_audience\": \"兒童及家庭\", \"supplementary_genres\": [\"Fantasy\", \"Adventure\"], \"profile_summary\": \"結合超人氣卡通角色的動畫特效和冒險元素，適合兒童及家庭一同欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 467,
+    "item_raw": 501,
+    "title": "Naked (1993)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "深刻",
+        "探索"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片以赤裸裸的姿態探索人性與社會議題，適合成年觀眾深度品味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.44,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"深刻\", \"探索\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片以赤裸裸的姿態探索人性與社會議題，適合成年觀眾深度品味\"}"
+    ]
+  },
+  {
+    "item_idx": 2190,
+    "item_raw": 2565,
+    "title": "King and I, The (1956)",
+    "genres": "Musical",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "浪漫",
+        "古典",
+        "樂章"
+      ],
+      "target_audience": "家庭與樂譜愛好者",
+      "supplementary_genres": [
+        "Romantic"
+      ],
+      "profile_summary": "融合古典音樂與浪漫情感的歌舞片，適合喜愛音樂與情感故事的觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.6,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"浪漫\", \"古典\", \"樂章\"], \"target_audience\": \"家庭與樂譜愛好者\", \"supplementary_genres\": [\"Romantic\"], \"profile_summary\": \"融合古典音樂與浪漫情感的歌舞片，適合喜愛音樂與情感故事的觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 652,
+    "item_raw": 750,
+    "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963)",
+    "genres": "Sci-Fi|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "諷刺",
+        "冷幽默",
+        "緊張刺激"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部冷戰時期的諷刺戰爭喜劇，透過幽默的角度探索核戰爭的恐怖，適合對歷史和政治有興趣的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.74,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"諷刺\", \"冷幽默\", \"緊張刺激\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部冷戰時期的諷刺戰爭喜劇，透過幽默的角度探索核戰爭的恐怖，適合對歷史和政治有興趣的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2616,
+    "item_raw": 3030,
+    "title": "Yojimbo (1961)",
+    "genres": "Comedy|Drama|Western",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "冷冽",
+        "詼諧",
+        "懸疑"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [
+        "Action"
+      ],
+      "profile_summary": "這部西部劇兼黑色喜劇以冷冽的視角呈現，充滿詼諧與懸疑元素，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.8,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"冷冽\", \"詼諧\", \"懸疑\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [\"Action\"], \"profile_summary\": \"這部西部劇兼黑色喜劇以冷冽的視角呈現，充滿詼諧與懸疑元素，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 407,
+    "item_raw": 441,
+    "title": "Dazed and Confused (1993)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "懷舊",
+        "幽默",
+        "青春"
+      ],
+      "target_audience": "青少年及成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以70年代背景為主要設定，融合幽默與懷舊氛圍的青春喜剧，適合懷念過去的成年觀眾及當時的經歷者一同觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.78,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"懷舊\", \"幽默\", \"青春\"], \"target_audience\": \"青少年及成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以70年代背景為主要設定，融合幽默與懷舊氛圍的青春喜剧，適合懷念過去的成年觀眾及當時的經歷者一同觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2467,
+    "item_raw": 2867,
+    "title": "Fright Night (1985)",
+    "genres": "Comedy|Horror",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "恐怖",
+        "黑色幽默",
+        "驚悚"
+      ],
+      "target_audience": "青少年及成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "結合恐怖與黑色幽默元素，適合喜愛邊笑邊被驚嚇的青少年及成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.52,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"恐怖\", \"黑色幽默\", \"驚悚\"], \"target_audience\": \"青少年及成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"結合恐怖與黑色幽默元素，適合喜愛邊笑邊被驚嚇的青少年及成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1768,
+    "item_raw": 2101,
+    "title": "Squanto: A Warrior's Tale (1994)",
+    "genres": "Adventure|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "悲傷",
+        "勇氣",
+        "冒險"
+      ],
+      "target_audience": "中高年級學生",
+      "supplementary_genres": [
+        "Historical"
+      ],
+      "profile_summary": "本片以史詩般的視角探討了史前時代的一場冒險，以及在逆境中的勇敢精神，適合中高年級學生觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.91,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"悲傷\", \"勇氣\", \"冒險\"], \"target_audience\": \"中高年級學生\", \"supplementary_genres\": [\"Historical\"], \"profile_summary\": \"本片以史詩般的視角探討了史前時代的一場冒險，以及在逆境中的勇敢精神，適合中高年級學生觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2305,
+    "item_raw": 2695,
+    "title": "Boys, The (1997)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "成長"
+      ],
+      "target_audience": "年長觀眾及青少年",
+      "supplementary_genres": [],
+      "profile_summary": "以青少年為主角的深刻成長劇，適合年長觀眾及青少年觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.41,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"成長\"], \"target_audience\": \"年長觀眾及青少年\", \"supplementary_genres\": [], \"profile_summary\": \"以青少年為主角的深刻成長劇，適合年長觀眾及青少年觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 759,
+    "item_raw": 911,
+    "title": "Charade (1963)",
+    "genres": "Comedy|Mystery|Romance|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "詭譎",
+        "浪漫",
+        "智慧"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "詭譎愛情驚悚喜劇，適合喜愛懸疑浪漫電影的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.55,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"詭譎\", \"浪漫\", \"智慧\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"詭譎愛情驚悚喜劇，適合喜愛懸疑浪漫電影的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 249,
+    "item_raw": 268,
+    "title": "Little Odessa (1994)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "真實"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "敘述在猶太人移民社區中的人情冷暖與奮鬥故事，適合對社會議題有興趣的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.61,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"真實\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"敘述在猶太人移民社區中的人情冷暖與奮鬥故事，適合對社會議題有興趣的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1951,
+    "item_raw": 2312,
+    "title": "Children of a Lesser God (1986)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "對話"
+      ],
+      "target_audience": "成人",
+      "supplementary_genres": [],
+      "profile_summary": "一齣關於聽障與聽力正常人士之間愛情故事的深度劇情片，適合成人觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.46,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"對話\"], \"target_audience\": \"成人\", \"supplementary_genres\": [], \"profile_summary\": \"一齣關於聽障與聽力正常人士之間愛情故事的深度劇情片，適合成人觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1232,
+    "item_raw": 1458,
+    "title": "Touch (1997)",
+    "genres": "Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "人性"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "探索人際關係與真愛的深刻愛情電影，適合成年觀眾細細品味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.38,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"人性\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"探索人際關係與真愛的深刻愛情電影，適合成年觀眾細細品味\"}"
+    ]
+  },
+  {
+    "item_idx": 476,
+    "item_raw": 510,
+    "title": "Poetic Justice (1993)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "對比"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合社會議題與個人成長的深刻劇情片，適合成年觀眾品味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.44,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"對比\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合社會議題與個人成長的深刻劇情片，適合成年觀眾品味\"}"
+    ]
+  },
+  {
+    "item_idx": 3164,
+    "item_raw": 3680,
+    "title": "Decline of Western Civilization Part II: The Metal Years, The (1988)",
+    "genres": "Documentary",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激進",
+        "真實",
+        "深刻"
+      ],
+      "target_audience": "樂迷, 历史愛好者",
+      "supplementary_genres": [],
+      "profile_summary": "深入探討80年代重金属樂壇的真實紀錄片，適合樂迷及對樂壇歷史感興趣的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.67,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激進\", \"真實\", \"深刻\"], \"target_audience\": \"樂迷, 历史愛好者\", \"supplementary_genres\": [], \"profile_summary\": \"深入探討80年代重金属樂壇的真實紀錄片，適合樂迷及對樂壇歷史感興趣的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2001,
+    "item_raw": 2365,
+    "title": "King Kong vs. Godzilla (Kingukongu tai Gojira) (1962)",
+    "genres": "Action|Sci-Fi",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激昂",
+        "驚悚",
+        "科幻"
+      ],
+      "target_audience": "青少年以上",
+      "supplementary_genres": [
+        "Fantasy"
+      ],
+      "profile_summary": "這是一部結合了動作與科幻元素的激昂戰爭電影，適合青少年以上觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.55,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激昂\", \"驚悚\", \"科幻\"], \"target_audience\": \"青少年以上\", \"supplementary_genres\": [\"Fantasy\"], \"profile_summary\": \"這是一部結合了動作與科幻元素的激昂戰爭電影，適合青少年以上觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2897,
+    "item_raw": 3371,
+    "title": "Bound for Glory (1976)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "深刻",
+        "歷史"
+      ],
+      "target_audience": "成人",
+      "supplementary_genres": [],
+      "profile_summary": "根據民歌手 Woody Guthrie 的真實人生改編，呈現深刻且真實的美國民歌運動歷史，適合成人觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.48,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"深刻\", \"歷史\"], \"target_audience\": \"成人\", \"supplementary_genres\": [], \"profile_summary\": \"根據民歌手 Woody Guthrie 的真實人生改編，呈現深刻且真實的美國民歌運動歷史，適合成人觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2297,
+    "item_raw": 2687,
+    "title": "Tarzan (1999)",
+    "genres": "Animation|Children's",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "活潑",
+        "勇氣",
+        "自然"
+      ],
+      "target_audience": "兒童與家庭",
+      "supplementary_genres": [
+        "Family"
+      ],
+      "profile_summary": "融合自然風景與冒險元素，帶有勇氣與成長主題的動畫，適合兒童與家庭共同欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.6,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"活潑\", \"勇氣\", \"自然\"], \"target_audience\": \"兒童與家庭\", \"supplementary_genres\": [\"Family\"], \"profile_summary\": \"融合自然風景與冒險元素，帶有勇氣與成長主題的動畫，適合兒童與家庭共同欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1277,
+    "item_raw": 1515,
+    "title": "Volcano (1997)",
+    "genres": "Drama|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "感人"
+      ],
+      "target_audience": "年滿16歲以上觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "火山爆發緊張情節與感人的家庭故事結合，適合年長觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"感人\"], \"target_audience\": \"年滿16歲以上觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"火山爆發緊張情節與感人的家庭故事結合，適合年長觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2456,
+    "item_raw": 2856,
+    "title": "I Saw What You Did (1965)",
+    "genres": "Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "刺激"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "緊湊的懸疑氛圍與緊張刺激的故事情節，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"刺激\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"緊湊的懸疑氛圍與緊張刺激的故事情節，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2987,
+    "item_raw": 3476,
+    "title": "Jacob's Ladder (1990)",
+    "genres": "Horror|Mystery|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "驚悚"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以夢幻般的視覺效果呈現的心理懸疑驚悚片，適合喜愛複雜故事情節與深刻心理描寫的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.76,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"驚悚\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以夢幻般的視覺效果呈現的心理懸疑驚悚片，適合喜愛複雜故事情節與深刻心理描寫的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 3349,
+    "item_raw": 3879,
+    "title": "Art of War, The (2000)",
+    "genres": "Action",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激勵",
+        "智�ực",
+        "戰術"
+      ],
+      "target_audience": "成年觀眾, 政治與軍事爱好者",
+      "supplementary_genres": [],
+      "profile_summary": "《戰略之藝術》是一部以戰術智�实力爭勝負的動作電影，適合喜愛軍事與戰略的成人觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.89,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激勵\", \"智�ực\", \"戰術\"], \"target_audience\": \"成年觀眾, 政治與軍事爱好者\", \"supplementary_genres\": [], \"profile_summary\": \"《戰略之藝術》是一部以戰術智�实力爭勝負的動作電影，適合喜愛軍事與戰略的成人觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 32,
+    "item_raw": 34,
+    "title": "Babe (1995)",
+    "genres": "Children's|Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "溫馨",
+        "感動",
+        "幽默"
+      ],
+      "target_audience": "家庭觀眾",
+      "supplementary_genres": [
+        "Family"
+      ],
+      "profile_summary": "以動物擬人化為主軸，融合幽默對話與感動情感的動畫電影，適合家庭共同欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.58,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"溫馨\", \"感動\", \"幽默\"], \"target_audience\": \"家庭觀眾\", \"supplementary_genres\": [\"Family\"], \"profile_summary\": \"以動物擬人化為主軸，融合幽默對話與感動情感的動畫電影，適合家庭共同欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 594,
+    "item_raw": 659,
+    "title": "Purple Noon (1960)",
+    "genres": "Crime|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "深刻"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "聚焦於冷戰時期法國與義大利交界地區的詐欺案件，呈現豐富的人物刻畫與深刻的人性探索，適合喜愛懸疑片與深刻劇情的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.96,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"深刻\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"聚焦於冷戰時期法國與義大利交界地區的詐欺案件，呈現豐富的人物刻畫與深刻的人性探索，適合喜愛懸疑片與深刻劇情的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 3328,
+    "item_raw": 3857,
+    "title": "Bless the Child (2000)",
+    "genres": "Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "深刻"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "緊張刺激的懸疑電影，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.37,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"深刻\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"緊張刺激的懸疑電影，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2765,
+    "item_raw": 3198,
+    "title": "Papillon (1973)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "悲劇",
+        "冒险",
+        "人性"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片描述兩個犯人在法國海外領地之間的悲劇性冒險，深刻探討人性與自由，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.64,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"悲劇\", \"冒险\", \"人性\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片描述兩個犯人在法國海外領地之間的悲劇性冒險，深刻探討人性與自由，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 130,
+    "item_raw": 146,
+    "title": "Amazing Panda Adventure, The (1995)",
+    "genres": "Adventure|Children's",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "冒險",
+        "趣味",
+        "教育"
+      ],
+      "target_audience": "兒童及家庭",
+      "supplementary_genres": [
+        "Family"
+      ],
+      "profile_summary": "以 Panda 為主角的趣味冒險故事，適合兒童及其家人一同欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.36,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"冒險\", \"趣味\", \"教育\"], \"target_audience\": \"兒童及家庭\", \"supplementary_genres\": [\"Family\"], \"profile_summary\": \"以 Panda 為主角的趣味冒險故事，適合兒童及其家人一同欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 3043,
+    "item_raw": 3538,
+    "title": "East is East (1999)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "諷刺",
+        "社會議題"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部喜劇探討種族歧視和代溝的社會議題，帶有諷刺 humour 要素，適合成人觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.74,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"諷刺\", \"社會議題\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部喜劇探討種族歧視和代溝的社會議題，帶有諷刺 humour 要素，適合成人觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 458,
+    "item_raw": 492,
+    "title": "Manhattan Murder Mystery (1993)",
+    "genres": "Comedy|Mystery",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "詼諧",
+        "推理"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部電影結合了幽默與推理元素，適合喜愛思考型幽默的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"詼諧\", \"推理\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部電影結合了幽默與推理元素，適合喜愛思考型幽默的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1129,
+    "item_raw": 1339,
+    "title": "Bram Stoker's Dracula (1992)",
+    "genres": "Horror|Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "神秘",
+        "陰暗",
+        "激情"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [
+        "Fantasy"
+      ],
+      "profile_summary": "融合了哥特式元素與浪漫情感的恐怖愛情電影，適合喜愛神秘與激情故事的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.59,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"神秘\", \"陰暗\", \"激情\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [\"Fantasy\"], \"profile_summary\": \"融合了哥特式元素與浪漫情感的恐怖愛情電影，適合喜愛神秘與激情故事的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1635,
+    "item_raw": 1966,
+    "title": "Metropolitan (1990)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "諷刺",
+        "笑中帶刺",
+        "現代"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部諷刺喜劇探討都市生活中的種種困境，適合對社會現象有所省思的成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.67,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"諷刺\", \"笑中帶刺\", \"現代\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部諷刺喜劇探討都市生活中的種種困境，適合對社會現象有所省思的成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 628,
+    "item_raw": 714,
+    "title": "Dead Man (1995)",
+    "genres": "Western",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "沉鬱",
+        "悲劇",
+        "哥德"
+      ],
+      "target_audience": "成年人",
+      "supplementary_genres": [],
+      "profile_summary": "融合西部與哥德風格，呈現出沉鬱悲劇氛圍的電影，適合成年人觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.48,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"沉鬱\", \"悲劇\", \"哥德\"], \"target_audience\": \"成年人\", \"supplementary_genres\": [], \"profile_summary\": \"融合西部與哥德風格，呈現出沉鬱悲劇氛圍的電影，適合成年人觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2761,
+    "item_raw": 3192,
+    "title": "Terrorist, The (Malli) (1998)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "沉重",
+        "緊張",
+        "深刻"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以恐怖主義為背景的 Drama 電影，適合成年觀眾細味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.42,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"沉重\", \"緊張\", \"深刻\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以恐怖主義為背景的 Drama 電影，適合成年觀眾細味\"}"
+    ]
+  },
+  {
+    "item_idx": 2828,
+    "item_raw": 3281,
+    "title": "Brandon Teena Story, The (1998)",
+    "genres": "Documentary",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "感動",
+        "揭露"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "紀錄片以真實事件為基礎，敘述 Brandon Teena 的故事，引人深思且感動人心，適合成人觀眾觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.68,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"感動\", \"揭露\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"紀錄片以真實事件為基礎，敘述 Brandon Teena 的故事，引人深思且感動人心，適合成人觀眾觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 681,
+    "item_raw": 800,
+    "title": "Lone Star (1996)",
+    "genres": "Drama|Mystery",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "沉鬱",
+        "凝重",
+        "懸疑"
+      ],
+      "target_audience": "年長觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "一部以德州為背景，探討複雜人際關係與未解之謎的沉鬱悬疑劇情片，適合喜愛深刻劇情的年長觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.9,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"沉鬱\", \"凝重\", \"懸疑\"], \"target_audience\": \"年長觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"一部以德州為背景，探討複雜人際關係與未解之謎的沉鬱悬疑劇情片，適合喜愛深刻劇情的年長觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2705,
+    "item_raw": 3128,
+    "title": "Map of the World, A (1999)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "探索"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "描寫人物內心世界的深刻戏剧，適合成年觀眾細味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.42,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"探索\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"描寫人物內心世界的深刻戏剧，適合成年觀眾細味\"}"
+    ]
+  },
+  {
+    "item_idx": 794,
+    "item_raw": 946,
+    "title": "To Be or Not to Be (1942)",
+    "genres": "Comedy|Drama|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "諷刺",
+        "幽默",
+        "緊張"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部融合諷刺幽默與緊張情勢的戰爭戲劇，適合喜愛智慧對話與歷史背景的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.75,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"諷刺\", \"幽默\", \"緊張\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部融合諷刺幽默與緊張情勢的戰爭戲劇，適合喜愛智慧對話與歷史背景的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2459,
+    "item_raw": 2859,
+    "title": "Stop Making Sense (1984)",
+    "genres": "Documentary",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激勵",
+        "搖滾",
+        "現場"
+      ],
+      "target_audience": "音樂喜愛者,搖滾樂迷,文化喜好者",
+      "supplementary_genres": [],
+      "profile_summary": "由.parseLong(1984)的現場演唱會組成的紀錄片，充滿激情與能量，適合音樂和搖滾樂迷欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.94,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激勵\", \"搖滾\", \"現場\"], \"target_audience\": \"音樂喜愛者,搖滾樂迷,文化喜好者\", \"supplementary_genres\": [], \"profile_summary\": \"由.parseLong(1984)的現場演唱會組成的紀錄片，充滿激情與能量，適合音樂和搖滾樂迷欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1960,
+    "item_raw": 2322,
+    "title": "Soldier (1998)",
+    "genres": "Action|Adventure|Sci-Fi|Thriller|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "未來感"
+      ],
+      "target_audience": "青少年以上",
+      "supplementary_genres": [],
+      "profile_summary": "結合動作、冒險及科幻元素的戰爭驚悚片，適合喜愛紧张刺激與未來科技的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.5,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"未來感\"], \"target_audience\": \"青少年以上\", \"supplementary_genres\": [], \"profile_summary\": \"結合動作、冒險及科幻元素的戰爭驚悚片，適合喜愛紧张刺激與未來科技的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 416,
+    "item_raw": 450,
+    "title": "With Honors (1994)",
+    "genres": "Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "感動",
+        "成長"
+      ],
+      "target_audience": "青少年及成年人",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部融合幽默與感動元素，探討青少年成長過程的喜劇劇情片，適合青少年及成年人觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.61,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"感動\", \"成長\"], \"target_audience\": \"青少年及成年人\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部融合幽默與感動元素，探討青少年成長過程的喜劇劇情片，適合青少年及成年人觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2712,
+    "item_raw": 3137,
+    "title": "Sea Wolves, The (1980)",
+    "genres": "Action|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激勵",
+        "刺激",
+        "英雄主義"
+      ],
+      "target_audience": "成年男性",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以戰爭為背景的動作電影，透過戰場上的英勇表現，展現英雄主義與激勵人心的氛圍，適合喜愛動作與戰爭片的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.96,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激勵\", \"刺激\", \"英雄主義\"], \"target_audience\": \"成年男性\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以戰爭為背景的動作電影，透過戰場上的英勇表現，展現英雄主義與激勵人心的氛圍，適合喜愛動作與戰爭片的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 722,
+    "item_raw": 861,
+    "title": "Supercop (1992)",
+    "genres": "Action|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "英勇"
+      ],
+      "target_audience": "喜愛動作片的觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "緊湊刺激的動作 THRILLER 电影，主角的英勇表現令人印象深刻，適合喜愛動作片的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.69,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"英勇\"], \"target_audience\": \"喜愛動作片的觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"緊湊刺激的動作 THRILLER 电影，主角的英勇表現令人印象深刻，適合喜愛動作片的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 3303,
+    "item_raw": 3830,
+    "title": "Psycho Beach Party (2000)",
+    "genres": "Comedy|Horror|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "懸疑",
+        "驚悚",
+        "幽默"
+      ],
+      "target_audience": "喜愛懸疑與幽默的觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部電影將懸疑與驚悚元素與幽默風格巧妙融合，適合喜愛這類混合風格的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.7,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"懸疑\", \"驚悚\", \"幽默\"], \"target_audience\": \"喜愛懸疑與幽默的觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部電影將懸疑與驚悚元素與幽默風格巧妙融合，適合喜愛這類混合風格的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 768,
+    "item_raw": 920,
+    "title": "Gone with the Wind (1939)",
+    "genres": "Drama|Romance|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "感動",
+        "悲傷",
+        "歷史"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部經典戰爭愛情片以南軍戰敗為背景，講述女性在戰爭與愛情中的掙扎與奮鬥，適合喜愛歷史愛情電影的成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.93,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"感動\", \"悲傷\", \"歷史\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部經典戰爭愛情片以南軍戰敗為背景，講述女性在戰爭與愛情中的掙扎與奮鬥，適合喜愛歷史愛情電影的成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1870,
+    "item_raw": 2207,
+    "title": "Jamaica Inn (1939)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "陰森",
+        "懸疑",
+        "悲情"
+      ],
+      "target_audience": "成人",
+      "supplementary_genres": [],
+      "profile_summary": "1939年的經典悲情懸疑劇，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.46,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"陰森\", \"懸疑\", \"悲情\"], \"target_audience\": \"成人\", \"supplementary_genres\": [], \"profile_summary\": \"1939年的經典悲情懸疑劇，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2137,
+    "item_raw": 2505,
+    "title": "8MM (1999)",
+    "genres": "Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "懸疑",
+        "緊張",
+        "刺激"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "帶有濃厚悬疑氛围的驚悚電影，適合喜愛緊張氛圍的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.54,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"懸疑\", \"緊張\", \"刺激\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"帶有濃厚悬疑氛围的驚悚電影，適合喜愛緊張氛圍的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2822,
+    "item_raw": 3271,
+    "title": "Of Mice and Men (1992)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "人性"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片基於傑克．London的小說，探討人性與階層差異的深刻劇情，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.61,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"人性\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片基於傑克．London的小說，探討人性與階層差異的深刻劇情，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1052,
+    "item_raw": 1254,
+    "title": "Treasure of the Sierra Madre, The (1948)",
+    "genres": "Adventure",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "懸疑",
+        "刺激",
+        "實驗"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "一齣關於探險與道德 Choices 的懸疑刺激冒險，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.51,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"懸疑\", \"刺激\", \"實驗\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"一齣關於探險與道德 Choices 的懸疑刺激冒險，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2665,
+    "item_raw": 3083,
+    "title": "All About My Mother (Todo Sobre Mi Madre) (1999)",
+    "genres": "Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "幽默"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合深刻情感與幽默元素的劇情片，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.4,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"幽默\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合深刻情感與幽默元素的劇情片，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2199,
+    "item_raw": 2574,
+    "title": "Out-of-Towners, The (1999)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "輕鬆",
+        "滑稽",
+        " Friendship"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以成年朋友為核心，帶有輕鬆幽默元素的 Comedy 片，適合成年觀眾共同欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.6,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"輕鬆\", \"滑稽\", \" Friendship\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以成年朋友為核心，帶有輕鬆幽默元素的 Comedy 片，適合成年觀眾共同欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 810,
+    "item_raw": 962,
+    "title": "They Made Me a Criminal (1939)",
+    "genres": "Crime|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "悲劇",
+        "深刻"
+      ],
+      "target_audience": "成人觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "此片以犯罪為題材，展現深刻的人物心理及社會現象，適合對複雜人性及社會議題感興趣的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.68,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"悲劇\", \"深刻\"], \"target_audience\": \"成人觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"此片以犯罪為題材，展現深刻的人物心理及社會現象，適合對複雜人性及社會議題感興趣的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2951,
+    "item_raw": 3436,
+    "title": "Dying Young (1991)",
+    "genres": "Drama|Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "浪漫",
+        "悲傷"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以青澀愛情與成長痛為主軸，帶有濃厚情感與深度的愛情電影，適合成年觀眾品味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.63,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"浪漫\", \"悲傷\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以青澀愛情與成長痛為主軸，帶有濃厚情感與深度的愛情電影，適合成年觀眾品味\"}"
+    ]
+  },
+  {
+    "item_idx": 3357,
+    "item_raw": 3891,
+    "title": "Turn It Up (2000)",
+    "genres": "Crime|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "沉重",
+        "真實",
+        "懸疑"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以犯罪為主題的戲劇電影，帶有真實感和沉重的氛圍，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.55,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"沉重\", \"真實\", \"懸疑\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以犯罪為主題的戲劇電影，帶有真實感和沉重的氛圍，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1393,
+    "item_raw": 1658,
+    "title": "Life Less Ordinary, A (1997)",
+    "genres": "Romance|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "懸疑",
+        "感動"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "結合愛情與驚悚元素，帶有深刻情感的懸疑劇情，適合喜愛複雜情感線索與緊張劇情的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.81,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"懸疑\", \"感動\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"結合愛情與驚悚元素，帶有深刻情感的懸疑劇情，適合喜愛複雜情感線索與緊張劇情的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1412,
+    "item_raw": 1677,
+    "title": "Critical Care (1997)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "溫馨"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "一出以幽默手法探討家庭關係與人生哲理的喜劇電影，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.48,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"溫馨\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"一出以幽默手法探討家庭關係與人生哲理的喜劇電影，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 802,
+    "item_raw": 954,
+    "title": "Mr. Smith Goes to Washington (1939)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "啟發"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "一部關於理想與權力的深刻啟發電影，適合成年觀眾細品味嘗"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.55,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"啟發\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"一部關於理想與權力的深刻啟發電影，適合成年觀眾細品味嘗\"}"
+    ]
+  },
+  {
+    "item_idx": 1766,
+    "item_raw": 2099,
+    "title": "Song of the South (1946)",
+    "genres": "Adventure|Animation|Children's|Musical",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "鄉村風味",
+        "詼諧樂趣",
+        "溫馨家庭时光"
+      ],
+      "target_audience": "全家共賞",
+      "supplementary_genres": [
+        "Family",
+        "民俗風土"
+      ],
+      "profile_summary": "結合動畫與鄉村生活題材的音樂冒險喜劇，適合全家一同欣賞，感受南國風情與傳統樂趣"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.89,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"鄉村風味\", \"詼諧樂趣\", \"溫馨家庭时光\"], \"target_audience\": \"全家共賞\", \"supplementary_genres\": [\"Family\", \"民俗風土\"], \"profile_summary\": \"結合動畫與鄉村生活題材的音樂冒險喜劇，適合全家一同欣賞，感受南國風情與傳統樂趣\"}"
+    ]
+  },
+  {
+    "item_idx": 1350,
+    "item_raw": 1608,
+    "title": "Air Force One (1997)",
+    "genres": "Action|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "英雄"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以空軍一號為背景的緊張 THRILLER 感受英雄情懷的動作片，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.59,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"英雄\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以空軍一號為背景的緊張 THRILLER 感受英雄情懷的動作片，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1391,
+    "item_raw": 1656,
+    "title": "Swept from the Sea (1997)",
+    "genres": "Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "浪漫",
+        "哀愁",
+        "情感"
+      ],
+      "target_audience": "浪漫爱情電影迷, 夫妻或情人",
+      "supplementary_genres": [],
+      "profile_summary": "描述海洋中的浪漫與哀愁，適合追求浪漫情感的觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.53,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"浪漫\", \"哀愁\", \"情感\"], \"target_audience\": \"浪漫爱情電影迷, 夫妻或情人\", \"supplementary_genres\": [], \"profile_summary\": \"描述海洋中的浪漫與哀愁，適合追求浪漫情感的觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1957,
+    "item_raw": 2318,
+    "title": "Happiness (1998)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "生活"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以幽默手法描繪日常生活的小確幸與挫折，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.27,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"生活\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以幽默手法描繪日常生活的小確幸與挫折，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1065,
+    "item_raw": 1267,
+    "title": "Manchurian Candidate, The (1962)",
+    "genres": "Film-Noir|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "悬疑",
+        "驚悚"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片為冷戰時期經典驚悚片，以緊張悬疑為主，適合喜愛 THRILLER 类型的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.69,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"悬疑\", \"驚悚\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片為冷戰時期經典驚悚片，以緊張悬疑為主，適合喜愛 THRILLER 类型的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1126,
+    "item_raw": 1335,
+    "title": "Blood Beach (1981)",
+    "genres": "Action|Horror",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "懸疑",
+        "血腥"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "具緊張感與血腥場面的動作恐怖片，適合喜愛刺激與恐怖氛圍的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.6,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"懸疑\", \"血腥\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"具緊張感與血腥場面的動作恐怖片，適合喜愛刺激與恐怖氛圍的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 463,
+    "item_raw": 497,
+    "title": "Much Ado About Nothing (1993)",
+    "genres": "Comedy|Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "浪漫",
+        "愛情"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部喜劇片以莎士比亞作品為基礎，融合幽默與愛情元素，適合喜愛浪漫與智慧對話的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.67,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"浪漫\", \"愛情\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部喜劇片以莎士比亞作品為基礎，融合幽默與愛情元素，適合喜愛浪漫與智慧對話的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 103,
+    "item_raw": 108,
+    "title": "Catwalk (1995)",
+    "genres": "Documentary",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "引人入勝",
+        "時尚"
+      ],
+      "target_audience": "時尚愛好者, 紀錄片喜愛者",
+      "supplementary_genres": [],
+      "profile_summary": "聚焦於時尚界的重要活動，呈現真實而引人入勝的紀錄片，適合時尚愛好者及紀錄片喜愛者觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.9,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"引人入勝\", \"時尚\"], \"target_audience\": \"時尚愛好者, 紀錄片喜愛者\", \"supplementary_genres\": [], \"profile_summary\": \"聚焦於時尚界的重要活動，呈現真實而引人入勝的紀錄片，適合時尚愛好者及紀錄片喜愛者觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 612,
+    "item_raw": 691,
+    "title": "Mrs. Winterbourne (1996)",
+    "genres": "Comedy|Romance",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "浪漫",
+        "溫馨",
+        "趣味"
+      ],
+      "target_audience": "成年愛情片粉絲",
+      "supplementary_genres": [],
+      "profile_summary": "一出輕鬆有趣的愛情喜劇，適合喜愛浪漫與趣味的成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.49,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"浪漫\", \"溫馨\", \"趣味\"], \"target_audience\": \"成年愛情片粉絲\", \"supplementary_genres\": [], \"profile_summary\": \"一出輕鬆有趣的愛情喜劇，適合喜愛浪漫與趣味的成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2939,
+    "item_raw": 3424,
+    "title": "Do the Right Thing (1989)",
+    "genres": "Comedy|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激勵",
+        "深刻",
+        "對話"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片為一部以紐約布朗克斯區為背景，透過一場夏日午間的社區生活對話，深刻探讨種族議題的喜劇劇情片，適合成年觀眾共同討論觀後感"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 4.0,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激勵\", \"深刻\", \"對話\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片為一部以紐約布朗克斯區為背景，透過一場夏日午間的社區生活對話，深刻探讨種族議題的喜劇劇情片，適合成年觀眾共同討論觀後感\"}"
+    ]
+  },
+  {
+    "item_idx": 1353,
+    "item_raw": 1611,
+    "title": "My Own Private Idaho (1991)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "叛逆"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "本片探討年輕人的無依與成長，情感豐富且帶有叛逆色彩，適合成年觀眾細品"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.58,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"叛逆\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"本片探討年輕人的無依與成長，情感豐富且帶有叛逆色彩，適合成年觀眾細品\"}"
+    ]
+  },
+  {
+    "item_idx": 446,
+    "item_raw": 480,
+    "title": "Jurassic Park (1993)",
+    "genres": "Action|Adventure|Sci-Fi",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "驚奇",
+        "刺激"
+      ],
+      "target_audience": "青少年及以上",
+      "supplementary_genres": [],
+      "profile_summary": "結合史前時代與現代科技的科幻冒險動作片，適合喜愛驚奇與刺激的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.51,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"驚奇\", \"刺激\"], \"target_audience\": \"青少年及以上\", \"supplementary_genres\": [], \"profile_summary\": \"結合史前時代與現代科技的科幻冒險動作片，適合喜愛驚奇與刺激的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 128,
+    "item_raw": 144,
+    "title": "Brothers McMullen, The (1995)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "幽默",
+        "深刻"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部電影以簡陋的獨立製作方式，透過幽默的場景展現人性的真實面向，適合對獨立電影和幽默喜劇有興趣的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.74,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"幽默\", \"深刻\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部電影以簡陋的獨立製作方式，透過幽默的場景展現人性的真實面向，適合對獨立電影和幽默喜劇有興趣的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 74,
+    "item_raw": 78,
+    "title": "Crossing Guard, The (1995)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "真實"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以警察為背景的寫實劇情片，探討人性與職業道德，適合成年觀眾細心品味"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.53,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"真實\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以警察為背景的寫實劇情片，探討人性與職業道德，適合成年觀眾細心品味\"}"
+    ]
+  },
+  {
+    "item_idx": 57,
+    "item_raw": 60,
+    "title": "Indian in the Cupboard, The (1995)",
+    "genres": "Adventure|Children's|Fantasy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "奇幻",
+        "冒險",
+        "溫馨"
+      ],
+      "target_audience": "兒童及全家",
+      "supplementary_genres": [
+        "Family"
+      ],
+      "profile_summary": "以神奇櫃為核心，帶領觀眾進入一個充滿奇幻與冒險的世界，適合兒童及全家共賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.51,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"奇幻\", \"冒險\", \"溫馨\"], \"target_audience\": \"兒童及全家\", \"supplementary_genres\": [\"Family\"], \"profile_summary\": \"以神奇櫃為核心，帶領觀眾進入一個充滿奇幻與冒險的世界，適合兒童及全家共賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2172,
+    "item_raw": 2542,
+    "title": "Lock, Stock & Two Smoking Barrels (1998)",
+    "genres": "Comedy|Crime|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "冷調",
+        "幽默",
+        "緊張"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以冷調幽默帶動緊張刺激情節的犯罪喜劇 thriller，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.52,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"冷調\", \"幽默\", \"緊張\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以冷調幽默帶動緊張刺激情節的犯罪喜劇 thriller，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2231,
+    "item_raw": 2616,
+    "title": "Dick Tracy (1990)",
+    "genres": "Action|Crime",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "懸疑"
+      ],
+      "target_audience": "青少年以上觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以犯罪為背景的動作電影，具緊張和刺激的氛圍，適合青少年以上觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.64,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"懸疑\"], \"target_audience\": \"青少年以上觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以犯罪為背景的動作電影，具緊張和刺激的氛圍，適合青少年以上觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2924,
+    "item_raw": 3406,
+    "title": "Captain Horatio Hornblower (1951)",
+    "genres": "Action|Adventure|War",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "壯烈",
+        "英雄",
+        "勇氣"
+      ],
+      "target_audience": "成人",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部以19世紀海戰為背景的動感冒險戰爭電影，適合喜愛軍事史與英雄故事的成人觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.69,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"壯烈\", \"英雄\", \"勇氣\"], \"target_audience\": \"成人\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部以19世紀海戰為背景的動感冒險戰爭電影，適合喜愛軍事史與英雄故事的成人觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 2047,
+    "item_raw": 2411,
+    "title": "Rocky IV (1985)",
+    "genres": "Action|Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "激勵",
+        "悲壯",
+        "實戰"
+      ],
+      "target_audience": "喜愛體育及動作電影的成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部動作劇情片帶有濃厚的激勵氛圍和真實格鬥精神，適合喜愛體育及動作電影的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.89,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"激勵\", \"悲壯\", \"實戰\"], \"target_audience\": \"喜愛體育及動作電影的成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部動作劇情片帶有濃厚的激勵氛圍和真實格鬥精神，適合喜愛體育及動作電影的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1961,
+    "item_raw": 2323,
+    "title": "Cruise, The (1998)",
+    "genres": "Documentary",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "真實",
+        "激勵",
+        "探索"
+      ],
+      "target_audience": "喜愛動態生活的觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "真實紀錄片，以激勵人心的方式探索不同領域的活動，適合喜愛動態生活內容的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.68,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"真實\", \"激勵\", \"探索\"], \"target_audience\": \"喜愛動態生活的觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"真實紀錄片，以激勵人心的方式探索不同領域的活動，適合喜愛動態生活內容的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1678,
+    "item_raw": 2009,
+    "title": "Soylent Green (1973)",
+    "genres": "Sci-Fi|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "懸疑",
+        "驚悚",
+        "深沈"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "融合Sci-Fi與Thriller元素，帶有深層社會議題的懸疑驚悚電影，適合成年觀眾探索"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.68,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"懸疑\", \"驚悚\", \"深沈\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"融合Sci-Fi與Thriller元素，帶有深層社會議題的懸疑驚悚電影，適合成年觀眾探索\"}"
+    ]
+  },
+  {
+    "item_idx": 107,
+    "item_raw": 113,
+    "title": "Before and After (1996)",
+    "genres": "Drama|Mystery",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "緊張"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這是一部關於人物內心掙扎與謎團解開的深沈劇情片，適合對人性有深刻探討需求的觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.62,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"緊張\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這是一部關於人物內心掙扎與謎團解開的深沈劇情片，適合對人性有深刻探討需求的觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 3165,
+    "item_raw": 3681,
+    "title": "For a Few Dollars More (1965)",
+    "genres": "Western",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "豪情",
+        "刺激",
+        "勇氣"
+      ],
+      "target_audience": "成年男性",
+      "supplementary_genres": [],
+      "profile_summary": "一部充滿西部精神與個人英雄主義的硬漢動作片，適合喜愛刺激冒險的成年男性觀賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.59,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"豪情\", \"刺激\", \"勇氣\"], \"target_audience\": \"成年男性\", \"supplementary_genres\": [], \"profile_summary\": \"一部充滿西部精神與個人英雄主義的硬漢動作片，適合喜愛刺激冒險的成年男性觀賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1510,
+    "item_raw": 1824,
+    "title": "Homegrown (1998)",
+    "genres": "Comedy|Thriller",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "辛辣",
+        "機智",
+        "緊張"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "帶有黑色幽默的驚悚喜劇，適合喜愛緊張刺激氛圍的成年觀眾"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.56,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"辛辣\", \"機智\", \"緊張\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"帶有黑色幽默的驚悚喜劇，適合喜愛緊張刺激氛圍的成年觀眾\"}"
+    ]
+  },
+  {
+    "item_idx": 1944,
+    "item_raw": 2303,
+    "title": "Nashville (1975)",
+    "genres": "Drama|Musical",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "樂章"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部電影以音樂為媒介，展現了深刻的人性故事，適合喜愛音樂與戲劇的成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.56,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"樂章\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部電影以音樂為媒介，展現了深刻的人性故事，適合喜愛音樂與戲劇的成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 1568,
+    "item_raw": 1896,
+    "title": "Cousin Bette (1998)",
+    "genres": "Comedy",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "幽默",
+        "詼諧"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "帶有詼諧元素的喜劇電影，適合成年觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.41,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"幽默\", \"詼諧\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"帶有詼諧元素的喜劇電影，適合成年觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 194,
+    "item_raw": 211,
+    "title": "Browning Version, The (1994)",
+    "genres": "Drama",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "深刻",
+        "感動",
+        "寫實"
+      ],
+      "target_audience": "成年觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "以強烈寫實手法描述人物生活的深度電影，適合成年觀眾細品"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.4,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"深刻\", \"感動\", \"寫實\"], \"target_audience\": \"成年觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"以強烈寫實手法描述人物生活的深度電影，適合成年觀眾細品\"}"
+    ]
+  },
+  {
+    "item_idx": 1673,
+    "item_raw": 2004,
+    "title": "Gremlins 2: The New Batch (1990)",
+    "genres": "Comedy|Horror",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "驚悚",
+        "趣味",
+        "逗趣"
+      ],
+      "target_audience": "青少年及成人",
+      "supplementary_genres": [],
+      "profile_summary": "本片為前作續集，融合了驚悚與趣味元素，適合青少年及成人欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.45,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"驚悚\", \"趣味\", \"逗趣\"], \"target_audience\": \"青少年及成人\", \"supplementary_genres\": [], \"profile_summary\": \"本片為前作續集，融合了驚悚與趣味元素，適合青少年及成人欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 2420,
+    "item_raw": 2814,
+    "title": "Bat, The (1959)",
+    "genres": "Horror",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "驚悚",
+        "恐怖"
+      ],
+      "target_audience": "喜愛恐怖電影的觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "1959年的恐怖電影，以恐怖為主軸，適合喜愛恐怖電影的觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.45,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"驚悚\", \"恐怖\"], \"target_audience\": \"喜愛恐怖電影的觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"1959年的恐怖電影，以恐怖為主軸，適合喜愛恐怖電影的觀眾欣賞\"}"
+    ]
+  },
+  {
+    "item_idx": 3226,
+    "item_raw": 3744,
+    "title": "Shaft (2000)",
+    "genres": "Action|Crime",
+    "success": true,
+    "parsed": {
+      "mood_tags": [
+        "緊張",
+        "刺激",
+        "硬漢"
+      ],
+      "target_audience": "喜愛動作與犯罪類型的觀眾",
+      "supplementary_genres": [],
+      "profile_summary": "這部 Shaft 具有緊張刺激的動作氛圍與深刻的犯罪元素，適合喜愛這類電影的觀眾欣賞"
+    },
+    "attempts": 1,
+    "elapsed_sec_total": 3.82,
+    "raw_outputs": [
+      "{\"mood_tags\": [\"緊張\", \"刺激\", \"硬漢\"], \"target_audience\": \"喜愛動作與犯罪類型的觀眾\", \"supplementary_genres\": [], \"profile_summary\": \"這部 Shaft 具有緊張刺激的動作氛圍與深刻的犯罪元素，適合喜愛這類電影的觀眾欣賞\"}"
+    ]
+  }
+]
