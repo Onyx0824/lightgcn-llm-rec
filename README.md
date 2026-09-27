@@ -96,7 +96,8 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 - [x] sentence-transformers 安裝與測試
 - [x] 資料集選定（MovieLens-1M）
 - [x] LightGCN baseline 實作與訓練（詳見 [`docs/experiment-log.md`](./docs/experiment-log.md)）
-- [ ] LLM 增強模組（prompt 設計 → 全量生成 → embedding 整合）
+- [x] LLM 增強 prompt 設計與小規模驗證（user profiling + item attribute，含 JSON 值域檢查與 retry 機制，n=100/100，詳見 experiment-log.md Week3）
+- [ ] LLM 增強全量生成 → embedding 整合
 - [ ] 去噪/剪枝分析
 - [ ] 效益分析
 - [ ] 報告撰寫
