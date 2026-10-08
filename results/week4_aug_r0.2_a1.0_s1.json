@@ -1,0 +1,19 @@
+{
+  "model": "LightGCN + LLM aug",
+  "ratio": 0.2,
+  "alpha": 1.0,
+  "seed": 1,
+  "n_aug_users": 974,
+  "n_aug_items": 682,
+  "best_epoch": 20,
+  "best_valid_recall": 0.09126124973228318,
+  "train_sec": 445.6,
+  "test_metrics": {
+    "recall@20": 0.07952535268747492,
+    "ndcg@20": 0.2717430627108698
+  },
+  "delta_vs_baseline": {
+    "recall@20": -0.001854,
+    "ndcg@20": -0.000339
+  }
+}

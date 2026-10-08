@@ -108,9 +108,11 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 
 | 模型 | Recall@20 | NDCG@20 | 備註 |
 |---|---|---|---|
-| LightGCN (baseline) | 0.0814 | 0.2721 | epoch30 early stop（Week 2） |
-| + LLM 增強（未去噪） | TBD | TBD | |
-| + LLM 增強（去噪後） | TBD | TBD | |
+| LightGCN（控制組，固定 25 epoch，10 seed） | 0.0786 ± 0.0006 | 0.2714 ± 0.0008 | 對照基準 |
+| + LLM 增強 20%（α=1.0） | 0.0804 ± 0.0010 | 0.2722 ± 0.0008 | 累計生成 1.9 小時 |
+| + LLM 增強 50%（α=1.0） | 0.0819 ± 0.0009 | 0.2740 ± 0.0021 | 累計生成 4.8 小時 |
+| + LLM 增強 100%（α=1.0） | 0.0822 ± 0.0017 | 0.2762 ± 0.0026 | 累計生成 9.9 小時 |
+| + LLM 增強（去噪後） | TBD | TBD | Week 5 |
 
 ## 授權
 

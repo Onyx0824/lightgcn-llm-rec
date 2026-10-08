@@ -1,0 +1,14 @@
+{
+  "user_profiling": {
+    "n": 100,
+    "first_try_success_rate": 1.0,
+    "overall_success_rate_after_retry": 1.0,
+    "avg_elapsed_sec_per_sample": 4.19
+  },
+  "item_attribute": {
+    "n": 100,
+    "first_try_success_rate": 1.0,
+    "overall_success_rate_after_retry": 1.0,
+    "avg_elapsed_sec_per_sample": 3.61
+  }
+}

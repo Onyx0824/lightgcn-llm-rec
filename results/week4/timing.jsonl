@@ -1,0 +1,8 @@
+{"kind": "users", "max_ratio": 0.01, "workers": 1, "n_generated": 49, "wall_sec": 243.1}
+{"kind": "items", "max_ratio": 0.01, "workers": 1, "n_generated": 35, "wall_sec": 136.1}
+{"kind": "users", "max_ratio": 0.2, "workers": 1, "n_generated": 925, "wall_sec": 3960.2}
+{"kind": "items", "max_ratio": 0.2, "workers": 1, "n_generated": 647, "wall_sec": 2587.4}
+{"kind": "users", "max_ratio": 0.5, "workers": 1, "n_generated": 1461, "wall_sec": 6305.8}
+{"kind": "items", "max_ratio": 0.5, "workers": 1, "n_generated": 1022, "wall_sec": 4066.3}
+{"kind": "users", "max_ratio": 1.0, "workers": 1, "n_generated": 2435, "wall_sec": 11345.8}
+{"kind": "items", "max_ratio": 1.0, "workers": 1, "n_generated": 1704, "wall_sec": 6993.3}
