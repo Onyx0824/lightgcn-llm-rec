@@ -9,6 +9,9 @@ Week 4/6 - 增強比例（20% / 50% / 100%）效益彙整。
 用法（專案根目錄）：
     python scripts/compare_ratios.py
     python scripts/compare_ratios.py --ratios 0.2 0.5 1.0 --alpha 1.0
+    # item-only 消融：α=1.0 用 itemonly 的結果、α=0 控制組沿用主實驗，成本只算 item 生成時間
+    python scripts/compare_ratios.py --prefix week4fe_aug_itemonly --control_prefix week4fe_aug \
+        --cost_side items --out_csv results/week6_tier_table_itemonly.csv
 輸出：終端機表格 + results/week6_tier_table.csv
 """
 import argparse
@@ -57,10 +60,17 @@ def cumulative_hours(timing_path, tier):
     return users / 3600, items / 3600
 
 
+def pick(uh, ih, side):
+    return uh + ih if side == "total" else (uh if side == "users" else ih)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results_dir", default="results")
     ap.add_argument("--prefix", default="week4fe_aug")
+    ap.add_argument("--control_prefix", default=None, help="α=0 控制組的檔名前綴，預設同 --prefix")
+    ap.add_argument("--cost_side", choices=["total", "users", "items"], default="total",
+                    help="成本只計哪一端的生成時間（item-only 消融用 items）")
     ap.add_argument("--ratios", nargs="+", default=["0.2", "0.5", "1.0"])
     ap.add_argument("--a0", default="0.0")
     ap.add_argument("--a1", default="1.0")
@@ -76,7 +86,8 @@ def main():
 
     print(f"== 各比例：α={args.a1} 相對 α={args.a0} 的配對增益（全體 test user，95% CI）==")
     for r in args.ratios:
-        a0, a1 = load(rdir, args.prefix, r, args.a0), load(rdir, args.prefix, r, args.a1)
+        a0 = load(rdir, args.control_prefix or args.prefix, r, args.a0)
+        a1 = load(rdir, args.prefix, r, args.a1)
         seeds = sorted(set(a0) & set(a1))
         if len(seeds) < 3:
             print(f"ratio={r}: 配對 seed 不足（{len(seeds)}），略過")
@@ -86,10 +97,11 @@ def main():
         row = {"ratio": r, "n_seeds": len(seeds)}
         if uh is not None:
             row.update(gen_hours_users=round(uh, 2), gen_hours_items=round(ih, 2),
-                       gen_hours_total=round(uh + ih, 2))
+                       gen_hours_total=round(uh + ih, 2),
+                       gen_hours_used=round(pick(uh, ih, args.cost_side), 2), cost_side=args.cost_side)
         line = f"ratio={r} (n={len(seeds)}"
         if uh is not None:
-            line += f", 累計生成 {uh + ih:.1f} 小時"
+            line += f", 累計生成 {pick(uh, ih, args.cost_side):.1f} 小時[{args.cost_side}]"
         print(line + ")")
         for m in metrics:
             c = np.array([a0[s]["test_metrics"][m] for s in seeds])
@@ -113,7 +125,8 @@ def main():
             seeds = sorted(set(s1) & set(s2))
             u1, i1 = cumulative_hours(Path(args.timing), float(r1))
             u2, i2 = cumulative_hours(Path(args.timing), float(r2))
-            extra = f"，多花 {(u2 + i2) - (u1 + i1):.1f} 小時" if u1 is not None else ""
+            extra = (f"，多花 {pick(u2, i2, args.cost_side) - pick(u1, i1, args.cost_side):.1f} 小時[{args.cost_side}]"
+                     if u1 is not None else "")
             print(f"ratio {r1} → {r2}（n={len(seeds)}{extra}）")
             for m in metrics:
                 d = np.array([a1_hi[s]["test_metrics"][m] - a1_lo[s]["test_metrics"][m] for s in seeds])

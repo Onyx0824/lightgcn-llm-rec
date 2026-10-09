@@ -12,6 +12,10 @@ Week 4 - 訓練 LLM 增強版 LightGCN，並與 baseline 比較。
 --fixed_epochs N > 0：不做 early stopping，固定訓練 N epoch 後直接評估 test，
 結果改存 results/week4fe_aug_r{ratio}_a{alpha}_s{seed}.json（避免和 early-stopping 版本混在一起）。
 結果 JSON 另含 test_aug_users / test_nonaug_users：test 指標依「該 user 是否有 LLM 增強」分群。
+--aug_side user|item：消融，只啟用 user 端或 item 端的增強（另一端遮罩全設 0，等同 baseline）。
+    分群仍以「原本比例下有沒有被增強」定義，所以各組結果可直接對照。
+--tag：結果檔名加標籤，例如 week4fe_aug_<tag>_r..._a..._s....json（避免與主實驗混在一起）。
+    使用 --aug_side 且未指定 --tag 時，自動用 "<side>only"。
 """
 
 import argparse
@@ -48,6 +52,9 @@ def main():
     ap.add_argument("--ratio", type=float, default=1.0)
     ap.add_argument("--alpha", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--aug_side", choices=["both", "user", "item"], default="both",
+                    help="消融：只啟用 user 端或 item 端的增強")
+    ap.add_argument("--tag", default="", help="結果檔名標籤")
     ap.add_argument("--fixed_epochs", type=int, default=0,
                     help=">0：固定訓練這麼多 epoch、不做 early stopping（降低停止點造成的變異）")
     args = ap.parse_args()
@@ -74,15 +81,20 @@ def main():
         order = json.load(f)
     u_mask = ratio_mask(order["user_order"], u_has, args.ratio)
     i_mask = ratio_mask(order["item_order"], i_has, args.ratio)
-    print(f"ratio={args.ratio} alpha={args.alpha} seed={args.seed} | 增強 user {u_mask.sum()}/{n_users}, item {i_mask.sum()}/{n_items}")
+    u_group = u_mask.copy()  # 分群評估用：永遠以「原比例下有增強」定義，不受 --aug_side 影響
+    if args.aug_side == "item":
+        u_mask = np.zeros_like(u_mask)
+    elif args.aug_side == "user":
+        i_mask = np.zeros_like(i_mask)
+    print(f"ratio={args.ratio} alpha={args.alpha} seed={args.seed} side={args.aug_side} | 增強 user {u_mask.sum()}/{n_users}, item {i_mask.sum()}/{n_items}")
 
     train_pos = build_user_pos_items(train_df, n_users)
     valid_pos = {u: set(v) for u, v in build_user_pos_items(valid_df, n_users).items()}
     test_pos = {u: set(v) for u, v in build_user_pos_items(test_df, n_users).items()}
     train_valid_pos = {u: train_pos[u] + list(valid_pos.get(u, [])) for u in range(n_users)}
     # 分群評估用：test 中「有增強的 user」vs「沒有增強的 user」（只算有 test 正樣本的 user）
-    test_aug = {u: s for u, s in test_pos.items() if s and u_mask[u]}
-    test_nonaug = {u: s for u, s in test_pos.items() if s and not u_mask[u]}
+    test_aug = {u: s for u, s in test_pos.items() if s and u_group[u]}
+    test_nonaug = {u: s for u, s in test_pos.items() if s and not u_group[u]}
 
     norm_adj = build_norm_adj(n_users, n_items, train_df["user"].values, train_df["item"].values).to(device)
     model = LightGCNAug(
@@ -160,11 +172,12 @@ def main():
         "n_aug_users": int(u_mask.sum()), "n_aug_items": int(i_mask.sum()),
         "best_epoch": best_epoch, "best_valid_recall": best_recall,
         "train_sec": round(train_sec, 1),
-        "fixed_epochs": args.fixed_epochs,
+        "fixed_epochs": args.fixed_epochs, "aug_side": args.aug_side,
         "test_metrics": test_metrics, "delta_vs_baseline": delta,
         "test_aug_users": sub_aug, "test_nonaug_users": sub_non,
     }
-    prefix = "week4fe_aug" if fixed else "week4_aug"
+    tag = args.tag or ("" if args.aug_side == "both" else f"{args.aug_side}only")
+    prefix = ("week4fe_aug" if fixed else "week4_aug") + (f"_{tag}" if tag else "")
     out_path = Path(cfg.get("results_dir", "results")) / f"{prefix}_r{args.ratio}_a{args.alpha}_s{args.seed}.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

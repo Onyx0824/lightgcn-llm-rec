@@ -4,6 +4,8 @@
 用法（專案根目錄）：
     python scripts/summarize_week4.py --ratio 0.2                       # 固定 epoch 版本（week4fe_aug_*）
     python scripts/summarize_week4.py --ratio 0.2 --prefix week4_aug    # early stopping 版本（無分群欄位）
+    # 消融/去噪組：α=1.0 的結果在 --prefix，α=0 控制組沿用主實驗
+    python scripts/summarize_week4.py --ratio 1.0 --prefix week4fe_aug_useronly --control_prefix week4fe_aug
 """
 import argparse
 import glob
@@ -28,14 +30,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ratio", default="0.2")
     ap.add_argument("--prefix", default="week4fe_aug")
+    ap.add_argument("--control_prefix", default=None,
+                    help="α=0 控制組的檔名前綴，預設與 --prefix 相同")
     ap.add_argument("--a0", default="0.0")
     ap.add_argument("--a1", default="1.0")
     ap.add_argument("--k", type=int, default=20)
     args = ap.parse_args()
 
-    r0, r1 = load(args.prefix, args.ratio, args.a0), load(args.prefix, args.ratio, args.a1)
+    r0 = load(args.control_prefix or args.prefix, args.ratio, args.a0)
+    r1 = load(args.prefix, args.ratio, args.a1)
     seeds = sorted(set(r0) & set(r1))
-    print(f"prefix={args.prefix} ratio={args.ratio}  配對 seed 數 n={len(seeds)}: {seeds}")
+    print(f"prefix={args.prefix} (控制組 {args.control_prefix or args.prefix}) ratio={args.ratio}  配對 seed 數 n={len(seeds)}: {seeds}")
     if len(seeds) < 2:
         print("seed 不足，無法比較")
         return
@@ -46,6 +51,8 @@ def main():
         if any(group not in r0[s] or group not in r1[s] for s in seeds):
             continue
         n_users = r1[seeds[0]][group].get("n_users")
+        if n_users == 0:  # 該組沒有 user（例如 ratio=1.0 時沒有「無增強 user」），略過
+            continue
         print(f"\n== {label}" + (f"（每次約 {n_users} 位）" if n_users is not None else "") + " ==")
         for metric in (f"recall@{args.k}", f"ndcg@{args.k}"):
             a = np.array([r0[s][group][metric] for s in seeds])

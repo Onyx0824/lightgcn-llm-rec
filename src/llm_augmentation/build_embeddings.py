@@ -12,6 +12,12 @@ Week 4 - 把 LLM 生成的結構化 JSON 轉成文字，再用 sentence-transfor
 - 文字只用 LLM 產出的欄位（不含 guessed_age_group：pilot 中 98/100 是 unknown，沒有資訊量）。
 - 20%/50%/100% 的篩選不在這裡做，在訓練腳本用 order.json 的前綴決定，所以這支只需跑一次。
 - 預設保留 dirty（簡體/亂碼殘留）的筆數，加 --drop_dirty 可排除，Week5 可拿來對照。
+- --drop_retry：排除 attempts>1 的筆數（需要 retry 才產出合格 JSON/乾淨文字者；
+  注意 attempts 同時包含「格式失敗重試」與「因簡體字重生成」兩種情況）。
+- --out_dir：輸出到別的資料夾（會一併複製 order.json），避免覆蓋 results/week4 的主實驗向量。
+  去噪版本請務必指定，例如：
+    python src/llm_augmentation/build_embeddings.py --drop_dirty --out_dir results/week5/drop_dirty
+  訓練時用 --aug_dir results/week5/drop_dirty --tag dropdirty 對應。
 
 用法：
     python src/llm_augmentation/build_embeddings.py
@@ -21,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import time
 from pathlib import Path
 
@@ -49,12 +56,14 @@ def item_text(p: dict) -> str:
     return f"氛圍：{mood}。適合觀眾：{p.get('target_audience', '')}。補充類型：{supp}。{p.get('profile_summary', '')}"
 
 
-def encode_rows(model, rows, key, n_total, text_fn, drop_dirty):
+def encode_rows(model, rows, key, n_total, text_fn, drop_dirty, drop_retry=False):
     ids, texts = [], []
     for r in rows:
         if not r["success"] or r["parsed"] is None:
             continue
         if drop_dirty and r.get("dirty"):
+            continue
+        if drop_retry and r.get("attempts", 1) > 1:
             continue
         ids.append(r[key])
         texts.append(text_fn(r["parsed"]))
@@ -73,9 +82,13 @@ def main():
     ap.add_argument("--processed_dir", default="data/processed")
     ap.add_argument("--model", default="BAAI/bge-small-zh-v1.5")
     ap.add_argument("--drop_dirty", action="store_true")
+    ap.add_argument("--drop_retry", action="store_true", help="排除 attempts>1 的筆數")
+    ap.add_argument("--out_dir", default=None, help="輸出資料夾，預設與 --gen_dir 相同（會覆蓋主實驗向量）")
     args = ap.parse_args()
 
     gen_dir = Path(args.gen_dir)
+    out_dir = Path(args.out_dir) if args.out_dir else gen_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
     with open(Path(args.processed_dir) / "id_maps.json", "r", encoding="utf-8") as f:
         id_maps = json.load(f)
     n_users, n_items = len(id_maps["user2idx"]), len(id_maps["item2idx"])
@@ -87,13 +100,15 @@ def main():
 
     u_rows = read_jsonl(gen_dir / "users.jsonl")
     i_rows = read_jsonl(gen_dir / "items.jsonl")
-    u_emb, u_has = encode_rows(model, u_rows, "user_idx", n_users, user_text, args.drop_dirty)
-    i_emb, i_has = encode_rows(model, i_rows, "item_idx", n_items, item_text, args.drop_dirty)
+    u_emb, u_has = encode_rows(model, u_rows, "user_idx", n_users, user_text, args.drop_dirty, args.drop_retry)
+    i_emb, i_has = encode_rows(model, i_rows, "item_idx", n_items, item_text, args.drop_dirty, args.drop_retry)
 
-    np.save(gen_dir / "user_emb.npy", u_emb)
-    np.save(gen_dir / "user_has.npy", u_has)
-    np.save(gen_dir / "item_emb.npy", i_emb)
-    np.save(gen_dir / "item_has.npy", i_has)
+    np.save(out_dir / "user_emb.npy", u_emb)
+    np.save(out_dir / "user_has.npy", u_has)
+    np.save(out_dir / "item_emb.npy", i_emb)
+    np.save(out_dir / "item_has.npy", i_has)
+    if out_dir != gen_dir and (gen_dir / "order.json").exists():
+        shutil.copy(gen_dir / "order.json", out_dir / "order.json")  # 訓練腳本從 aug_dir 讀 order.json
 
     stats = {
         "model": args.model,
@@ -104,11 +119,13 @@ def main():
         "items_usable": int(i_has.sum()),
         "dirty_users": sum(1 for r in u_rows if r.get("dirty")),
         "dirty_items": sum(1 for r in i_rows if r.get("dirty")),
+        "drop_dirty": args.drop_dirty,
+        "drop_retry": args.drop_retry,
         "failed_users": sum(1 for r in u_rows if not r["success"]),
         "failed_items": sum(1 for r in i_rows if not r["success"]),
         "embed_sec": round(time.time() - start, 1),
     }
-    with open(gen_dir / "embedding_stats.json", "w", encoding="utf-8") as f:
+    with open(out_dir / "embedding_stats.json", "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
     print(json.dumps(stats, ensure_ascii=False, indent=2))
 
