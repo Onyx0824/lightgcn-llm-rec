@@ -57,6 +57,9 @@ Raw Interaction Data
 ├── notebooks/               # 探索性分析、圖表產出
 ├── configs/                 # 超參數設定檔（yaml/json），方便重現實驗
 ├── results/                 # 實驗結果表格與圖表（進版控，體積小）
+├── scripts/
+│   ├── train_baseline.py
+│   └── train_augmented.py
 ├── checkpoints/             # 訓練好的模型權重（不進版控，體積大）
 ├── docs/                    # 規劃文件、報告草稿、架構圖
 │   └── project-plan-detailed.md
@@ -97,7 +100,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 - [x] 資料集選定（MovieLens-1M）
 - [x] LightGCN baseline 實作與訓練（詳見 [`docs/experiment-log.md`](./docs/experiment-log.md)）
 - [x] LLM 增強 prompt 設計與小規模驗證（user profiling + item attribute，含 JSON 值域檢查與 retry 機制，n=100/100，詳見 experiment-log.md Week3）
-- [ ] LLM 增強全量生成 → embedding 整合
+- [x] LLM 增強全量生成 → embedding 整合
 - [ ] 去噪/剪枝分析
 - [ ] 效益分析
 - [ ] 報告撰寫
