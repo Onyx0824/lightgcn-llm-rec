@@ -1,0 +1,4 @@
+ratio,cost_side,gen_hours_items,gen_hours_total,gen_hours_used,gen_hours_users,n_seeds,ndcg_aug,ndcg_ctrl,ndcg_gain,ndcg_gain_ci_hi,ndcg_gain_ci_lo,recall_aug,recall_ctrl,recall_gain,recall_gain_ci_hi,recall_gain_ci_lo
+0.2,items,0.76,1.92,0.76,1.17,10,0.27188,0.27138,0.0005,0.00125,-0.00026,0.08042,0.07856,0.00186,0.00247,0.00125
+0.5,items,1.89,4.81,1.89,2.92,10,0.27368,0.27138,0.0023,0.00326,0.00133,0.0818,0.07856,0.00323,0.00388,0.00259
+1.0,items,3.83,9.9,3.83,6.07,10,0.2756,0.27138,0.00422,0.00547,0.00297,0.08125,0.07856,0.00268,0.00324,0.00212

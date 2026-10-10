@@ -1,0 +1,31 @@
+{
+  "model": "LightGCN + LLM aug",
+  "ratio": 1.0,
+  "alpha": 3.0,
+  "seed": 1,
+  "n_aug_users": 4870,
+  "n_aug_items": 0,
+  "best_epoch": 25,
+  "best_valid_recall": 0.08486796909420825,
+  "train_sec": 283.5,
+  "fixed_epochs": 25,
+  "aug_side": "user",
+  "test_metrics": {
+    "recall@20": 0.07872167518050195,
+    "ndcg@20": 0.27297609274950285
+  },
+  "delta_vs_baseline": {
+    "recall@20": -0.002657,
+    "ndcg@20": 0.000894
+  },
+  "test_aug_users": {
+    "n_users": 973,
+    "recall@20": 0.07872167518050195,
+    "ndcg@20": 0.27297609274950285
+  },
+  "test_nonaug_users": {
+    "n_users": 0,
+    "recall@20": 0.0,
+    "ndcg@20": 0.0
+  }
+}
