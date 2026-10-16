@@ -58,10 +58,10 @@ Raw Interaction Data
 ├── configs/                 # 超參數設定檔（yaml/json），方便重現實驗
 ├── results/                 # 實驗結果表格與圖表（進版控，體積小）
 ├── scripts/
-│   ├── train_baseline.py       # 訓練 LightGCN 控制組 (Baseline) 模型與評估
-│   ├── train_augmented.py      # 執行加入本地 LLM 增強特徵的 LightGCN 訓練與評估
-│   ├── compare_ratios.py       # 比較不同增強比例（如 20%、50%、100%）與雙端/單端的效果差異
-│   └── summarize_week4.py      # 統整第四週實驗數據與產出報表/日誌摘要
+│   ├── train_baseline.py    # 訓練 LightGCN 控制組 (Baseline) 模型與評估
+│   ├── train_augmented.py   # 執行加入本地 LLM 增強特徵的 LightGCN 訓練與評估
+│   ├── compare_ratios.py    # 比較不同增強比例（如 20%、50%、100%）與雙端/單端的效果差異
+│   └── summarize_week4.py   # 統整第四週實驗數據與產出報表/日誌摘要
 ├── checkpoints/             # 訓練好的模型權重（不進版控，體積大）
 ├── docs/                    # 規劃文件、報告草稿、架構圖
 │   └── project-plan-detailed.md
