@@ -339,6 +339,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - [x] 格式過濾去噪：A `drop_dirty`、B `drop_retry`（item-only，10 seed）
 - [x] embedding 層級語意離群剪枝 `prune10` / `prune20`，與「同數量隨機剔除」對照 `rand10` / `rand20`（item-only，5 seed）
 - [ ] PageRank 加權／圖層級剪枝：未實作（本週以 embedding 層級的語意剪枝作為剪枝分析）
+
 **共同設定**：`--aug_side item`、ratio 1.0、α=1.0、固定 25 epoch。去噪版 embedding 由 `build_embeddings.py`（`--drop_dirty` / `--drop_retry` / `--out_dir`）或 `scripts/prune_items.py` 產生，放在 `results/week5/<name>/`；被剔除的 item 其 `item_has=False`，退回只使用 ID embedding（圖結構不變）。結果檔名：`week4fe_aug_item{dropdirty,dropretry,prune10,prune20,rand10,rand20}_r1.0_a1.0_s*.json`。比較方式與 Week 4 相同（依 seed 配對 t 檢定）。
  
 **(11) 噪音現況（100% 生成，items 共 3408 筆）**
@@ -350,6 +351,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
  
 - dirty 的 item 一定經過重生成（`dirty` 只在重試後仍不合格時標記），所以 dirty ⊂ retry>1，`drop_dirty` ⊂ `drop_retry`；「A+B」與 B 完全相同，因此不另跑。
 - 72 筆 dirty 中，49 筆含「悬」（「懸疑」的簡體），62 筆只靠單一字元就被判為 dirty。觸發字元為真正的簡體字，並非「里」「云」之類繁體也會用的字，故判定名單可靠（無明顯誤判）。
+
 **(12) 格式過濾去噪（10 seed；控制組為「未過濾 item-only」，α=1.0）**
  
 | 變體 | 剔除 item 數 | 被增強 item 數 | Recall@20 | NDCG@20 |
@@ -368,7 +370,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
  
 **(13) 語意離群剪枝與隨機剔除對照（5 seed，seed 0–4；控制組為同 seed 的未過濾 item-only）**
  
-方法：對每個有 embedding 的 item，計算其與「所屬各 MovieLens 類型的 leave-one-out 中心」之平均 cosine 相似度；分數最低的 q% 視為語意離群並剔除（q=10%、20%）。對照組 `rand` 隨機剔除相同數量（剔除名單僅用一份，`--seed 0`）。實際剔除數與被剔除 item 的類型分布見 `results/week5/*/prune_stats.json`。
+方法：對每個有 embedding 的 item，計算其與「所屬各 MovieLens 類型的 leave-one-out 中心」之平均 cosine 相似度；分數最低的 q% 視為語意離群並剔除（q=10%、20%）。對照組 `rand` 隨機剔除相同數量（剔除名單僅用一份，`--seed 0`）。實際剔除數：10% 為 341 個、20% 為 682 個（自 3408 個有 embedding 的 item）。被剔除 item 的類型分布與整體不同（prune10：Documentary 佔被剔除者 9.4%、佔全部 item 2.5%；Children's 12.6% vs 7.3%；War 7.9% vs 4.0%；Drama 51.0% vs 39.1%；Comedy 24.9% vs 31.9%），顯示離群剪枝偏向剔除小眾類型。
  
 | 變體 | Recall@20 | NDCG@20 | vs 未過濾：Recall 差 | vs 未過濾：NDCG 差 |
 |---|---|---|---|---|
@@ -389,11 +391,12 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
  
 - **去噪沒有額外益處。** 無論依格式（A、B）或依語意一致性（prune10/20）剔除，Recall 相對未過濾版皆無穩健差異；所有去噪版本相對 α=0 的增益都保留（Recall +3.6%、NDCG +1.3%～+1.4%），表示增強本身穩健，而不是依賴被剔除的那些 item。
 - **NDCG 在六個剔除變體（A、B、prune10/20、rand10/20）的點估計全部低於未過濾版**（−0.0005～−0.0026），連隨機剔除也是。這與 Week 4「item 端 NDCG 隨增強覆蓋增加而持續上升」一致：剔除越多 item，被增強的 item 越少，NDCG 就越低。換言之，NDCG 的下降主要可由「增強覆蓋減少」解釋，而非噪音被移除的副作用。
-- **語意剪枝沒有比隨機剔除好，在 NDCG 上反而較差**（prune20 − rand20：−0.0018，5/5 seed 為負）。推測（未驗證）：與同類型中心距離最遠的 item，可能是類型罕見或內容獨特、對排序仍有資訊量的 item，而不是壞資料。
+- **語意剪枝沒有比隨機剔除好，在 NDCG 上反而較差**（prune20 − rand20：−0.0018，5/5 seed 為負）。推測（未驗證）：與同類型中心距離最遠的 item，可能是類型罕見或內容獨特、對排序仍有資訊量的 item，而不是壞資料。被剔除者在 Documentary、Children's、War 等小類型中占比偏高，與此推測方向一致，但尚未直接檢驗這些 item 的排序資訊量。
 - **prune10 的 Recall 有微弱訊號（+0.0008，相對未過濾 +0.9%；相對隨機 p=0.051），但 20% 時消失，且 NDCG 同時下降，不視為主要發現。** 本週共做約 16 個「剔除變體 vs 控制」的比較（12 個對未過濾、4 個剪枝對隨機）；以 Bonferroni 校正（0.05/16≈0.003）後，只有「prune20 的 NDCG 低於未過濾版」（p=0.001）仍顯著，其餘（包含 B 的 NDCG p=0.007）僅為方向性證據。
 - **隨機對照的抽樣變異與效果同量級。** rand10 的 NDCG 差（−0.0015）比 rand20（−0.0008）更差，不合單調預期，顯示「丟掉哪些 item」本身就造成 ±0.001 左右的波動；剪枝與隨機的差距（−0.0006～−0.0018）無法完全與此區分。
 - **敘事結論**：Week 3 預設的「低品質／過量增強資訊會傷害效果」在本實驗條件下未獲支持。LLM 輸出噪音率低（dirty 2.1%、retry>1 約 10%），簡體殘留對 `bge-small-zh` 的語意影響小，被剔除的 item 仍帶有有效資訊。
 - **商業建議（本實驗條件下）**：不需要為了「清洗」LLM 輸出而增加過濾步驟或重生成成本，保留全部增強特徵即可；省下的成本優先用於提高 item 端的生成覆蓋（見 Week 4）。
+
 ### 限制
  
 - 去噪的 A/B 為 10 seed，語意剪枝與隨機對照僅 5 seed，且 t 檢定在 n=5 下檢定力低；p 值只反映訓練隨機性（test 固定為同一批 973 位 user）。
@@ -401,6 +404,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - 噪音只用兩種操作型定義（格式／字元、類型內語意一致性），沒有人工標註的品質標準，因此只能說「這兩種定義下的過濾無益」，不能斷言「沒有噪音」。
 - 結論僅限 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`、item 端 100%、α=1.0。
 - 以下為推測、尚未驗證：A 組被剔除的 item 多為懸疑類用語造成類型偏差；語意離群的 item 對排序有額外資訊。
+
 ### 尚未完成（無結果，不列入上述結論）
  
 - PageRank 加權／圖層級剪枝尚未實作。
