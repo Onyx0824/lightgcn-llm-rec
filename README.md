@@ -46,7 +46,7 @@ Raw Interaction Data
 
 ```
 .
-├── data/                   # 資料集與前處理輸出（不進版控，.gitignore 排除）
+├── data/                   # 資料集與前處理輸出
 │   └── README.md           # 說明資料集來源、下載方式
 ├── src/
 │   ├── data_processing/    # 讀取、過濾、train/valid/test split
@@ -66,11 +66,11 @@ Raw Interaction Data
 │   ├── prune_items.py       # embedding 語意離群剪枝 / 隨機剔除對照（Week 5）
 │   ├── run_week5_denoise.ps1  # Week 5 格式過濾去噪（drop_dirty、drop_retry）一鍵執行
 │   └── run_week5_prune.ps1    # Week 5 語意剪枝與隨機對照一鍵執行
-├── checkpoints/             # 訓練好的模型權重（不進版控，體積大）
+├── checkpoints/             # 訓練好的模型權重
 ├── docs/                    # 規劃文件、報告草稿、架構圖
 │   ├── project-plan-detailed.md
 │   └── experiment-log.md    # 每週實驗紀錄與完整統計
-├── tests/                   # 基本單元測試（選配，非必要但加分）
+├── tests/                   # 基本單元測試
 ├── .gitignore
 ├── LICENSE
 ├── requirements.txt
