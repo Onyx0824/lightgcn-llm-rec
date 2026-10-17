@@ -142,11 +142,13 @@
 - [x] 增強版訓練腳本（`scripts/train_augmented.py`：`--ratio --alpha --seed --fixed_epochs --aug_side --tag`，含「有/無增強 user」分群評估）
 - [x] 彙整腳本（`scripts/summarize_week4.py`、`scripts/compare_ratios.py`）
 - [x] 與 baseline 比較（多 seed、依 seed 配對檢定）
+
 **環境/執行問題**
 - `WinError 4551`（應用程式控制原則封鎖 DLL）：torch、sklearn 的檔案被標為下載來源。解法：`Get-ChildItem -Recurse .\venv | Unblock-File`（需對整個 venv；之後 `build_embeddings.py` 曾再次被擋，需重做一次）。
 - Ollama 服務未啟動導致 `ConnectionRefusedError`（localhost:11434）：先 `ollama serve` 再跑生成。
 - 腳本需從專案根目錄執行（相對路徑 `data\processed`）。
 - 一次流程失誤：`build_embeddings.py` 因 DLL 失敗，接著的 `--ratio 0.5` 測試用到舊的 20% 向量（第一行顯示 `增強 user 974/6040` 而非 2435），該結果檔已刪除並在重建 embedding 後重跑。教訓：每次先看第一行的增強覆蓋數字。
+
 **設計決策**
 - **防資料洩漏**：Week 4 的 user 歷史只取 `train.csv` 內的互動（以 train 的 (user, item) 配對對應 `ratings.dat` 取評分，再取最近 15 筆）。Week 3 pilot 是直接取 `ratings.dat` 的最近 15 筆，在全域時間切分下會把 valid/test 期間的評分餵給 LLM（資料洩漏）；pilot 結果僅用於 prompt 設計，不用於評估。item 端只用片名與類型，無此問題。
 - **整合公式**：`e0_user = id_emb(u) + α · mask_u · W_u · llm_emb(u)`；item 同理。LLM 向量凍結（已 L2 normalize），只訓練線性投影 W（無 bias，512→64）；`mask=0`（未生成或不在目前比例內）等同 baseline；`α=0` 與純 LightGCN 數學等價（已閱讀程式確認，Linear 層在 embedding 初始化之後才建立）。L2 正則只作用於 ID embedding，W 無正則（可能與 α 過大時不穩定有關，尚未驗證）。
@@ -154,6 +156,7 @@
 - **評估協定**：valid 排除 train；test 排除 train∪valid（與 baseline 相同）。主實驗改為「固定訓練 25 epoch、不做 early stopping」（見觀察），α=1.0 為事前指定的主設定。
 - **訓練耗時**：固定 25 epoch 每次約 265 秒（4.4 分鐘；`train_sec` 平均值，兩端皆增強的各組為 265–270 秒，只增強 user 約 257 秒、只增強 item 約 266 秒，α=0.3 / 3.0 的 10 次約 333 秒，原因未查）；115 次固定 epoch 實驗合計約 8.7 小時。
 - **控制組**：以同協定下的 α=0 為基準；Week 2 的單次 baseline（early stopping，0.0814 / 0.2721）僅供參考，停止規則不同，不與之直接比較。
+
 **生成結果（workers=1，本地 Ollama `qwen2.5:7b-instruct-q4_K_M`）**
  
 | 階段（累計） | users | users dirty | users retry>1 | items | items dirty | items retry>1 |
@@ -316,6 +319,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - **item-only 的 Recall 在 50% 達到高點，之後略降（-0.0006，p=0.048，邊緣顯著，不視為穩健），NDCG 仍顯著上升（+0.0019，10/10）**：把更多 item 加入增強，似乎是以小幅 Recall 換取排序品質。「兩端」曲線的 Recall 在 50%→100% 持平，與此一致。
 - **商業建議（本實驗條件下）**：優先生成 item 屬性；若以找回相關項目（Recall）為主，約 50% 的 item 即達高點（1.9 小時，約為兩端 100% 成本的 19%）；若重視排序品質（NDCG），item 增強到 100%（3.8 小時）仍有收益；user profiling 的投資報酬率低（兩端 vs 只 item 偵測不到穩定差異，成本多 2.6 倍）。
 - **敘事修正**：Week 3 預設的「增強越多越有害」未獲數據支持，實際為報酬遞減（Recall）或持續上升（NDCG）；噪音議題已於 Week 5 以剔除低品質生成檢驗，結果見 Week 5。
+
 ### 限制
  
 - 檢定的 p 值與信賴區間只反映訓練隨機性（test 固定為同一批 973 位 user），不代表推廣到其他使用者群體。
@@ -324,6 +328,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - user profile 僅取最近 15 筆 train 評分；結論僅限 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`；成本只計本地 GPU 生成時間（單 worker）。
 - 評估集僅 973 位重度使用者。
 - 以下為推測、尚未驗證：user profile 與互動圖資訊重複導致 user 端增益低；W 無正則造成 α 過大時不穩定；100% 階段 users 每筆變慢的原因。
+
 ### 尚未完成（無結果，不列入上述結論）
  
 - 去噪/剪枝分析：已於 Week 5 完成（PageRank 加權未實作）
