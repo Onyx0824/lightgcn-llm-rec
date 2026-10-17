@@ -1,0 +1,88 @@
+{
+  "mode": "score",
+  "frac": 0.2,
+  "seed": null,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 682,
+  "items_usable_after": 2726,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.8439,
+  "score_cutoff": 0.8766,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.469,
+      0.391
+    ],
+    "Comedy": [
+      0.276,
+      0.319
+    ],
+    "Children's": [
+      0.13,
+      0.073
+    ],
+    "Adventure": [
+      0.109,
+      0.08
+    ],
+    "Action": [
+      0.106,
+      0.141
+    ],
+    "Sci-Fi": [
+      0.078,
+      0.079
+    ],
+    "Documentary": [
+      0.065,
+      0.025
+    ],
+    "Romance": [
+      0.065,
+      0.129
+    ]
+  },
+  "examples_dropped": [
+    [
+      3164,
+      "Decline of Western Civilization Part II: The Metal Years, The (1988)"
+    ],
+    [
+      658,
+      "Stalingrad (1993)"
+    ],
+    [
+      339,
+      "Wonderful, Horrible Life of Leni Riefenstahl, The (Die Macht der Bilder) (1993)"
+    ],
+    [
+      39,
+      "Richard III (1995)"
+    ],
+    [
+      3300,
+      "Coyote Ugly (2000)"
+    ],
+    [
+      2046,
+      "Rocky III (1982)"
+    ],
+    [
+      3163,
+      "Decline of Western Civilization, The (1981)"
+    ],
+    [
+      443,
+      "What's Love Got to Do with It? (1993)"
+    ],
+    [
+      1220,
+      "Prefontaine (1997)"
+    ],
+    [
+      626,
+      "Celtic Pride (1996)"
+    ]
+  ]
+}

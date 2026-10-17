@@ -1,0 +1,88 @@
+{
+  "mode": "random",
+  "frac": 0.2,
+  "seed": 0,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 682,
+  "items_usable_after": 2726,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.904,
+  "score_cutoff": null,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.383,
+      0.391
+    ],
+    "Comedy": [
+      0.326,
+      0.319
+    ],
+    "Romance": [
+      0.133,
+      0.129
+    ],
+    "Action": [
+      0.129,
+      0.141
+    ],
+    "Thriller": [
+      0.126,
+      0.137
+    ],
+    "Horror": [
+      0.094,
+      0.095
+    ],
+    "Adventure": [
+      0.084,
+      0.08
+    ],
+    "Children's": [
+      0.078,
+      0.073
+    ]
+  },
+  "examples_dropped": [
+    [
+      3123,
+      "Spy Who Loved Me, The (1977)"
+    ],
+    [
+      1766,
+      "Song of the South (1946)"
+    ],
+    [
+      2458,
+      "American Beauty (1999)"
+    ],
+    [
+      1912,
+      "Mortal Thoughts (1991)"
+    ],
+    [
+      2605,
+      "Re-Animator (1985)"
+    ],
+    [
+      205,
+      "Clerks (1994)"
+    ],
+    [
+      3384,
+      "Beach Party (1963)"
+    ],
+    [
+      1907,
+      "About Last Night... (1986)"
+    ],
+    [
+      227,
+      "Hoop Dreams (1994)"
+    ],
+    [
+      2386,
+      "Heaven Can Wait (1978)"
+    ]
+  ]
+}
