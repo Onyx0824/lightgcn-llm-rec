@@ -2,6 +2,8 @@
 
 > 每週更新一次，對應 `docs/project-plan-detailed.md` 的週次規劃。
 > 目的：報告撰寫階段(第8週)不需要回頭翻git history找數字，所有關鍵設定/結果/決策都在這裡。
+> **統計方法**：每個條件以多個 seed 各訓練一次（主實驗 seed 0–9；Week 5 語意剪枝與隨機對照為 seed 0–4）；同一 seed 的兩個條件互相配對，對配對差做雙尾 paired t 檢定，並報告配對差的 95% 信賴區間（t 分佈）。p 值只反映訓練隨機性（初始化與抽樣），不代表推廣到其他使用者群體，因為 test 固定為同一批約 973 位 user。完整的配對差、信賴區間與 p 值見 [`results/paired_ci_table.md`](./results/paired_ci_table.md)（由 `scripts/paired_ci_table.py` 產生）。
+> **多重比較**：主要結論只依賴下列直接對應研究問題的比較——增強 vs α=0（兩端與只 item，20% / 50% / 100%，共 12 個檢定，Bonferroni 門檻 0.05/12≈0.004）。其餘比較（user-only、α 掃描、Week 5 的各種去噪變體與隨機對照）視為探索性，p 值未經校正，僅作方向性證據。邊緣顯著的結果（例如兩端 20% 的 NDCG，p=0.028）不視為主要發現。
 
 ---
 
@@ -328,6 +330,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - user profile 僅取最近 15 筆 train 評分；結論僅限 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`；成本只計本地 GPU 生成時間（單 worker）。
 - 評估集僅 973 位重度使用者。
 - 以下為推測、尚未驗證：user profile 與互動圖資訊重複導致 user 端增益低；W 無正則造成 α 過大時不穩定；100% 階段 users 每筆變慢的原因。
+- 多重比較：Week 4 的主要比較（增強 vs α=0，兩端與只 item 各三個比例，共 12 個檢定）以 Bonferroni 門檻約 0.004 判讀，其中兩端 20% 的 NDCG（p=0.028）與只 item 20% 的 NDCG（p=0.17）未通過；user-only、α 掃描與兩端 vs 只 item 的比較為探索性，未經校正，僅作方向性證據。
 
 ### 尚未完成（無結果，不列入上述結論）
  

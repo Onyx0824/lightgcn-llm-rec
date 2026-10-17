@@ -120,6 +120,8 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 - **文字 embedding**：`BAAI/bge-small-zh-v1.5`（512 維）
 - **比較方式**：控制組為 α=0（與 baseline 數學等價），固定 25 epoch，依 seed 做配對檢定；主實驗 10 seed（0–9），Week 5 語意剪枝組 5 seed（0–4）
 - **α=1.0 為事前指定**；α 掃描（0.3 / 1.0 / 3.0）僅作敏感度分析，避免用 test 調參
+- **統計方法**：每個條件以多個 seed 各訓練一次（主實驗 seed 0–9；Week 5 語意剪枝與隨機對照為 seed 0–4）；同一 seed 的兩個條件互相配對，對配對差做雙尾 paired t 檢定，並報告配對差的 95% 信賴區間（t 分佈）。p 值只反映訓練隨機性（初始化與抽樣），不代表推廣到其他使用者群體，因為 test 固定為同一批約 973 位 user。完整的配對差、信賴區間與 p 值見 [`results/paired_ci_table.md`](./results/paired_ci_table.md)（由 `scripts/paired_ci_table.py` 產生）。
+- **多重比較**：主要結論只依賴下列直接對應研究問題的比較——增強 vs α=0（兩端與只 item，20% / 50% / 100%，共 12 個檢定，Bonferroni 門檻 0.05/12≈0.004）。其餘比較（user-only、α 掃描、Week 5 的各種去噪變體與隨機對照）視為探索性，p 值未經校正，僅作方向性證據。邊緣顯著的結果（例如兩端 20% 的 NDCG，p=0.028）不視為主要發現。
 
 ## 主要結果
 
@@ -162,7 +164,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 4. **α 存在平台區**：α 在 0.3–1.0 表現穩定；α=3.0 過大，NDCG 增益消失。
 5. **LLM 輸出噪音低**（100% 生成）：dirty users 7 / items 72（items 的 2.1%）；retry>1 users 155 / items 342（items 的 10.0%）。
 6. **去噪沒有額外益處**：格式過濾與語意剪枝都沒有提升 Recall，NDCG 反而小幅下降（−0.0005～−0.0026），連隨機剔除同數量 item 也一樣，與「被增強的 item 變少」一致；語意剪枝在 NDCG 上並未優於隨機剔除（prune20 − rand20：−0.0018）。所有去噪版本相對 α=0 的增益（Recall +3.6%、NDCG +1.3%～+1.4%）都保留。建議直接保留全部增強特徵，不需額外清洗。
-7. **限制**：相對增益約 +2%～+5%，test 僅約 973 位 user；語意剪枝組僅 5 seed、隨機對照只用一份剔除名單；噪音只以「格式」與「類型內語意一致性」兩種操作型定義檢驗，結論宜以配對檢定與多 seed 為準，不宜過度外推。
+7. **限制**：相對增益約 +2%～+5%（絕對值 +0.0003～+0.0048），test 僅約 973 位 user；p 值只反映訓練隨機性；語意剪枝組僅 5 seed、隨機對照只用一份剔除名單；噪音只以「格式」與「類型內語意一致性」兩種操作型定義檢驗。結論請以配對差與 95% CI（`results/paired_ci_table.md`）為準，不宜過度外推。
 
 完整表格見 `results/week6_tier_table.csv`，每週詳細統計見 [`docs/experiment-log.md`](./docs/experiment-log.md)。
 
