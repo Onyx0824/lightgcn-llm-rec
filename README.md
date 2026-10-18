@@ -65,8 +65,7 @@ Raw Interaction Data
 │   ├── inspect_dirty.py     # 盤點 dirty items 由哪些字元觸發（Week 5）
 │   ├── three_way_table.py   # Week 5 三種去噪做法並排對照表
 │   ├── plot_cost_benefit.py # 效益曲線：增益 vs 累計生成時間（Week 6）
-│   ├── week6_final_table.py # 報告用最終成本效益表（Week 6，輸出 results/week6/final_table.md）
-│   ├── final_cost_table.py  # 含每次訓練時間的總表與「比例對增益／耗時」疊圖（Week 6）
+│   ├── final_cost_table.py  # 報告用最終成本效益表（含每次訓練時間）與「比例對增益／耗時」疊圖（Week 6）
 │   ├── prune_items.py       # embedding 語意離群剪枝 / 隨機剔除對照（Week 5）
 │   ├── prune_pagerank.py    # 二部圖 PageRank 計算與依 PageRank 剔除 item 增強（Week 5）
 │   ├── dose_response.py     # 劑量反應：被剔除互動比例 vs 保留的增益（Week 5）
@@ -114,7 +113,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 - [x] LLM 增強全量生成（20% / 50% / 100%）→ embedding 整合 → 接入 LightGCN
 - [x] 增強效益分析：生成比例、α 敏感度、user 端 vs item 端消融（experiment-log.md Week 4）
 - [x] 去噪/剪枝分析（Week 5）：格式過濾（drop_dirty、drop_retry）、embedding 語意離群剪枝與隨機剔除對照，結果為無額外益處；另做 PageRank（item 層級）篩選與劑量反應分析，結果顯示 PageRank 在二部圖上等同熱門度（見下方「主要結果」與 experiment-log.md Week 5）
-- [x] 效益分析圖表與最終表格（Week 6：`results/week6/cost_benefit.png`、`results/week6/final_table.md`）
+- [x] 效益分析圖表與最終表格（Week 6：`results/week6/cost_benefit.png`、`results/week6/cost_benefit_table.md`、`cost_benefit_dual_axis.png`）
 - [ ] item 熱門度分層分析、錯誤分析、embedding 視覺化（Week 7）
 - [ ] 報告撰寫
 

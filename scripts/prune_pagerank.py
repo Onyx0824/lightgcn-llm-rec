@@ -8,12 +8,13 @@ Same output layout as scripts/prune_items.py, so train_augmented.py works unchan
 
 Because bipartite PageRank is very close to node degree, --score degree is provided as a control:
 if degree-based selection behaves the same, the effect is "popularity", not "PageRank".
-The random-drop control is the existing results/week5/rand10 / rand20 (prune_items.py --mode random).
+The random-drop controls are results/week5/rand30 / rand50 / rand80 / rand90 (prune_items.py --mode random --seed 0).
+The degree control (--score degree) was not run: Spearman(PageRank, degree) = 0.9989 (see experiment-log Week 5 (14)).
 
 Usage (project root):
-    python scripts/prune_pagerank.py --drop low  --frac 0.10 --out_dir results/week5/prlow10
-    python scripts/prune_pagerank.py --drop high --frac 0.10 --out_dir results/week5/prhigh10
-    python scripts/prune_pagerank.py --score degree --drop low --frac 0.10 --out_dir results/week5/deglow10
+    python scripts/prune_pagerank.py --drop low  --frac 0.30 --out_dir results/week5/prlow30
+    python scripts/prune_pagerank.py --drop high --frac 0.50 --out_dir results/week5/prhigh50
+    python scripts/prune_pagerank.py --score degree --drop low --frac 0.30 --out_dir results/week5/deglow30   # not run
     python scripts/prune_pagerank.py --verify --out_dir results/week5/_tmp     # compare with networkx
 Train with:  --aug_side item --aug_dir <out_dir> --tag <tag>
 """
