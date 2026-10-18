@@ -2,7 +2,7 @@
 
 > 每週更新一次，對應 `docs/project-plan-detailed.md` 的週次規劃。
 > 目的：報告撰寫階段(第8週)不需要回頭翻git history找數字，所有關鍵設定/結果/決策都在這裡。
-> **統計方法**：每個條件以多個 seed 各訓練一次（主實驗 seed 0–9；Week 5 語意剪枝與隨機對照為 seed 0–4）；同一 seed 的兩個條件互相配對，對配對差做雙尾 paired t 檢定，並報告配對差的 95% 信賴區間（t 分佈）。p 值只反映訓練隨機性（初始化與抽樣），不代表推廣到其他使用者群體，因為 test 固定為同一批約 973 位 user。完整的配對差、信賴區間與 p 值見 [`results/paired_ci_table.md`](./results/paired_ci_table.md)（由 `scripts/paired_ci_table.py` 產生）。
+> **統計方法**：每個條件以多個 seed 各訓練一次（主實驗 seed 0–9；Week 5 語意剪枝、PageRank 組與隨機對照為 seed 0–4）；同一 seed 的兩個條件互相配對，對配對差做雙尾 paired t 檢定，並報告配對差的 95% 信賴區間（t 分佈）。p 值只反映訓練隨機性（初始化與抽樣），不代表推廣到其他使用者群體，因為 test 固定為同一批約 973 位 user。完整的配對差、信賴區間與 p 值見 [`results/paired_ci_table.md`](./results/paired_ci_table.md)（由 `scripts/paired_ci_table.py` 產生）。
 > **多重比較**：主要結論只依賴下列直接對應研究問題的比較——增強 vs α=0（兩端與只 item，20% / 50% / 100%，共 12 個檢定，Bonferroni 門檻 0.05/12≈0.004）。其餘比較（user-only、α 掃描、Week 5 的各種去噪變體與隨機對照）視為探索性，p 值未經校正，僅作方向性證據。邊緣顯著的結果（例如兩端 20% 的 NDCG，p=0.028）不視為主要發現。
 
 ---
@@ -334,7 +334,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 
 ### 尚未完成（無結果，不列入上述結論）
  
-- 去噪/剪枝分析：已於 Week 5 完成（PageRank 加權未實作）
+- 去噪/剪枝分析：已於 Week 5 完成（item 層級的 PageRank／熱門度篩選已實作；圖層級 PageRank 加權未實作）
 - 以 item 熱門度分層的分析、錯誤分析、embedding 視覺化 → Week 7
 - 效益曲線圖表（資料已備：`results/week6_tier_table.csv`、`results/week6_tier_table_itemonly.csv`）→ Week 6
 
@@ -346,9 +346,10 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - [x] 盤點 LLM 輸出噪音（`scripts/inspect_dirty.py`）
 - [x] 格式過濾去噪：A `drop_dirty`、B `drop_retry`（item-only，10 seed）
 - [x] embedding 層級語意離群剪枝 `prune10` / `prune20`，與「同數量隨機剔除」對照 `rand10` / `rand20`（item-only，5 seed）
-- [ ] PageRank 加權／圖層級剪枝：未實作（本週以 embedding 層級的語意剪枝作為剪枝分析）
+- [x] PageRank 節點重要性篩選（item 層級）：在 train 二部圖上計算 PageRank，剔除最低／最高 q%（30%、50%）item 的增強，並以隨機剔除（30%、50%、80%、90%）與劑量反應分析檢驗「選擇」是否有價值（item-only，5 seed）
+- [ ] PageRank 圖層級加權（以 PageRank 調整傳播權重、語意相似圖上的 PageRank）：未實作
 
-**共同設定**：`--aug_side item`、ratio 1.0、α=1.0、固定 25 epoch。去噪版 embedding 由 `build_embeddings.py`（`--drop_dirty` / `--drop_retry` / `--out_dir`）或 `scripts/prune_items.py` 產生，放在 `results/week5/<name>/`；被剔除的 item 其 `item_has=False`，退回只使用 ID embedding（圖結構不變）。結果檔名：`week4fe_aug_item{dropdirty,dropretry,prune10,prune20,rand10,rand20}_r1.0_a1.0_s*.json`。比較方式與 Week 4 相同（依 seed 配對 t 檢定）。
+**共同設定**：`--aug_side item`、ratio 1.0、α=1.0、固定 25 epoch。去噪版 embedding 由 `build_embeddings.py`（`--drop_dirty` / `--drop_retry` / `--out_dir`）或 `scripts/prune_items.py` 產生，放在 `results/week5/<name>/`；被剔除的 item 其 `item_has=False`，退回只使用 ID embedding（圖結構不變）。結果檔名：`week4fe_aug_item{dropdirty,dropretry,prune10,prune20,rand10,rand20}_r1.0_a1.0_s*.json`；PageRank 組為 `week4fe_aug_item{prlow30,prlow50,prhigh30,prhigh50,rand30,rand50,rand80,rand90}_r1.0_a1.0_s*.json`（遮罩由 `scripts/prune_pagerank.py` 與 `scripts/prune_items.py --mode random` 產生）。比較方式與 Week 4 相同（依 seed 配對 t 檢定）。
  
 **(11) 噪音現況（100% 生成，items 共 3408 筆）**
  
@@ -395,6 +396,53 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 | prune10 − rand10 | +0.0009（p=0.051，5/5 為正） | −0.0006（p=0.17） |
 | prune20 − rand20 | +0.0002（p=0.52） | −0.0018（p=0.005，0/5） |
  
+**(14) PageRank 篩選與熱門度檢查（5 seed，seed 0–4；控制組為同 seed 的未過濾 item-only：Recall 0.0815 ± 0.0007、NDCG 0.2762 ± 0.0012）**
+
+方法（`scripts/prune_pagerank.py`）：在 train 的 user-item 二部圖上（無向、重複互動去重）以 power iteration 計算 PageRank（阻尼 0.85；無互動節點視為 dangling；134 次迭代收斂；與 `networkx.pagerank` 的最大差距 7.6e-12）。在 3408 個有 embedding 的 item 中，剔除 PageRank 最低（low）或最高（high）的 q% 的增強（`item_has=False`，退回只用 ID embedding，圖結構不變）。**PageRank 與 item degree 的 Spearman 相關為 0.9989**，因此這組實驗實質上是依 item 熱門度篩選；未另跑 degree 對照組。隨機對照用 `prune_items.py --mode random --seed 0`（每個比例一份名單）。rand80／rand90 是為了與 prhigh30／prhigh50 在「被剔除 item 佔 train 互動比例」上對齊而補跑。
+
+| 變體 | 剔除 item 數 | 被剔除 item 佔 train 互動 | 被增強 item 數 | Recall@20 | NDCG@20 | vs 未過濾：Recall 差 | vs 未過濾：NDCG 差 |
+|---|---|---|---|---|---|---|---|
+| prlow30（剔除 PageRank 最低 30%） | 1022 | 2.6% | 2386 | 0.0820 ± 0.0013 | 0.2752 ± 0.0013 | +0.0006（p=0.20） | −0.0010（p=0.033） |
+| prlow50 | 1704 | 9.0% | 1704 | 0.0817 ± 0.0004 | 0.2752 ± 0.0006 | +0.0002（p=0.57） | −0.0010（p=0.064） |
+| rand30 | 1022 | 30.5% | 2386 | 0.0818 ± 0.0009 | 0.2750 ± 0.0011 | +0.0003（p=0.28） | −0.0012（p=0.002） |
+| rand50 | 1704 | 51.5% | 1704 | 0.0819 ± 0.0011 | 0.2730 ± 0.0008 | +0.0004（p=0.17） | −0.0032（p<0.001） |
+| prhigh30（剔除 PageRank 最高 30%） | 1022 | 76.5% | 2386 | 0.0796 ± 0.0007 | 0.2722 ± 0.0005 | −0.0019（p=0.002，0/5） | −0.0040（p<0.001，0/5） |
+| rand80 | 2726 | 80.2% | 682 | 0.0801 ± 0.0003 | 0.2720 ± 0.0005 | −0.0014（p=0.016） | −0.0042（p=0.005） |
+| rand90 | 3067 | 90.6% | 341 | 0.0784 ± 0.0006 | 0.2703 ± 0.0006 | −0.0031（p<0.001） | −0.0059（p=0.001） |
+| prhigh50 | 1704 | 91.1% | 1704 | 0.0796 ± 0.0006 | 0.2726 ± 0.0009 | −0.0019（p=0.021） | −0.0036（p=0.011） |
+
+PageRank 選擇 vs 隨機剔除（配對差 = 前者 − 後者；「動到互動比例」為兩者各自被剔除 item 佔 train 互動的比例）：
+
+| 比較 | 動到互動比例 | Recall 差 | NDCG 差 |
+|---|---|---|---|
+| prlow30 − rand30（同數量） | 2.6% vs 30.5% | +0.0003（p=0.49） | +0.0001（p=0.76） |
+| prlow50 − rand50（同數量） | 9.0% vs 51.5% | −0.0002（p=0.72） | +0.0022（p=0.002，5/5） |
+| prhigh30 − rand30（同數量） | 76.5% vs 30.5% | −0.0022（p<0.001） | −0.0029（p<0.001） |
+| prhigh50 − rand50（同數量） | 91.1% vs 51.5% | −0.0023（p=0.027） | −0.0004（p=0.62） |
+| prhigh30 − rand80（相近互動比例） | 76.5% vs 80.2% | −0.0005（p=0.12） | +0.0002（p=0.64） |
+| prhigh50 − rand90（相近互動比例） | 91.1% vs 90.6% | +0.0012（p=0.056，5/5） | +0.0024（p=0.005，5/5） |
+
+**(15) 劑量反應（`scripts/dose_response.py`）**
+
+x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item-only，100% 為 α=0）；y 軸：保留的 item-only 增益 =（變體 − α=0）／（未過濾 item-only − α=0），依 seed 配對後取平均與標準誤（SE）。圖：`results/week5/dose_response_ndcg20.png`、`results/week5/dose_response_recall20.png`，對應表格為同名 `.csv`。
+
+| 變體 | 被剔除互動比例 | Recall 保留增益（SE） | NDCG 保留增益（SE） |
+|---|---|---|---|
+| prlow30 | 2.6% | 120%（20%） | 79%（19%） |
+| prlow50 | 9.0% | 107%（14%） | 80%（12%） |
+| rand10 | 9.7% | 94%（12%） | 68%（16%） |
+| prune10 | 12.3% | 125%（14%） | 56%（19%） |
+| rand20 | 19.4% | 93%（19%） | 83%（20%） |
+| prune20 | 23.0% | 101%（18%） | 45%（19%） |
+| rand30 | 30.5% | 110%（13%） | 76%（17%） |
+| rand50 | 51.5% | 113%（15%） | 33%（14%） |
+| prhigh30 | 76.5% | 36%（12%） | 16%（12%） |
+| rand80 | 80.2% | 53%（10%） | 11%（5%） |
+| rand90 | 90.6% | −3%（10%） | −25%（10%） |
+| prhigh50 | 91.1% | 37%（14%） | 25%（11%） |
+
+> 備註：分母（未過濾 item-only 相對 α=0 的增益，10 seed 約 Recall +0.0026、NDCG +0.0042）與 seed 間標準差同量級，故保留增益的 SE 約 0.1–0.2，超過 100% 或低於 0% 的點視為雜訊；此圖只用於看大趨勢，細節以上方的配對檢定為準。圖上的隨機參考線為隨機組各點的連線，不是線性擬合（曲線不是直線）。
+
 ### 觀察/決策
  
 - **去噪沒有額外益處。** 無論依格式（A、B）或依語意一致性（prune10/20）剔除，Recall 相對未過濾版皆無穩健差異；所有去噪版本相對 α=0 的增益都保留（Recall +3.6%、NDCG +1.3%～+1.4%），表示增強本身穩健，而不是依賴被剔除的那些 item。
@@ -402,8 +450,13 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - **語意剪枝沒有比隨機剔除好，在 NDCG 上反而較差**（prune20 − rand20：−0.0018，5/5 seed 為負）。推測（未驗證）：與同類型中心距離最遠的 item，可能是類型罕見或內容獨特、對排序仍有資訊量的 item，而不是壞資料。被剔除者在 Documentary、Children's、War 等小類型中占比偏高，與此推測方向一致，但尚未直接檢驗這些 item 的排序資訊量。
 - **prune10 的 Recall 有微弱訊號（+0.0008，相對未過濾 +0.9%；相對隨機 p=0.051），但 20% 時消失，且 NDCG 同時下降，不視為主要發現。** 本週共做約 16 個「剔除變體 vs 控制」的比較（12 個對未過濾、4 個剪枝對隨機）；以 Bonferroni 校正（0.05/16≈0.003）後，只有「prune20 的 NDCG 低於未過濾版」（p=0.001）仍顯著，其餘（包含 B 的 NDCG p=0.007）僅為方向性證據。
 - **隨機對照的抽樣變異與效果同量級。** rand10 的 NDCG 差（−0.0015）比 rand20（−0.0008）更差，不合單調預期，顯示「丟掉哪些 item」本身就造成 ±0.001 左右的波動；剪枝與隨機的差距（−0.0006～−0.0018）無法完全與此區分。
+- **PageRank 在二部圖上就是熱門度，且沒有帶來去噪效果。** PageRank 與 degree 的 Spearman 為 0.9989。剔除 PageRank 最低 30%／50% 的 item（只動到 2.6%／9.0% 的互動），Recall 無變化（+0.0006、+0.0002，p>0.2），NDCG 約 −0.0010（p=0.033、0.064），沒有任何 PageRank 變體優於未過濾版。
+- **增強效益取決於「被增強 item 覆蓋的互動比例」，呈飽和型。** Recall：覆蓋約 48% 以上（被剔除互動 ≤ 51.5%）時增益完整保留（rand50 +0.0004，p=0.17）；覆蓋約 20–24% 時剩約一半（rand80、prhigh30，保留 53%、36%）；覆蓋約 9–10% 時增益消失（rand90 的 Recall 0.0784，接近 α=0 的 0.0786）。NDCG 大致隨覆蓋減少而下降，不像 Recall 那樣有平台。
+- **相近覆蓋下，PageRank 選擇與隨機沒有可靠差異。** prhigh30（動到 76.5%）對 rand80（動到 80.2%）：Recall −0.0005（p=0.12）、NDCG +0.0002（p=0.64）。修正先前的暫時判讀：prlow50 − rand50 的 NDCG +0.0022（p=0.002）並不代表「PageRank 選得好」，因為 prlow50 只動到 9.0% 的互動，rand50 動到 51.5%，差異可由覆蓋量解釋；prhigh30 − rand30 的 −0.0022／−0.0029 同理（76.5% vs 30.5%）。
+- **一個尚未釐清的例外：prhigh50 對 rand90（兩者都動到約 91% 互動）。** prhigh50 保留 1704 個冷門 item 的增強，rand90 只保留 341 個隨機 item，結果 prhigh50 較好（Recall +0.0012，p=0.056，5/5 為正；NDCG +0.0024，p=0.005，5/5 為正）。可能是「被增強的 item 數量」也有影響，或冷門 item 每筆互動的增強價值較高；兩者在本設計下無法區分，rand90 也只用一份名單，視為待驗證的觀察。另外 rand90 的 NDCG 保留增益為 −25%（SE 10%），暗示只增強極少數（10%）item 的 NDCG 可能略低於完全不增強，同樣僅供參考。
+- **成本效益（推算）：** 只對 PageRank／熱門度前 50% 的 item 生成（prlow50）可使 item 端生成量約減半，Recall 與完整增強相當（+0.0002，p=0.57）、NDCG 約低 0.0010（−0.4%，p=0.064）；相同生成量下隨機選 50%（rand50）的 NDCG 低 0.0032（p<0.001）。節省的生成時間是依 item 端生成量比例推算（本實驗 100% 生成後再遮罩，未實際以優先順序生成）。
 - **敘事結論**：Week 3 預設的「低品質／過量增強資訊會傷害效果」在本實驗條件下未獲支持。LLM 輸出噪音率低（dirty 2.1%、retry>1 約 10%），簡體殘留對 `bge-small-zh` 的語意影響小，被剔除的 item 仍帶有有效資訊。
-- **商業建議（本實驗條件下）**：不需要為了「清洗」LLM 輸出而增加過濾步驟或重生成成本，保留全部增強特徵即可；省下的成本優先用於提高 item 端的生成覆蓋（見 Week 4）。
+- **商業建議（本實驗條件下）**：不需要為了「清洗」LLM 輸出而增加過濾步驟或重生成成本，保留全部增強特徵即可；省下的成本優先用於提高 item 端的生成覆蓋（見 Week 4）。若生成預算有限，建議以 item 熱門度（等同 PageRank 排序）由高到低決定生成順序：以約 50% 的生成量即可保留 Recall 增益，NDCG 損失小。
 
 ### 限制
  
@@ -412,10 +465,15 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - 噪音只用兩種操作型定義（格式／字元、類型內語意一致性），沒有人工標註的品質標準，因此只能說「這兩種定義下的過濾無益」，不能斷言「沒有噪音」。
 - 結論僅限 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`、item 端 100%、α=1.0。
 - 以下為推測、尚未驗證：A 組被剔除的 item 多為懸疑類用語造成類型偏差；語意離群的 item 對排序有額外資訊。
+- PageRank 組只有 5 seed；隨機對照（rand30／50／80／90）各只用一份剔除名單（`--seed 0`），例如 prlow50 − rand50 的差異有一部分可能來自該份名單。PageRank 組共約 28 個檢定（8 個變體 × 2 指標 + 6 個配對比較 × 2 指標），Bonferroni 門檻約 0.05/28≈0.0018；p≈0.002 的結果（rand30 的 NDCG、prlow50 − rand50、prhigh30 的 Recall）在門檻邊緣，只視為方向性證據。
+- 本實驗只做 item 層級的篩選（被剔除者退回 ID embedding），並未改變圖結構或傳播權重，因此不能推論「以 PageRank 調整圖傳播權重」的效果。
+- PageRank 與 degree 幾乎相同（0.9989），未另跑 degree 對照，因此無法區分「PageRank 本身」與「單純熱門度」。
+- 劑量反應圖的保留增益分母很小（見 (15) 備註），SE 約 0.1–0.2；prhigh50 − rand90 的例外解釋（item 數量或冷門 item 的單位互動價值）為推測。
 
 ### 尚未完成（無結果，不列入上述結論）
  
-- PageRank 加權／圖層級剪枝尚未實作。
+- PageRank 圖層級加權（調整傳播權重、語意相似圖上的 PageRank）尚未實作；目前只有 item 層級的熱門度／PageRank 篩選。
+- 以多份隨機名單（例如 `rand90` 的 `--seed 1、2`）重跑，驗證 prhigh50 − rand90 的例外：視時間決定。
 - 把 `prune10` 與 `rand10` 補到 10 seed（只有此組有 Recall 的弱訊號）、以多份隨機名單估計對照組變異：視時間決定。
 - 效益曲線圖表 → Week 6；item 熱門度分層分析、錯誤分析、embedding 視覺化 → Week 7。
 

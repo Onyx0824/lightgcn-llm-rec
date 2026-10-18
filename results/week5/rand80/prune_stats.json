@@ -1,0 +1,88 @@
+{
+  "mode": "random",
+  "frac": 0.8,
+  "seed": 0,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 2726,
+  "items_usable_after": 682,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.9059,
+  "score_cutoff": null,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.391,
+      0.391
+    ],
+    "Comedy": [
+      0.321,
+      0.319
+    ],
+    "Action": [
+      0.14,
+      0.141
+    ],
+    "Thriller": [
+      0.136,
+      0.137
+    ],
+    "Romance": [
+      0.133,
+      0.129
+    ],
+    "Horror": [
+      0.093,
+      0.095
+    ],
+    "Adventure": [
+      0.082,
+      0.08
+    ],
+    "Sci-Fi": [
+      0.081,
+      0.079
+    ]
+  },
+  "examples_dropped": [
+    [
+      34,
+      "Dead Man Walking (1995)"
+    ],
+    [
+      3356,
+      "Highlander: Endgame (2000)"
+    ],
+    [
+      108,
+      "Margaret's Museum (1995)"
+    ],
+    [
+      3353,
+      "Crew, The (2000)"
+    ],
+    [
+      3300,
+      "Coyote Ugly (2000)"
+    ],
+    [
+      2454,
+      "Don't Look in the Basement! (1973)"
+    ],
+    [
+      76,
+      "White Balloon, The (Badkonake Sefid ) (1995)"
+    ],
+    [
+      1087,
+      "Koyaanisqatsi (1983)"
+    ],
+    [
+      1472,
+      "Four Days in September (1997)"
+    ],
+    [
+      1814,
+      "House (1986)"
+    ]
+  ]
+}

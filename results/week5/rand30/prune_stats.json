@@ -1,0 +1,88 @@
+{
+  "mode": "random",
+  "frac": 0.3,
+  "seed": 0,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 1022,
+  "items_usable_after": 2386,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.9067,
+  "score_cutoff": null,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.414,
+      0.391
+    ],
+    "Comedy": [
+      0.31,
+      0.319
+    ],
+    "Action": [
+      0.155,
+      0.141
+    ],
+    "Thriller": [
+      0.136,
+      0.137
+    ],
+    "Romance": [
+      0.129,
+      0.129
+    ],
+    "Horror": [
+      0.099,
+      0.095
+    ],
+    "Sci-Fi": [
+      0.081,
+      0.079
+    ],
+    "Adventure": [
+      0.078,
+      0.08
+    ]
+  },
+  "examples_dropped": [
+    [
+      1766,
+      "Song of the South (1946)"
+    ],
+    [
+      1565,
+      "Beyond Silence (1996)"
+    ],
+    [
+      1114,
+      "Amityville 3-D (1983)"
+    ],
+    [
+      20,
+      "Get Shorty (1995)"
+    ],
+    [
+      2619,
+      "Spaceballs (1987)"
+    ],
+    [
+      1554,
+      "Quest for Camelot (1998)"
+    ],
+    [
+      2748,
+      "Next Friday (1999)"
+    ],
+    [
+      194,
+      "Browning Version, The (1994)"
+    ],
+    [
+      1312,
+      "Roseanna's Grave (For Roseanna) (1997)"
+    ],
+    [
+      2030,
+      "Prince of Egypt, The (1998)"
+    ]
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "mode": "random",
+  "frac": 0.5,
+  "seed": 0,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 1704,
+  "items_usable_after": 1704,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.9057,
+  "score_cutoff": null,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.39,
+      0.391
+    ],
+    "Comedy": [
+      0.309,
+      0.319
+    ],
+    "Action": [
+      0.147,
+      0.141
+    ],
+    "Thriller": [
+      0.138,
+      0.137
+    ],
+    "Romance": [
+      0.137,
+      0.129
+    ],
+    "Horror": [
+      0.095,
+      0.095
+    ],
+    "Adventure": [
+      0.079,
+      0.08
+    ],
+    "Sci-Fi": [
+      0.075,
+      0.079
+    ]
+  },
+  "examples_dropped": [
+    [
+      1051,
+      "Day the Earth Stood Still, The (1951)"
+    ],
+    [
+      3405,
+      "Sorority House Massacre II (1990)"
+    ],
+    [
+      3288,
+      "Everything You Always Wanted to Know About Sex (1972)"
+    ],
+    [
+      1211,
+      "Beverly Hills Ninja (1997)"
+    ],
+    [
+      1901,
+      "Young Doctors in Love (1982)"
+    ],
+    [
+      1606,
+      "Going My Way (1944)"
+    ],
+    [
+      719,
+      "Ballad of Narayama, The (Narayama Bushiko) (1958)"
+    ],
+    [
+      3155,
+      "Blazing Saddles (1974)"
+    ],
+    [
+      854,
+      "Homeward Bound: The Incredible Journey (1993)"
+    ],
+    [
+      942,
+      "Glory Daze (1996)"
+    ]
+  ]
+}

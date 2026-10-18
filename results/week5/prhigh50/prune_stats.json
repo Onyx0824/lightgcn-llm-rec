@@ -1,0 +1,14 @@
+{
+  "score": "pagerank",
+  "drop": "high",
+  "frac": 0.5,
+  "pagerank_iters": 134,
+  "items_with_embedding": 3408,
+  "dropped": 1704,
+  "items_usable_after": 1704,
+  "spearman_pagerank_vs_degree": 0.9989,
+  "degree_dropped_mean": 373.87,
+  "degree_dropped_max": 2566,
+  "degree_all_mean": 205.32,
+  "share_of_train_interactions_on_dropped_items": 0.9105
+}

@@ -1,0 +1,15 @@
+{
+  "model": "BAAI/bge-small-zh-v1.5",
+  "dim": 512,
+  "users_generated": 4870,
+  "users_usable": 4863,
+  "items_generated": 3408,
+  "items_usable": 3336,
+  "dirty_users": 7,
+  "dirty_items": 72,
+  "drop_dirty": true,
+  "drop_retry": false,
+  "failed_users": 0,
+  "failed_items": 0,
+  "embed_sec": 6.5
+}

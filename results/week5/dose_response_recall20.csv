@@ -1,0 +1,13 @@
+variant,group,n_dropped,share_interactions_dropped,n_seeds,recall@20_mean,retained_gain_mean,retained_gain_se
+prlow30,PageRank low,1022,0.0255,5,0.08205,1.1957,0.2002
+prlow50,PageRank low,1704,0.0895,5,0.08166,1.0658,0.1438
+rand10,random,341,0.0972,5,0.08128,0.9374,0.1225
+prune10,semantic score,341,0.1234,5,0.08222,1.2544,0.1358
+rand20,random,682,0.1944,5,0.08126,0.9283,0.186
+prune20,semantic score,682,0.2301,5,0.08149,1.0076,0.1754
+rand30,random,1022,0.3054,5,0.08175,1.0957,0.1264
+rand50,random,1704,0.5153,5,0.08186,1.1323,0.1486
+prhigh30,PageRank high,1022,0.7647,5,0.07957,0.3628,0.116
+rand80,random,2726,0.8018,5,0.08008,0.5342,0.1017
+rand90,random,3067,0.9057,5,0.0784,-0.0341,0.1029
+prhigh50,PageRank high,1704,0.9105,5,0.07959,0.3671,0.1393

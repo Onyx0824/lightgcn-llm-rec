@@ -1,0 +1,88 @@
+{
+  "mode": "random",
+  "frac": 0.9,
+  "seed": 0,
+  "items_with_embedding": 3408,
+  "scorable_pool": 3408,
+  "dropped": 3067,
+  "items_usable_after": 341,
+  "score_mean_all": 0.9057,
+  "score_mean_dropped": 0.9058,
+  "score_cutoff": null,
+  "genre_share_dropped_vs_all": {
+    "Drama": [
+      0.391,
+      0.391
+    ],
+    "Comedy": [
+      0.319,
+      0.319
+    ],
+    "Action": [
+      0.14,
+      0.141
+    ],
+    "Thriller": [
+      0.137,
+      0.137
+    ],
+    "Romance": [
+      0.127,
+      0.129
+    ],
+    "Horror": [
+      0.094,
+      0.095
+    ],
+    "Adventure": [
+      0.08,
+      0.08
+    ],
+    "Sci-Fi": [
+      0.077,
+      0.079
+    ]
+  },
+  "examples_dropped": [
+    [
+      50,
+      "Lamerica (1994)"
+    ],
+    [
+      1731,
+      "Roger & Me (1989)"
+    ],
+    [
+      3331,
+      "Opportunists, The (1999)"
+    ],
+    [
+      2732,
+      "Emperor and the Assassin, The (Jing ke ci qin wang) (1999)"
+    ],
+    [
+      2273,
+      "Thing From Another World, The (1951)"
+    ],
+    [
+      1105,
+      "When Harry Met Sally... (1989)"
+    ],
+    [
+      26,
+      "Now and Then (1995)"
+    ],
+    [
+      3189,
+      "Angel Heart (1987)"
+    ],
+    [
+      1473,
+      "Spice World (1997)"
+    ],
+    [
+      1013,
+      "GoodFellas (1990)"
+    ]
+  ]
+}
