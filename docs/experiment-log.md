@@ -337,9 +337,9 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 
 ### 尚未完成（無結果，不列入上述結論）
  
-- 去噪/剪枝分析：已於 Week 5 完成（item 層級的 PageRank／熱門度篩選已實作；圖層級 PageRank 加權未實作）
+- 去噪/剪枝分析：已於 Week 5 完成（item 層級的 PageRank／熱門度篩選已實作；圖層級 PageRank 加權決定不做，理由見 Week 5）
 - 以 item 熱門度分層的分析、錯誤分析、embedding 視覺化 → Week 7
-- 效益曲線圖表（資料已備：`results/week6_tier_table.csv`、`results/week6_tier_table_itemonly.csv`）→ Week 6
+- 效益曲線圖表：已於 Week 6 完成（`results/week6/cost_benefit.png`、`cost_benefit_dual_axis.png`、`final_table.md`）
 
 ---
 

@@ -64,6 +64,9 @@ Raw Interaction Data
 │   ├── summarize_week4.py   # 配對檢定彙整：任兩組結果（--prefix / --control_prefix）的差異
 │   ├── inspect_dirty.py     # 盤點 dirty items 由哪些字元觸發（Week 5）
 │   ├── three_way_table.py   # Week 5 三種去噪做法並排對照表
+│   ├── plot_cost_benefit.py # 效益曲線：增益 vs 累計生成時間（Week 6）
+│   ├── week6_final_table.py # 報告用最終成本效益表（Week 6，輸出 results/week6/final_table.md）
+│   ├── final_cost_table.py  # 含每次訓練時間的總表與「比例對增益／耗時」疊圖（Week 6）
 │   ├── prune_items.py       # embedding 語意離群剪枝 / 隨機剔除對照（Week 5）
 │   ├── prune_pagerank.py    # 二部圖 PageRank 計算與依 PageRank 剔除 item 增強（Week 5）
 │   ├── dose_response.py     # 劑量反應：被剔除互動比例 vs 保留的增益（Week 5）
