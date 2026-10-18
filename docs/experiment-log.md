@@ -506,6 +506,7 @@ x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item
 
 **完成項目**
 - [x] 效益曲線圖：增益 vs 累計生成時間（兩端／只 item，20/50/100%，10 seed，95% CI）→ `results/week6/cost_benefit.png`（`scripts/plot_cost_benefit.py`，資料 `results/week6_tier_table*.csv`）
+- [x] 計畫要求的「增強比例 vs 效果」與「增強比例 vs 耗時」疊圖：`results/week6/cost_benefit_dual_axis.png`，另含每次訓練時間的總表 `results/week6/cost_benefit_table.md`（`scripts/final_cost_table.py`；增強不增加訓練時間，各組 258–271 秒，成本幾乎全來自 LLM 生成）
 - [x] Week 5 三方對照表（`results/week5/three_way_comparison.md`）
 - [x] 報告用最終表格與結論（`scripts/week6_final_table.py` → `results/week6/final_table.md`）；原始成本效益表見 Week 4 (10)，本節只做彙整與對照
 - [x] 去噪後效益曲線是否更划算（計畫第 6 週第 4 點）：見下方結論 4
