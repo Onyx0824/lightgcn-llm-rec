@@ -505,7 +505,12 @@ x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item
 ## Week 6（10/27–11/2）效益分析
 
 **完成項目**
-- [ ]（待填）
+- [x] 效益曲線圖：增益 vs 累計生成時間（兩端／只 item，20/50/100%，10 seed，95% CI）→ `results/week6/cost_benefit.png`（`scripts/plot_cost_benefit.py`，資料 `results/week6_tier_table*.csv`）
+- [x] Week 5 三方對照表（`results/week5/three_way_comparison.md`）
+- [ ] 其餘效益分析（報告用的最終表格與文字）
 
 **觀察/決策**
-- （待填：增強比例 vs 效果/耗時的甜蜜點）
+- 只 item 的曲線在「每小時生成換到的增益」上全面高於兩端：item 50%（1.9 小時）Recall +0.0032、NDCG +0.0023；兩端要 4.8 小時才有相近的 Recall（+0.0033）。
+- Recall 的甜蜜點在 item 50%：只 item 100% 的 Recall 反而略低（+0.0027，50%→100% 為 −0.0006，p=0.048，邊緣）；NDCG 則隨生成量持續上升，item 100% 達 +0.0042。
+- 若目標是 Recall，優先生成 item 屬性並停在約 50%；若重視 NDCG，item 100%（3.8 小時）仍值得，兩端 100%（9.9 小時）只多出 NDCG +0.0006（p=0.35，不顯著）。
+- 生成時間為累計實測；50% 以內的外推見 Week 5 備註（遮罩式推算，非實際以優先順序生成）。
