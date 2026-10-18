@@ -53,6 +53,14 @@ def main():
     for p_, r_ in [("10", "10"), ("20", "20")]:
         lines.append(row(f"prune{p_} − rand{r_}", load(f"week4fe_aug_itemprune{p_}", "1.0", "1.0"),
                          load(f"week4fe_aug_itemrand{r_}", "1.0", "1.0")))
+    lines += ["", "## 探索性比較：Week 5 PageRank 篩選與隨機剔除（5 seed；p 值未經校正；PageRank 組共 28 個檢定，Bonferroni 門檻 0.05/28≈0.0018）", "", HEAD]
+    pr_tags = [("prlow30", "itemprlow30"), ("prlow50", "itemprlow50"), ("prhigh30", "itemprhigh30"), ("prhigh50", "itemprhigh50"),
+               ("rand30", "itemrand30"), ("rand50", "itemrand50"), ("rand80", "itemrand80"), ("rand90", "itemrand90")]
+    for label, tag in pr_tags:
+        lines.append(row(f"{label} − 未過濾 item-only", load(f"week4fe_aug_{tag}", "1.0", "1.0"), ctrl))
+    for a, b in [("prlow30", "rand30"), ("prlow50", "rand50"), ("prhigh30", "rand30"), ("prhigh50", "rand50"),
+                 ("prhigh30", "rand80"), ("prhigh50", "rand90")]:
+        lines.append(row(f"{a} − {b}", load(f"week4fe_aug_item{a}", "1.0", "1.0"), load(f"week4fe_aug_item{b}", "1.0", "1.0")))
     with open("results/paired_ci_table.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
     print("wrote results/paired_ci_table.md")
