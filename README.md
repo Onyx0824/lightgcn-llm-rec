@@ -111,7 +111,8 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 - [x] LLM 增強全量生成（20% / 50% / 100%）→ embedding 整合 → 接入 LightGCN
 - [x] 增強效益分析：生成比例、α 敏感度、user 端 vs item 端消融（experiment-log.md Week 4）
 - [x] 去噪/剪枝分析（Week 5）：格式過濾（drop_dirty、drop_retry）、embedding 語意離群剪枝與隨機剔除對照，結果為無額外益處；另做 PageRank（item 層級）篩選與劑量反應分析，結果顯示 PageRank 在二部圖上等同熱門度（見下方「主要結果」與 experiment-log.md Week 5）
-- [ ] 效益分析圖表、item 熱門度分層分析（Week 6–7）
+- [x] 效益分析圖表與最終表格（Week 6：`results/week6/cost_benefit.png`、`results/week6/final_table.md`）
+- [ ] item 熱門度分層分析、錯誤分析、embedding 視覺化（Week 7）
 - [ ] 報告撰寫
 
 > 完整時程規劃見 [`project-plan-detailed.md`](./docs/project-plan-detailed.md)（9/22–11/30，共 10 週）。
@@ -180,7 +181,7 @@ PageRank 篩選與隨機剔除（5 seed，同上控制組；PageRank 與 item de
 
 1. **增益主要來自 item 端**：item-only（100%）Recall +0.0027（10/10 seed 為正，p<0.001）；user-only 不顯著（Recall +0.0003，p=0.23）。
 2. **Recall 在 50% 即飽和，NDCG 到 100% 仍上升**：50%→100% Recall +0.0003（p=0.41）、NDCG +0.0022（p=0.0013）。
-3. **成本效益**：item 端 50% 累計生成約 1.9 小時，為兩端 100%（9.9 小時）的 19%，卻取得約 86% 的 Recall 增益。
+3. **成本效益**：item 端 50% 累計生成約 1.9 小時，為兩端 100%（9.9 小時）的 19%，卻取得約 88% 的 Recall 增益。
 4. **α 存在平台區**：α 在 0.3–1.0 表現穩定；α=3.0 過大，NDCG 增益消失。
 5. **LLM 輸出噪音低**（100% 生成）：dirty users 7 / items 72（items 的 2.1%）；retry>1 users 155 / items 342（items 的 10.0%）。
 6. **去噪沒有額外益處**：格式過濾與語意剪枝都沒有提升 Recall，NDCG 反而小幅下降（−0.0005～−0.0026），連隨機剔除同數量 item 也一樣，與「被增強的 item 變少」一致；語意剪枝在 NDCG 上並未優於隨機剔除（prune20 − rand20：−0.0018）。所有去噪版本相對 α=0 的增益（Recall +3.6%、NDCG +1.3%～+1.4%）都保留。建議直接保留全部增強特徵，不需額外清洗。

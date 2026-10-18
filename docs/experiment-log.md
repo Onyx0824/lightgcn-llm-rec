@@ -350,7 +350,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 - [x] 格式過濾去噪：A `drop_dirty`、B `drop_retry`（item-only，10 seed）
 - [x] embedding 層級語意離群剪枝 `prune10` / `prune20`，與「同數量隨機剔除」對照 `rand10` / `rand20`（item-only，5 seed）
 - [x] PageRank 節點重要性篩選（item 層級）：在 train 二部圖上計算 PageRank，剔除最低／最高 q%（30%、50%）item 的增強，並以隨機剔除（30%、50%、80%、90%）與劑量反應分析檢驗「選擇」是否有價值（item-only，5 seed）
-- [ ] PageRank 圖層級加權（以 PageRank 調整傳播權重、語意相似圖上的 PageRank）：未實作
+- [-] PageRank 圖層級加權（以 PageRank 調整傳播權重、語意相似圖上的 PageRank）：**決定不做**。理由：(a) 專案計畫（`project-plan-detailed.md` 第 5 週）要求去噪方向「擇一」、且 PageRank 路線允許「加權或篩選」，本週已完成 item 層級 PageRank 篩選，另有格式過濾與 embedding 語意剪枝，已滿足要求；(b) PageRank 與 item degree 的 Spearman 為 0.9989，而 LightGCN 的傳播矩陣本來就以 1/√(deg_i·deg_j) 做度數正規化（`src/model/lightgcn.py`），再以 PageRank 調權大概率只是重複度數資訊（推測，未驗證）；(c) 篩選實驗已顯示依熱門度挑 item 與隨機相比無可靠優勢，沒有跡象顯示加權會更好；(d) 時間改用於 Week 6–7 的效益與分層分析。語意相似圖上的 PageRank 同樣未做，列為未來工作。
 
 **共同設定**：`--aug_side item`、ratio 1.0、α=1.0、固定 25 epoch。去噪版 embedding 由 `build_embeddings.py`（`--drop_dirty` / `--drop_retry` / `--out_dir`）或 `scripts/prune_items.py` 產生，放在 `results/week5/<name>/`；被剔除的 item 其 `item_has=False`，退回只使用 ID embedding（圖結構不變）。結果檔名：`week4fe_aug_item{dropdirty,dropretry,prune10,prune20,rand10,rand20}_r1.0_a1.0_s*.json`；PageRank 組為 `week4fe_aug_item{prlow30,prlow50,prhigh30,prhigh50,rand30,rand50,rand80,rand90}_r1.0_a1.0_s*.json`（遮罩由 `scripts/prune_pagerank.py` 與 `scripts/prune_items.py --mode random` 產生）。比較方式與 Week 4 相同（依 seed 配對 t 檢定）。
  
@@ -495,7 +495,7 @@ x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item
 
 ### 尚未完成（無結果，不列入上述結論）
  
-- PageRank 圖層級加權（調整傳播權重、語意相似圖上的 PageRank）尚未實作；目前只有 item 層級的熱門度／PageRank 篩選。
+- PageRank 圖層級加權（調整傳播權重、語意相似圖上的 PageRank）：決定不做（理由見上方完成項目），列為未來工作；目前只有 item 層級的熱門度／PageRank 篩選。
 - 以多份隨機名單（例如 `rand90` 的 `--seed 1、2`）重跑，驗證 prhigh50 − rand90 的例外：視時間決定。
 - 把 `prune10` 與 `rand10` 補到 10 seed（只有此組有 Recall 的弱訊號）、以多份隨機名單估計對照組變異：視時間決定。
 - 效益曲線圖表 → Week 6；item 熱門度分層分析、錯誤分析、embedding 視覺化 → Week 7。
@@ -507,10 +507,24 @@ x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item
 **完成項目**
 - [x] 效益曲線圖：增益 vs 累計生成時間（兩端／只 item，20/50/100%，10 seed，95% CI）→ `results/week6/cost_benefit.png`（`scripts/plot_cost_benefit.py`，資料 `results/week6_tier_table*.csv`）
 - [x] Week 5 三方對照表（`results/week5/three_way_comparison.md`）
-- [ ] 其餘效益分析（報告用的最終表格與文字）
+- [x] 報告用最終表格與結論（`scripts/week6_final_table.py` → `results/week6/final_table.md`）；原始成本效益表見 Week 4 (10)，本節只做彙整與對照
+- [x] 去噪後效益曲線是否更划算（計畫第 6 週第 4 點）：見下方結論 4
 
+**最終表格（α=1.0，10 seed；增益為相對 α=0，「佔兩端100%」以兩端 100% 為 100%）**
+
+| 方案 | 累計生成時間（小時） | 佔兩端100%時間 | Recall@20 增益 [95% CI] | 佔兩端100%增益 | NDCG@20 增益 [95% CI] | 佔兩端100%增益 |
+|---|---|---|---|---|---|---|
+| 只 item 20% | 0.8 | 8% | +0.0019 [+0.0013, +0.0025] | 51% | +0.0005 [-0.0003, +0.0013] | 10% |
+| 只 item 50% | 1.9 | 19% | +0.0032 [+0.0026, +0.0039] | 88% | +0.0023 [+0.0013, +0.0033] | 48% |
+| 只 item 100% | 3.8 | 39% | +0.0027 [+0.0021, +0.0032] | 73% | +0.0042 [+0.0030, +0.0055] | 87% |
+| 兩端 20% | 1.9 | 19% | +0.0018 [+0.0012, +0.0024] | 50% | +0.0008 [+0.0001, +0.0016] | 17% |
+| 兩端 50% | 4.8 | 49% | +0.0033 [+0.0025, +0.0041] | 91% | +0.0026 [+0.0011, +0.0041] | 55% |
+| 兩端 100% | 9.9 | 100% | +0.0037 [+0.0023, +0.0050] | 100% | +0.0048 [+0.0028, +0.0068] | 100% |
 **觀察/決策**
-- 只 item 的曲線在「每小時生成換到的增益」上全面高於兩端：item 50%（1.9 小時）Recall +0.0032、NDCG +0.0023；兩端要 4.8 小時才有相近的 Recall（+0.0033）。
-- Recall 的甜蜜點在 item 50%：只 item 100% 的 Recall 反而略低（+0.0027，50%→100% 為 −0.0006，p=0.048，邊緣）；NDCG 則隨生成量持續上升，item 100% 達 +0.0042。
-- 若目標是 Recall，優先生成 item 屬性並停在約 50%；若重視 NDCG，item 100%（3.8 小時）仍值得，兩端 100%（9.9 小時）只多出 NDCG +0.0006（p=0.35，不顯著）。
-- 生成時間為累計實測；50% 以內的外推見 Week 5 備註（遮罩式推算，非實際以優先順序生成）。
+1. **甜蜜點是 item 端約 50%。** 1.9 小時（兩端 100% 時間的 19%）取得 Recall 增益 +0.0032（兩端 100% 的 88%）與 NDCG 增益 +0.0023（48%）。只 item 100% 的 Recall 反而略低（+0.0027；相對 50% 為 −0.0006，p=0.048，邊緣、不視為穩健），NDCG 則持續上升（相對 50% 為 +0.0019，p<0.001，10/10 為正）。
+2. **同樣的時間，item 端比兩端划算。** 約 1.9 小時：只 item 50%（Recall +0.0032、NDCG +0.0023）明顯高於兩端 20%（+0.0018、+0.0008）；兩端要 4.8 小時才有相近的 Recall（+0.0033）。
+3. **兩端 100% 相對只 item 100% 多花 6.1 小時（2.6 倍時間），多得的增益偵測不到。** Recall +0.0010（p=0.054，8/10 為正）、NDCG +0.0006（p=0.35，7/10 為正）；「偵測不到」不等於「沒有」。
+4. **加了去噪後，效益曲線沒有變得更划算。** 格式過濾與語意剪枝沒有提升 Recall、NDCG 略降（Week 5 (12)(13)）；唯一省成本的做法是依熱門度（PageRank 排序）決定生成順序：prlow50 的 Recall 與完整增強相當（+0.0002，p=0.57）、NDCG 低 0.0010（p=0.064），相同生成量的隨機 50%（rand50）NDCG 低 0.0032（p<0.001）（Week 5 (14)）。該節省是由遮罩推算，並非實際以優先順序生成，且僅 5 seed，屬方向性證據。
+5. **商業建議（本實驗條件下）**：預算有限時，只對 item 生成約 50%，優先選熱門 item（Recall 約達全量 88%，成本約 19%）；若重視排序品質（NDCG），item 增強到 100%（3.8 小時）仍有收益；user 端 profiling 成本高、增益偵測不到，不建議優先投資；不需要額外的清洗步驟。
+
+**限制**：相對增益僅約 +2%～+5%；test 只有約 973 位 user，p 值只反映訓練隨機性；成本只計本地 GPU 單 worker 生成時間；結論限於 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`。
