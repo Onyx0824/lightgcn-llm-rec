@@ -1,8 +1,11 @@
 # 實驗紀錄 (Experiment Log)
 
 > 每週更新一次，對應 `docs/project-plan-detailed.md` 的週次規劃。
+
 > 目的：報告撰寫階段(第8週)不需要回頭翻git history找數字，所有關鍵設定/結果/決策都在這裡。
+
 > **統計方法**：每個條件以多個 seed 各訓練一次（主實驗 seed 0–9；Week 5 語意剪枝、PageRank 組與隨機對照為 seed 0–4）；同一 seed 的兩個條件互相配對，對配對差做雙尾 paired t 檢定，並報告配對差的 95% 信賴區間（t 分佈）。p 值只反映訓練隨機性（初始化與抽樣），不代表推廣到其他使用者群體，因為 test 固定為同一批約 973 位 user。完整的配對差、信賴區間與 p 值見 [`results/paired_ci_table.md`](./results/paired_ci_table.md)（由 `scripts/paired_ci_table.py` 產生）。
+
 > **多重比較**：主要結論只依賴下列直接對應研究問題的比較——增強 vs α=0（兩端與只 item，20% / 50% / 100%，共 12 個檢定，Bonferroni 門檻 0.05/12≈0.004）。其餘比較（user-only、α 掃描、Week 5 的各種去噪變體與隨機對照）視為探索性，p 值未經校正，僅作方向性證據。邊緣顯著的結果（例如兩端 20% 的 NDCG，p=0.028）不視為主要發現。
 
 ---
