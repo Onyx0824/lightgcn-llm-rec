@@ -74,7 +74,7 @@ Raw Interaction Data
 │   └── run_week5_pagerank.ps1 # Week 5 PageRank 篩選與 rand30/50/80/90 對照一鍵執行
 ├── checkpoints/             # 訓練好的模型權重
 ├── docs/                    # 規劃文件、報告草稿、架構圖
-│   ├── project-plan-detailed.md
+│   ├── project-plan-detailed.md        #
 │   └── experiment-log.md    # 每週實驗紀錄與完整統計
 ├── tests/                   # 基本單元測試
 ├── .gitignore
