@@ -63,6 +63,7 @@ Raw Interaction Data
 │   ├── compare_ratios.py    # 比較不同增強比例（如 20%、50%、100%）與雙端/單端的效果差異
 │   ├── summarize_week4.py   # 配對檢定彙整：任兩組結果（--prefix / --control_prefix）的差異
 │   ├── inspect_dirty.py     # 盤點 dirty items 由哪些字元觸發（Week 5）
+│   ├── three_way_table.py   # Week 5 三種去噪做法並排對照表
 │   ├── prune_items.py       # embedding 語意離群剪枝 / 隨機剔除對照（Week 5）
 │   ├── prune_pagerank.py    # 二部圖 PageRank 計算與依 PageRank 剔除 item 增強（Week 5）
 │   ├── dose_response.py     # 劑量反應：被剔除互動比例 vs 保留的增益（Week 5）
@@ -170,6 +171,8 @@ PageRank 篩選與隨機剔除（5 seed，同上控制組；PageRank 與 item de
 | rand80 | 2726 | 80.2% | 0.0801 ± 0.0003 | 0.2720 ± 0.0005 | Recall −0.0014（p=0.016）；NDCG −0.0042（p=0.005） |
 | rand90 | 3067 | 90.6% | 0.0784 ± 0.0006 | 0.2703 ± 0.0006 | Recall −0.0031（p<0.001）；NDCG −0.0059（p=0.001） |
 | prhigh50 | 1704 | 91.1% | 0.0796 ± 0.0006 | 0.2726 ± 0.0009 | Recall −0.0019（p=0.021）；NDCG −0.0036（p=0.011） |
+
+三種去噪做法（格式過濾／語意剪枝／PageRank）在相近剔除量下的並排對照見 [`results/week5/three_way_comparison.md`](./results/week5/three_way_comparison.md)（`scripts/three_way_table.py`）。
 
 （rand30 等其餘變體與配對比較見 [`docs/experiment-log.md`](./docs/experiment-log.md) Week 5 (14)(15)；劑量反應圖見 `results/week5/dose_response_ndcg20.png`、`dose_response_recall20.png`。）
 
