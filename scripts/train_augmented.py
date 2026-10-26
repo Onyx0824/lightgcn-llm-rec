@@ -33,7 +33,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from scripts.train_baseline import build_user_pos_items, sample_bpr_batch  # noqa: E402
-from src.evaluation.metrics import evaluate  # noqa: E402
+from src.evaluation.metrics import evaluate, mask_seen_interactions  # noqa: E402
 from src.model.lightgcn import bpr_loss, build_norm_adj  # noqa: E402
 from src.model.lightgcn_aug import LightGCNAug  # noqa: E402
 
@@ -57,6 +57,8 @@ def main():
     ap.add_argument("--tag", default="", help="結果檔名標籤")
     ap.add_argument("--fixed_epochs", type=int, default=0,
                     help=">0：固定訓練這麼多 epoch、不做 early stopping（降低停止點造成的變異）")
+    ap.add_argument("--save_emb", action="store_true",
+                    help="save final user/item embeddings and test top-K lists to results/week7/emb/ (Week 7 analysis)")
     args = ap.parse_args()
 
     with open(args.config, "r", encoding="utf-8") as f:
@@ -182,6 +184,19 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     print(f"結果已存到 {out_path}")
+
+    if args.save_emb:
+        with torch.no_grad():
+            fu, fi = model.propagate()
+            scores = mask_seen_interactions(model.get_all_scores(), train_valid_pos)  # same masking as the test evaluation
+            top_k = torch.topk(scores, k=k, dim=1).indices.cpu().numpy().astype(np.int32)
+        emb_dir = Path(cfg.get("results_dir", "results")) / "week7" / "emb"
+        emb_dir.mkdir(parents=True, exist_ok=True)
+        stem = f"{prefix}_r{args.ratio}_a{args.alpha}_s{args.seed}"
+        np.save(emb_dir / f"{stem}_item.npy", fi.cpu().numpy())
+        np.save(emb_dir / f"{stem}_user.npy", fu.cpu().numpy())
+        np.save(emb_dir / f"{stem}_top{k}.npy", top_k)
+        print(f"embeddings / top-{k} saved to {emb_dir}")
 
 
 if __name__ == "__main__":
