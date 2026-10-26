@@ -1,0 +1,281 @@
+# Error analysis candidates (paired seeds [0, 1, 2, 3, 4]; per-user score = hits / min(n_test, 20))
+
+Overall mean score: ctrl 0.2569, aug 0.2638; users hurt 301, helped 400, unchanged 272 (of 973).
+
+Pick 5-10 cases overall, then assign each ONE main cause by reading the evidence: data sparsity / cold-start-like user / LLM hallucination or drift / popularity bias / other. The auto tags below are only hints.
+
+## HURT - augmentation lowers the score the most
+
+- user_idx **2790** | train 38 / test 10 | score ctrl 0.60 -> aug 0.20 (diff -0.40) | auto tags: sparse-user, llm-flagged
+  - train top genres: Drama, Western, Crime; top-10 recs sharing them: 60%
+  - test items hit by aug top-20 (seed 0): Chinatown (1974) (deg 880); Manchurian Candidate, The (1962) (deg 557)
+  - aug top-10 recs:
+    - Chinatown (1974) [Film-Noir|Mystery|Thriller] deg=880 
+    - Bridge on the River Kwai, The (1957) [Drama|War] deg=606 
+    - Lawrence of Arabia (1962) [Adventure|War] deg=591 
+    - French Connection, The (1971) [Action|Crime|Drama|Thriller] deg=632 
+    - Boat, The (Das Boot) (1981) [Action|Drama|War] deg=744 [R]
+    - Conversation, The (1974) [Drama|Mystery] deg=304 
+    - Rear Window (1954) [Mystery|Thriller] deg=745 [DR]
+    - Killing Fields, The (1984) [Drama|War] deg=528 [R]
+    - L.A. Confidential (1997) [Crime|Film-Noir|Mystery|Thriller] deg=1707 
+    - Annie Hall (1977) [Comedy|Romance] deg=1011 [R]
+  - LLM tags of 'Chinatown (1974)': mood=['陰郁', '詭譎', '緊張'], supp=[], summary=詭譎多變的私探懸疑劇情，適合喜愛複雜剧情與深刻心理描寫的成年觀眾
+  - LLM tags of 'Bridge on the River Kwai, The (1957)': mood=['深刻', '悲傷', '激勵'], supp=[], summary=描述第二次世界大戰期間，英軍工程兵在日軍監禁下建造鐵橋的過程，具深刻戰爭題材與人性探討的劇情
+  - LLM tags of 'Lawrence of Arabia (1962)': mood=['雄偉', '深刻', '反思'], supp=[], summary=這是一部充滿雄偉沙場景色及深刻人性探索的冒險戰爭電影，適合歷史喜好者及成人觀眾欣賞
+
+- user_idx **1698** | train 184 / test 164 | score ctrl 0.65 -> aug 0.29 (diff -0.36) | auto tags: llm-flagged
+  - train top genres: Comedy, Drama, Musical; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): North by Northwest (1959) (deg 971); Producers, The (1968) (deg 471); Philadelphia Story, The (1940) (deg 432); Sting, The (1973) (deg 764); When Harry Met Sally... (1989) (deg 1110)
+  - aug top-10 recs:
+    - Producers, The (1968) [Comedy|Musical] deg=471 
+    - Shakespeare in Love (1998) [Comedy|Romance] deg=1754 
+    - Harold and Maude (1971) [Comedy] deg=507 
+    - Duck Soup (1933) [Comedy|War] deg=437 
+    - Philadelphia Story, The (1940) [Comedy|Romance] deg=432 
+    - When Harry Met Sally... (1989) [Comedy|Romance] deg=1110 
+    - Election (1999) [Comedy] deg=1084 [R]
+    - Sabrina (1954) [Comedy|Romance] deg=251 
+    - M*A*S*H (1970) [Comedy|War] deg=836 
+    - Wrong Trousers, The (1993) [Animation|Comedy] deg=630 
+  - LLM tags of 'Producers, The (1968)': mood=['幽默', '喜樂', '輕鬆'], supp=[], summary=一齣充滿音樂與笑料的喜樂喜劇，適合成年觀眾欣賞
+  - LLM tags of 'Shakespeare in Love (1998)': mood=['浪漫', '幽默', '文藝'], supp=[], summary=融合歷史與想像的浪漫喜劇，適合喜愛文學與浪漫氛圍的觀眾
+  - LLM tags of 'Harold and Maude (1971)': mood=['幽默', '叛逆', '哀傷'], supp=[], summary=這部黑色喜劇探索了年輕叛逆與年長保守人物之間的互動，適合喜愛深刻且幽默電影的成年人觀賞
+
+- user_idx **1896** | train 163 / test 492 | score ctrl 0.83 -> aug 0.55 (diff -0.28) | auto tags: llm-flagged, hot-bias
+  - train top genres: Drama, Comedy, Romance; top-10 recs sharing them: 80%
+  - test items hit by aug top-20 (seed 0): L.A. Confidential (1997) (deg 1707); Red Violin, The (Le Violon rouge) (1998) (deg 375); Election (1999) (deg 1084); Player, The (1992) (deg 729); Shakespeare in Love (1998) (deg 1754)
+  - aug top-10 recs:
+    - Shakespeare in Love (1998) [Comedy|Romance] deg=1754 
+    - Sweet Hereafter, The (1997) [Drama] deg=267 
+    - Dead Man Walking (1995) [Drama] deg=659 
+    - Being John Malkovich (1999) [Comedy] deg=1681 
+    - Fight Club (1999) [Drama] deg=1001 
+    - L.A. Confidential (1997) [Crime|Film-Noir|Mystery|Thriller] deg=1707 
+    - Sixth Sense, The (1999) [Thriller] deg=1811 [DR]
+    - Election (1999) [Comedy] deg=1084 [R]
+    - Three Colors: Red (1994) [Drama] deg=248 
+    - Shine (1996) [Drama|Romance] deg=383 
+  - LLM tags of 'Shakespeare in Love (1998)': mood=['浪漫', '幽默', '文藝'], supp=[], summary=融合歷史與想像的浪漫喜劇，適合喜愛文學與浪漫氛圍的觀眾
+  - LLM tags of 'Sweet Hereafter, The (1997)': mood=['感動', '深沉', '悲傷'], supp=[], summary=本片以沉重的故事情節和深刻的人物描寫，適合追求深刻電影體驗的成年觀眾
+  - LLM tags of 'Dead Man Walking (1995)': mood=['深刻', '感動', '反思'], supp=[], summary=以深刻的人性探討和感人的故事情節為主，適合成年觀眾深度觀賞
+
+- user_idx **1210** | train 111 / test 223 | score ctrl 0.53 -> aug 0.28 (diff -0.25) | auto tags: llm-flagged, hot-bias
+  - train top genres: Drama, Comedy, Western; top-10 recs sharing them: 70%
+  - test items hit by aug top-20 (seed 0): Usual Suspects, The (1995) (deg 1300); Groundhog Day (1993) (deg 1674); Matrix, The (1999) (deg 1916); Jaws (1975) (deg 1291); Star Wars: Episode IV - A New Hope (1977) (deg 2239)
+  - aug top-10 recs:
+    - Star Wars: Episode IV - A New Hope (1977) [Action|Adventure|Fantasy|Sci-Fi] deg=2239 
+    - Monty Python and the Holy Grail (1974) [Comedy] deg=1133 
+    - Raiders of the Lost Ark (1981) [Action|Adventure] deg=1867 [R]
+    - Casablanca (1942) [Drama|Romance|War] deg=1245 
+    - Back to the Future (1985) [Comedy|Sci-Fi] deg=1944 
+    - Braveheart (1995) [Action|Drama|War] deg=1831 
+    - Shakespeare in Love (1998) [Comedy|Romance] deg=1754 
+    - Airplane! (1980) [Comedy] deg=1199 
+    - Fish Called Wanda, A (1988) [Comedy] deg=985 
+    - Usual Suspects, The (1995) [Crime|Thriller] deg=1300 
+  - LLM tags of 'Star Wars: Episode IV - A New Hope (1977)': mood=['壯闊', '英雄', '奇幻'], supp=[], summary=以宏偉的太空戰和英雄成長為主軸的冒險科幻片，適合所有年齡層觀賞
+  - LLM tags of 'Monty Python and the Holy Grail (1974)': mood=['荒誕', '諷刺', '喜樂'], supp=[], summary=由Monty Python演員自導自演的荒誕幽默喜劇，適合喜愛荒誕與諷刺幽默的成年觀眾
+  - LLM tags of 'Raiders of the Lost Ark (1981)': mood=['刺激', '冒險', '懸疑'], supp=[], summary=結合歷史冒險與刺激動作元素，適合喜愛冒險電影的青少年以上觀眾
+
+- user_idx **2091** | train 528 / test 193 | score ctrl 0.64 -> aug 0.40 (diff -0.24) | auto tags: hot-bias
+  - train top genres: Comedy, Drama, Action; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): Groundhog Day (1993) (deg 1674); Good, The Bad and The Ugly, The (1966) (deg 610); Clockwork Orange, A (1971) (deg 878); Close Encounters of the Third Kind (1977) (deg 1080); Philadelphia Story, The (1940) (deg 432)
+  - aug top-10 recs:
+    - Godfather: Part II, The (1974) [Action|Crime|Drama] deg=1264 
+    - When Harry Met Sally... (1989) [Comedy|Romance] deg=1110 
+    - Groundhog Day (1993) [Comedy|Romance] deg=1674 
+    - Good, The Bad and The Ugly, The (1966) [Action|Western] deg=610 
+    - Harold and Maude (1971) [Comedy] deg=507 
+    - Stand by Me (1986) [Adventure|Comedy|Drama] deg=1327 
+    - Sleeper (1973) [Comedy|Sci-Fi] deg=564 
+    - Batman (1989) [Action|Adventure|Crime|Drama] deg=1023 
+    - Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954) [Action|Drama] deg=465 
+    - Fistful of Dollars, A (1964) [Action|Western] deg=397 
+  - LLM tags of 'Godfather: Part II, The (1974)': mood=['深刻', '激動', '詐欺'], supp=[], summary=這部電影具備深刻的情感與緊張的劇情，適合對黑幫電影和深刻劇情有興趣的成年觀眾
+  - LLM tags of 'When Harry Met Sally... (1989)': mood=['逗趣', '浪漫', '深刻'], supp=[], summary=一部以幽默方式探討男女情誼與愛情的經典浪漫喜劇，適合成年觀眾共賞
+  - LLM tags of 'Groundhog Day (1993)': mood=['幽默', '自省', '浪漫'], supp=[], summary=融合幽默與浪漫元素的時間循环愛情喜劇，適合成年觀眾欣賞
+
+## HELPED - augmentation raises the score the most
+
+- user_idx **2513** | train 28 / test 3 | score ctrl 0.00 -> aug 0.67 (diff +0.67) | auto tags: sparse-user, llm-flagged, hot-bias
+  - train top genres: Mystery, Thriller, Drama; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): Vertigo (1958) (deg 644); Rear Window (1954) (deg 745)
+  - aug top-10 recs:
+    - Silence of the Lambs, The (1991) [Drama|Thriller] deg=1919 
+    - Fargo (1996) [Crime|Drama|Thriller] deg=1921 
+    - Psycho (1960) [Horror|Thriller] deg=936 [DR]
+    - Godfather, The (1972) [Action|Crime|Drama] deg=1679 
+    - North by Northwest (1959) [Drama|Thriller] deg=971 
+    - Taxi Driver (1976) [Drama|Thriller] deg=948 
+    - Rear Window (1954) [Mystery|Thriller] deg=745 [DR]
+    - Usual Suspects, The (1995) [Crime|Thriller] deg=1300 
+    - GoodFellas (1990) [Crime|Drama] deg=1229 
+    - Alien (1979) [Action|Horror|Sci-Fi|Thriller] deg=1522 
+  - LLM tags of 'Silence of the Lambs, The (1991)': mood=['緊張', '懸疑', '深刻'], supp=[], summary=結合緊張懸疑與深刻人物描寫的電影，適合成年觀眾欣賞
+  - LLM tags of 'Fargo (1996)': mood=['冷冽', '緊張', '詭譎'], supp=[], summary=融合冷冽風格與詭譎氛圍的犯罪 thriller，適合喜愛複雜人物角色與緊張懸疑劇情的成年觀眾
+  - LLM tags of 'Psycho (1960)': mood=['緊張', '驚悚', '懸疑'], supp=[], summary=由阿尔弗雷德·希区柯克執導的经典惊悚悬疑片，適合年滿18歲以上觀眾觀賞，片中緊張的氛圍和突如其來的驚嚇元素是其最大特色。
+
+- user_idx **5000** | train 46 / test 179 | score ctrl 0.23 -> aug 0.56 (diff +0.33) | auto tags: sparse-user, llm-flagged, hot-bias
+  - train top genres: Comedy, Drama, Sci-Fi; top-10 recs sharing them: 80%
+  - test items hit by aug top-20 (seed 0): Princess Bride, The (1987) (deg 1749); Mary Poppins (1964) (deg 753); Lady and the Tramp (1955) (deg 616); Snow White and the Seven Dwarfs (1937) (deg 515); Fantasia (1940) (deg 604)
+  - aug top-10 recs:
+    - Mary Poppins (1964) [Children's|Comedy|Musical] deg=753 
+    - E.T. the Extra-Terrestrial (1982) [Children's|Drama|Fantasy|Sci-Fi] deg=1706 
+    - Fantasia (1940) [Animation|Children's|Musical] deg=604 
+    - Princess Bride, The (1987) [Action|Adventure|Comedy|Romance] deg=1749 
+    - Lady and the Tramp (1955) [Animation|Children's|Comedy|Musical|Romance] deg=616 
+    - Annie Hall (1977) [Comedy|Romance] deg=1011 [R]
+    - Willy Wonka and the Chocolate Factory (1971) [Adventure|Children's|Comedy|Fantasy] deg=907 
+    - Toy Story (1995) [Animation|Children's|Comedy] deg=1550 [R]
+    - Snow White and the Seven Dwarfs (1937) [Animation|Children's|Musical] deg=515 
+    - Butch Cassidy and the Sundance Kid (1969) [Action|Comedy|Western] deg=1085 
+  - LLM tags of 'Mary Poppins (1964)': mood=['歡樂', '奇想', '音樂'], supp=['Family'], summary=融合音樂與冒險的歡樂奇想，適合全家人一同欣賞
+  - LLM tags of 'E.T. the Extra-Terrestrial (1982)': mood=['感動', '奇幻', '冒險'], supp=['Family'], summary=以外星人為主角的奇幻冒險故事，既感動人心又富有想像力，適合全家一起觀賞
+  - LLM tags of 'Fantasia (1940)': mood=['魔幻', '樂趣', '浪漫'], supp=['Family'], summary=結合動畫與音樂，帶來魔幻樂趣與浪漫的視聽饗宴，適合全家人一同欣賞
+
+- user_idx **4804** | train 33 / test 2 | score ctrl 0.20 -> aug 0.50 (diff +0.30) | auto tags: sparse-user, llm-flagged, hot-bias
+  - train top genres: Comedy, Sci-Fi, Drama; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): X-Men (2000) (deg 878)
+  - aug top-10 recs:
+    - Star Wars: Episode IV - A New Hope (1977) [Action|Adventure|Fantasy|Sci-Fi] deg=2239 
+    - Star Wars: Episode V - The Empire Strikes Back (1980) [Action|Adventure|Drama|Sci-Fi|War] deg=2242 
+    - Star Wars: Episode I - The Phantom Menace (1999) [Action|Adventure|Fantasy|Sci-Fi] deg=1679 [R]
+    - Jurassic Park (1993) [Action|Adventure|Sci-Fi] deg=1947 
+    - Matrix, The (1999) [Action|Sci-Fi|Thriller] deg=1916 
+    - E.T. the Extra-Terrestrial (1982) [Children's|Drama|Fantasy|Sci-Fi] deg=1706 
+    - Terminator 2: Judgment Day (1991) [Action|Sci-Fi|Thriller] deg=2003 
+    - Princess Bride, The (1987) [Action|Adventure|Comedy|Romance] deg=1749 
+    - Toy Story (1995) [Animation|Children's|Comedy] deg=1550 [R]
+    - Men in Black (1997) [Action|Adventure|Comedy|Sci-Fi] deg=1894 
+  - LLM tags of 'Star Wars: Episode IV - A New Hope (1977)': mood=['壯闊', '英雄', '奇幻'], supp=[], summary=以宏偉的太空戰和英雄成長為主軸的冒險科幻片，適合所有年齡層觀賞
+  - LLM tags of 'Star Wars: Episode V - The Empire Strikes Back (1980)': mood=['緊張', '感動', '宏偉'], supp=[], summary=星際大戰系列中著名的續集電影，結合緊張的戰鬥場面、深刻的角色發展及宏偉的科幻設定，適合所有喜愛科幻及冒險故事的觀眾欣賞
+  - LLM tags of 'Star Wars: Episode I - The Phantom Menace (1999)': mood=['壯闊', '刺激', '奇幻'], supp=[], summary=結合科幻與冒險元素的壯闊戰鬥與奇幻世界，適合喜愛科幻與冒險的青少年及成年觀眾
+
+- user_idx **3273** | train 13 / test 184 | score ctrl 0.57 -> aug 0.86 (diff +0.29) | auto tags: sparse-user, llm-flagged, hot-bias
+  - train top genres: Action, Animation, Children's; top-10 recs sharing them: 80%
+  - test items hit by aug top-20 (seed 0): Matrix, The (1999) (deg 1916); Jurassic Park (1993) (deg 1947); Terminator 2: Judgment Day (1991) (deg 2003); Galaxy Quest (1999) (deg 1256); Star Wars: Episode I - The Phantom Menace (1999) (deg 1679)
+  - aug top-10 recs:
+    - Star Wars: Episode I - The Phantom Menace (1999) [Action|Adventure|Fantasy|Sci-Fi] deg=1679 [R]
+    - Star Wars: Episode VI - Return of the Jedi (1983) [Action|Adventure|Romance|Sci-Fi|War] deg=2195 
+    - Star Wars: Episode IV - A New Hope (1977) [Action|Adventure|Fantasy|Sci-Fi] deg=2239 
+    - Star Wars: Episode V - The Empire Strikes Back (1980) [Action|Adventure|Drama|Sci-Fi|War] deg=2242 
+    - Matrix, The (1999) [Action|Sci-Fi|Thriller] deg=1916 
+    - Jurassic Park (1993) [Action|Adventure|Sci-Fi] deg=1947 
+    - Galaxy Quest (1999) [Adventure|Comedy|Sci-Fi] deg=1256 
+    - Terminator 2: Judgment Day (1991) [Action|Sci-Fi|Thriller] deg=2003 
+    - Bug's Life, A (1998) [Animation|Children's|Comedy] deg=1256 
+    - Mission to Mars (2000) [Sci-Fi] deg=502 [R]
+  - LLM tags of 'Star Wars: Episode I - The Phantom Menace (1999)': mood=['壯闊', '刺激', '奇幻'], supp=[], summary=結合科幻與冒險元素的壯闊戰鬥與奇幻世界，適合喜愛科幻與冒險的青少年及成年觀眾
+  - LLM tags of 'Star Wars: Episode VI - Return of the Jedi (1983)': mood=['刺激', '驚奇', '浪漫'], supp=[], summary=結合動作、冒險與浪漫元素的科幻冒險，適合全家一同欣賞
+  - LLM tags of 'Star Wars: Episode IV - A New Hope (1977)': mood=['壯闊', '英雄', '奇幻'], supp=[], summary=以宏偉的太空戰和英雄成長為主軸的冒險科幻片，適合所有年齡層觀賞
+
+- user_idx **1857** | train 93 / test 4 | score ctrl 0.00 -> aug 0.25 (diff +0.25) | auto tags: llm-flagged
+  - train top genres: Children's, Animation, Comedy; top-10 recs sharing them: 70%
+  - test items hit by aug top-20 (seed 0): Chicken Run (2000) (deg 670)
+  - aug top-10 recs:
+    - E.T. the Extra-Terrestrial (1982) [Children's|Drama|Fantasy|Sci-Fi] deg=1706 
+    - Star Wars: Episode VI - Return of the Jedi (1983) [Action|Adventure|Romance|Sci-Fi|War] deg=2195 
+    - Back to the Future (1985) [Comedy|Sci-Fi] deg=1944 
+    - Star Wars: Episode I - The Phantom Menace (1999) [Action|Adventure|Fantasy|Sci-Fi] deg=1679 [R]
+    - Prince of Egypt, The (1998) [Animation|Musical] deg=385 
+    - Nightmare Before Christmas, The (1993) [Children's|Comedy|Musical] deg=676 
+    - Mary Poppins (1964) [Children's|Comedy|Musical] deg=753 
+    - Honey, I Shrunk the Kids (1989) [Adventure|Children's|Comedy|Fantasy|Sci-Fi] deg=747 
+    - James and the Giant Peach (1996) [Animation|Children's|Musical] deg=353 
+    - Terminator 2: Judgment Day (1991) [Action|Sci-Fi|Thriller] deg=2003 
+  - LLM tags of 'E.T. the Extra-Terrestrial (1982)': mood=['感動', '奇幻', '冒險'], supp=['Family'], summary=以外星人為主角的奇幻冒險故事，既感動人心又富有想像力，適合全家一起觀賞
+  - LLM tags of 'Star Wars: Episode VI - Return of the Jedi (1983)': mood=['刺激', '驚奇', '浪漫'], supp=[], summary=結合動作、冒險與浪漫元素的科幻冒險，適合全家一同欣賞
+  - LLM tags of 'Back to the Future (1985)': mood=['趣味', '冒險', '時光旅行'], supp=['Adventure', 'Family'], summary=結合趣味與冒險的時光旅行喜劇，適合全家人一同欣賞
+
+## FAIL - lowest score under augmentation (users with >= 20 test items)
+
+- user_idx **1284** | train 385 / test 166 | score ctrl 0.00 -> aug 0.00 (diff +0.00) | auto tags: llm-flagged
+  - train top genres: Drama, Comedy, Thriller; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): none
+  - aug top-10 recs:
+    - Donnie Brasco (1997) [Crime|Drama] deg=465 
+    - Girl, Interrupted (1999) [Drama] deg=322 
+    - Opposite of Sex, The (1998) [Comedy|Drama] deg=420 
+    - Frequency (2000) [Drama|Thriller] deg=409 
+    - Snow Falling on Cedars (1999) [Drama] deg=248 
+    - Heavenly Creatures (1994) [Drama|Fantasy|Romance|Thriller] deg=318 [R]
+    - Office Space (1999) [Comedy|Romance] deg=558 
+    - Cruel Intentions (1999) [Drama] deg=382 
+    - Bringing Out the Dead (1999) [Drama|Horror] deg=399 
+    - Bone Collector, The (1999) [Thriller] deg=449 
+  - LLM tags of 'Donnie Brasco (1997)': mood=['緊張', '真實', '深刻'], supp=[], summary=根據真人真事改編，以真實犯罪為背景，描述一名 FBI 報復員打入黑幫的驚心動魄故事，適合喜愛犯罪及戲劇片的成人觀賞
+  - LLM tags of 'Girl, Interrupted (1999)': mood=['深刻', '震撼', '探索'], supp=[], summary=基於真實故事，深刻探索心理疾病與女性身份的深刻戲劇，適合成年觀眾觀賞
+  - LLM tags of 'Opposite of Sex, The (1998)': mood=['犀利', '深刻', '幽默'], supp=[], summary=這是一部融合諷刺與深刻情感的喜劇 dramas，適合成熟觀眾欣賞
+
+- user_idx **1361** | train 77 / test 27 | score ctrl 0.00 -> aug 0.00 (diff +0.00) | auto tags: llm-flagged, hot-bias
+  - train top genres: Drama, Comedy, Sci-Fi; top-10 recs sharing them: 90%
+  - test items hit by aug top-20 (seed 0): none
+  - aug top-10 recs:
+    - American Beauty (1999) [Comedy|Drama] deg=2566 
+    - Being John Malkovich (1999) [Comedy] deg=1681 
+    - Sixth Sense, The (1999) [Thriller] deg=1811 [DR]
+    - Fight Club (1999) [Drama] deg=1001 
+    - Talented Mr. Ripley, The (1999) [Drama|Mystery|Thriller] deg=971 
+    - Shakespeare in Love (1998) [Comedy|Romance] deg=1754 
+    - Election (1999) [Comedy] deg=1084 [R]
+    - Erin Brockovich (2000) [Drama] deg=845 
+    - Boiler Room (2000) [Drama] deg=377 
+    - Clerks (1994) [Comedy] deg=1012 
+  - LLM tags of 'American Beauty (1999)': mood=['深刻', '幽默', '反思'], supp=[], summary=融合幽默與深刻反思的生活觀察電影，適合成年觀眾細味
+  - LLM tags of 'Being John Malkovich (1999)': mood=['荒誕', '黑色幽默', '智識挑戰'], supp=[], summary=以荒誕的情節與黑色幽默呈現的 Comedy，適合成年觀眾享受智識挑戰與思考
+  - LLM tags of 'Sixth Sense, The (1999)': mood=['驚悚', '深刻', '懸疑'], supp=[], summary=一齣關於靈魂與现实交錯的驚悚悬疑電影，適合成年觀眾享受其深層思維與扣人心弦的情節
+
+- user_idx **5321** | train 68 / test 34 | score ctrl 0.00 -> aug 0.00 (diff +0.00) | auto tags: llm-flagged, hot-bias
+  - train top genres: Comedy, Drama, Adventure; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): none
+  - aug top-10 recs:
+    - Groundhog Day (1993) [Comedy|Romance] deg=1674 
+    - Election (1999) [Comedy] deg=1084 [R]
+    - Clerks (1994) [Comedy] deg=1012 
+    - Princess Bride, The (1987) [Action|Adventure|Comedy|Romance] deg=1749 
+    - Star Wars: Episode VI - Return of the Jedi (1983) [Action|Adventure|Romance|Sci-Fi|War] deg=2195 
+    - Bug's Life, A (1998) [Animation|Children's|Comedy] deg=1256 
+    - Gladiator (2000) [Action|Drama] deg=1077 [R]
+    - South Park: Bigger, Longer and Uncut (1999) [Animation|Comedy] deg=909 
+    - Saving Private Ryan (1998) [Action|Drama|War] deg=1981 
+    - Austin Powers: The Spy Who Shagged Me (1999) [Comedy] deg=1022 
+  - LLM tags of 'Groundhog Day (1993)': mood=['幽默', '自省', '浪漫'], supp=[], summary=融合幽默與浪漫元素的時間循环愛情喜劇，適合成年觀眾欣賞
+  - LLM tags of 'Election (1999)': mood=['諷刺', '尖銳', '幽默'], supp=[], summary=一部尖銳讽刺的政治喜劇，適合成年觀眾欣賞
+  - LLM tags of 'Clerks (1994)': mood=['冷調', '幽默', '社會Observation'], supp=[], summary=一部描述平凡商店職員日常生活的小成本喜劇電影，帶有冷調幽默和社會觀察，適合年輕觀眾和成年人欣賞
+
+- user_idx **4464** | train 51 / test 30 | score ctrl 0.02 -> aug 0.00 (diff -0.02) | auto tags: sparse-user, llm-flagged, hot-bias
+  - train top genres: Drama, Comedy, Children's; top-10 recs sharing them: 90%
+  - test items hit by aug top-20 (seed 0): none
+  - aug top-10 recs:
+    - Shakespeare in Love (1998) [Comedy|Romance] deg=1754 
+    - Bug's Life, A (1998) [Animation|Children's|Comedy] deg=1256 
+    - Babe (1995) [Children's|Comedy|Drama] deg=1332 
+    - Toy Story (1995) [Animation|Children's|Comedy] deg=1550 [R]
+    - Sixth Sense, The (1999) [Thriller] deg=1811 [DR]
+    - Toy Story 2 (1999) [Animation|Children's|Comedy] deg=1093 
+    - Shawshank Redemption, The (1994) [Drama] deg=1641 
+    - Groundhog Day (1993) [Comedy|Romance] deg=1674 
+    - Election (1999) [Comedy] deg=1084 [R]
+    - Clerks (1994) [Comedy] deg=1012 
+  - LLM tags of 'Shakespeare in Love (1998)': mood=['浪漫', '幽默', '文藝'], supp=[], summary=融合歷史與想像的浪漫喜劇，適合喜愛文學與浪漫氛圍的觀眾
+  - LLM tags of 'Bug's Life, A (1998)': mood=['幽默', '温馨', '奇幻'], supp=['Family'], summary=以昆蟲世界為背景的幽默冒險喜劇，適合兒童及全家欣賞
+  - LLM tags of 'Babe (1995)': mood=['溫馨', '逗趣', '感動'], supp=['Family'], summary=這部電影以豬寶貝為主角，融合了歡笑與感動，適合全家觀賞
+
+- user_idx **1500** | train 98 / test 44 | score ctrl 0.10 -> aug 0.00 (diff -0.10) | auto tags: hot-bias
+  - train top genres: Comedy, Romance, Drama; top-10 recs sharing them: 100%
+  - test items hit by aug top-20 (seed 0): none
+  - aug top-10 recs:
+    - Groundhog Day (1993) [Comedy|Romance] deg=1674 
+    - American Pie (1999) [Comedy] deg=970 
+    - There's Something About Mary (1998) [Comedy] deg=949 
+    - Austin Powers: The Spy Who Shagged Me (1999) [Comedy] deg=1022 
+    - American Beauty (1999) [Comedy|Drama] deg=2566 
+    - Big Daddy (1999) [Comedy] deg=562 
+    - Romy and Michele's High School Reunion (1997) [Comedy] deg=519 
+    - 10 Things I Hate About You (1999) [Comedy|Romance] deg=461 
+    - Clerks (1994) [Comedy] deg=1012 
+    - Doctor Dolittle (1998) [Comedy] deg=360 
+  - LLM tags of 'Groundhog Day (1993)': mood=['幽默', '自省', '浪漫'], supp=[], summary=融合幽默與浪漫元素的時間循环愛情喜劇，適合成年觀眾欣賞
+  - LLM tags of 'American Pie (1999)': mood=['幽默', '放鬆', '青春'], supp=[], summary=一齣以青少年性教育為主題的幽默喜劇，適合青少年及年輕成人觀賞
+  - LLM tags of 'There's Something About Mary (1998)': mood=['諷刺', '幽默', '荒謬'], supp=[], summary=一部諷刺幽默且略帶荒謬的成人喜劇，適合喜愛尖銳笑點與社會觀察的觀眾
