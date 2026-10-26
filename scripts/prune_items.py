@@ -8,6 +8,8 @@ Prune the lowest q% of scored items (they fall back to ID-only embeddings in Lig
 --mode random drops the same number of items at random (control: is the effect from
 SELECTION or merely from having fewer augmented items?).
 
+The scoring function lives in src/analysis/pruning.py (moved out of this script; logic unchanged).
+
 Usage (project root):
     python scripts/prune_items.py --mode score  --frac 0.10 --out_dir results/week5/prune10
     python scripts/prune_items.py --mode random --frac 0.20 --out_dir results/week5/rand20 --seed 0
@@ -16,44 +18,19 @@ Train with:  --aug_side item --aug_dir <out_dir> --tag <tag>
 import argparse
 import json
 import shutil
-from collections import Counter, defaultdict
+import sys
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.analysis.pruning import consistency_scores, genre_list  # noqa: E402
 
 
 def read_jsonl(path):
     with open(path, "r", encoding="utf-8") as f:
         return [json.loads(l) for l in f if l.strip()]
-
-
-def genre_list(g):
-    if isinstance(g, str):
-        return [x for x in g.split("|") if x]
-    return list(g or [])
-
-
-def consistency_scores(emb, has, genres, min_group=3):
-    """Mean cosine to the leave-one-out genre centroid(s). NaN = not scorable (never pruned)."""
-    ids = np.flatnonzero(has)
-    sums, cnts = {}, defaultdict(int)
-    for i in ids:
-        for g in genres[i]:
-            sums[g] = sums.get(g, 0) + emb[i]
-            cnts[g] += 1
-    scores = np.full(len(emb), np.nan, dtype=np.float64)
-    for i in ids:
-        vals = []
-        for g in genres[i]:
-            if cnts[g] < min_group:
-                continue
-            c = sums[g] - emb[i]
-            n = np.linalg.norm(c)
-            if n > 0:
-                vals.append(float(emb[i] @ c / n))
-        if vals:
-            scores[i] = float(np.mean(vals))
-    return scores
 
 
 def main():
