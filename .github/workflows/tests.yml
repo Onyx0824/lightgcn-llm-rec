@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # CPU-only PyTorch is enough for the unit tests (the CUDA pin in requirements.txt is for the local GPU).
+      - name: Install CPU PyTorch
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install the other dependencies
+        run: |
+          grep -v -E '^(--extra-index-url|torch)' requirements.txt > requirements-ci.txt
+          pip install -r requirements-ci.txt
+
+      # test_embedding.py downloads a model from Hugging Face; keep CI fast and offline-safe
+      - name: Run unit tests
+        run: python -m pytest tests -q --deselect tests/test_embedding.py
