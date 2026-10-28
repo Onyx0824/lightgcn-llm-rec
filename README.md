@@ -53,6 +53,7 @@ Raw Interaction Data (MovieLens-1M)
 ├── LICENSE                           # MIT 授權
 ├── requirements.txt                  # 套件清單（第一行已含 PyTorch CUDA 12.6 的 extra-index-url）
 ├── .gitignore                        # 排除 data/raw、*.npy、checkpoints、venv 等
+├── .github/workflows/tests.yml       # CI：push 時在 Ubuntu + CPU 版 PyTorch 跑單元測試（略過需下載模型的 test_embedding.py）
 │
 ├── configs/
 │   └── baseline.yaml                 # LightGCN 超參數（embed_dim、層數、lr、batch、epoch、K…），所有訓練腳本共用
@@ -367,6 +368,7 @@ python scripts/visualize_embeddings.py            # → embeddings_pca.png、emb
 ```powershell
 python -m pytest tests -q
 ```
+CI 會略過 test_embedding.py
 
 ## 授權
 
