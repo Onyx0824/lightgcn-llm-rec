@@ -63,7 +63,7 @@ def main():
     deg_i = np.bincount(train["item"].to_numpy(), minlength=n_items)
     deg_u = np.bincount(train["user"].to_numpy(), minlength=n_users)
     nt = args.n_tiers
-    labels = tier_labels(nt)
+    labels = tier_labels(nt, args.by)
 
     if args.by == "item":
         pool = np.flatnonzero(deg_i > 0)

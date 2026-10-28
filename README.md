@@ -115,7 +115,7 @@ Raw Interaction Data (MovieLens-1M)
 │   ├── week3_pilot_*.json            # Week 3 小規模驗證結果與彙總
 │   ├── week4/                        # LLM 生成原始輸出（users/items.jsonl）、order.json、timing.jsonl、embedding（.npy 不進版控）
 │   ├── week4fe_aug_*.json            # 各組訓練結果（檔名含 ratio / alpha / seed / tag）
-│   ├── week5/                        # 去噪變體的 item_has 遮罩與統計、劑量反應圖表、三方對照表
+│   ├── week5/                        # 各去噪變體的 prune_stats.json / pagerank_items.csv、劑量反應圖表、三方對照表（遮罩 .npy 不進版控，可用 prune_*.py 重建）
 │   ├── week6/                        # 效益曲線圖、疊圖、最終成本效益表
 │   ├── week6_tier_table*.csv         # 各比例增益與生成耗時（compare_ratios.py 輸出）
 │   ├── week7/                        # 分層分析、錯誤案例、embedding 視覺化；emb/ 子資料夾存 .npy（不進版控）
@@ -126,6 +126,7 @@ Raw Interaction Data (MovieLens-1M)
 └── docs/
     ├── project-plan.md               # 原始專案計畫（摘要版）
     ├── project-plan-detailed.md      # 逐週詳細計畫（9/22–11/30）
+    ├── project_architecture_diagram.png  # 方法流程圖（早期版本，未含 Week 7 分層／錯誤分析）
     ├── experiment-log.md             # 每週實驗紀錄與完整統計（報告數字的來源）
     └── report-outline.md             # 報告大綱：各發現對應的證據檔
 ```

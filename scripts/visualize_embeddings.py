@@ -137,10 +137,10 @@ def main():
             for g, gname in enumerate(top):
                 m = lab == g
                 ax.scatter(z[m, 0], z[m, 1], s=6, alpha=0.7, label=gname)
-            ax.set_title(f"{name} - by primary genre")
+            ax.set_title(f"{name}\nby primary genre", fontsize=10)
             ax2 = axes[1, j]
             sc = ax2.scatter(z[:, 0], z[:, 1], s=6, c=np.log1p(deg[ids]), cmap="viridis")
-            ax2.set_title(f"{name} - by log(1+train degree)")
+            ax2.set_title(f"{name}\nby log(1+train degree)", fontsize=10)
             for a in (ax, ax2):
                 a.set_xticks([])
                 a.set_yticks([])

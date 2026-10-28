@@ -32,8 +32,13 @@ def quantile_tiers(deg: np.ndarray, pool: np.ndarray, n_tiers: int, n_total: int
     return tier
 
 
-def tier_labels(n: int) -> list[str]:
-    names = {3: ["cold", "middle", "hot"], 4: ["coldest", "cool", "warm", "hottest"]}
+def tier_labels(n: int, kind: str = "item") -> list[str]:
+    """Readable tier names; T1 is always the lowest-degree tier. kind: 'item' (popularity) or 'user' (activity)."""
+    names = {
+        "item": {3: ["cold", "middle", "hot"], 4: ["coldest", "cool", "warm", "hottest"]},
+        "user": {3: ["low activity", "middle", "high activity"],
+                 4: ["least active", "low-mid", "high-mid", "most active"]},
+    }[kind]
     return [f"T{k + 1} ({names[n][k]})" if n in names else f"T{k + 1}" for k in range(n)]
 
 

@@ -28,5 +28,5 @@ Thumbs.db
 .idea/
 structure.txt
 
-# �i�� build_embeddings.py ����
+# build_embeddings.py 產生的向量檔（可重建，不進版控）
 results/**/*.npy

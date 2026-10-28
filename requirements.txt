@@ -1,4 +1,5 @@
 --extra-index-url https://download.pytorch.org/whl/cu126
+pytest
 annotated-doc==0.0.5
 anyio==4.15.1
 certifi==2026.7.22
@@ -40,7 +41,7 @@ sympy==1.14.0
 threadpoolctl==3.7.0
 tokenizers==0.23.2
 torch==2.14.0+cu126
-torchvision==0.29.0+cu126
+--torchvision==0.29.0+cu126
 tqdm==4.70.1
 transformers==5.17.0
 typer==0.27.2

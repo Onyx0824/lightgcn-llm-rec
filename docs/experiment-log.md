@@ -338,7 +338,7 @@ user 端在 α=1.0 與 3.0 都偵測不到增益（α=3.0 僅 5 個 seed，CI �
 ### 尚未完成（無結果，不列入上述結論）
  
 - 去噪/剪枝分析：已於 Week 5 完成（item 層級的 PageRank／熱門度篩選已實作；圖層級 PageRank 加權決定不做，理由見 Week 5）
-- 以 item 熱門度分層的分析、錯誤分析、embedding 視覺化 → Week 7
+- 以 item 熱門度分層的分析、錯誤分析、embedding 視覺化：已於 Week 7 完成（見 Week 7 (18)–(21)）
 - 效益曲線圖表：已於 Week 6 完成（`results/week6/cost_benefit.png`、`cost_benefit_dual_axis.png`、`cost_benefit_table.md`）
 
 ---
@@ -498,7 +498,7 @@ x 軸：被剔除增強的 item 佔 train 互動的比例（0% 為未過濾 item
 - PageRank 圖層級加權（調整傳播權重、語意相似圖上的 PageRank）：決定不做（理由見上方完成項目），列為未來工作；目前只有 item 層級的熱門度／PageRank 篩選。
 - 以多份隨機名單（例如 `rand90` 的 `--seed 1、2`）重跑，驗證 prhigh50 − rand90 的例外：視時間決定。
 - 把 `prune10` 與 `rand10` 補到 10 seed（只有此組有 Recall 的弱訊號）、以多份隨機名單估計對照組變異：視時間決定。
-- 效益曲線圖表 → Week 6；item 熱門度分層分析、錯誤分析、embedding 視覺化 → Week 7。
+- 效益曲線圖表（Week 6）與 item 熱門度分層分析、錯誤分析、embedding 視覺化（Week 7）均已完成。
 
 ---
 
