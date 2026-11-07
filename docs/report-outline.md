@@ -27,6 +27,8 @@
 | 9 | 錯誤案例分類（熱門度偏誤、語意擴散、稀疏 user 受惠、兩模型皆失敗）；未找到明確的 LLM 幻覺案例 | `results/week7/error_cases.md`、README「錯誤分析」表 |
 
 ## 5. 商業建議（只寫有數字支撐的）
+
+> Step A–C 之後的修正：Recall 增益可由免費的 metadata 嵌入取得，LLM 生成的額外價值在 NDCG；熱門優先的成本效益已實測。建議以 `docs/experiment-log.md` 的「Step A–C」一節為準。
 - 預算有限：只對 item 生成、約 50%、優先熱門 item。
 - 重視排序品質（NDCG）：item 做到 100%（3.8 小時）。
 - user profiling 不優先；不需要額外清洗 LLM 輸出。

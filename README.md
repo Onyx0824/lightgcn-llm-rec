@@ -176,7 +176,7 @@ python -m pytest tests -q
 - [x] item 熱門度 / user 活躍度分層分析（Week 7：`results/week7/strata_item.md`、`strata_user.md`）
 - [x] 錯誤分析（Week 7：`scripts/error_analysis.py` 產生候選案例，已人工挑 9 筆分類，見下方「錯誤分析」與 experiment-log Week 7）
 - [x] embedding 視覺化與類型凝聚度（Week 7：`results/week7/embeddings_*.png`、`embedding_cohesion.md`）
-- [x] 報告撰寫（`report/main_zh.tex`；Step A–C 對照與穩健性見 experiment-log）
+- [ ] 報告撰寫（進行中；LaTeX 完稿後放入 `report/`，大綱見 [`docs/report-outline.md`](./docs/report-outline.md)；Step A–C 對照與穩健性見 experiment-log）
 - [x] Step A：metadata／shuffle／MostPop 對照
 - [x] Step C：熱門優先覆蓋曲線
 - [x] Step B1：early stopping 穩健性檢查
@@ -300,16 +300,19 @@ top-20 推薦名額 98.95%（α=0）／98.59%（增強）給最熱門的四分�
 
 1. **增益主要來自 item 端**：item-only（100%）Recall +0.0027（10/10 seed 為正，p<0.001）；user-only 不顯著（Recall +0.0003，p=0.23）。
 2. **Recall 在 50% 即飽和，NDCG 到 100% 仍上升**：50%→100% Recall +0.0003（p=0.41）、NDCG +0.0022（p=0.0013）。
-3. **成本效益**：item 端 50% 累計生成約 1.9 小時，為兩端 100%（9.9 小時）的 19%，卻取得約 88% 的 Recall 增益。
+3. **成本效益**：item 端 50% 累計生成約 1.9 小時，為兩端 100%（9.9 小時）的 19%，卻取得約 88% 的 Recall 增益。**注意（Step A）**：Recall 的增益用免費的 metadata 嵌入也取得（見發現 12），所以這個 Recall 報酬是相對 ID-only；對 NDCG 才是 LLM 生成換來的。
 4. **α 存在平台區**：α 在 0.3–1.0 表現穩定；α=3.0 過大，NDCG 增益消失。
 5. **LLM 輸出噪音低**（100% 生成）：dirty users 7 / items 72（items 的 2.1%）；retry>1 users 155 / items 342（items 的 10.0%）。
 6. **去噪沒有額外益處**：格式過濾與語意剪枝都沒有提升 Recall，NDCG 反而小幅下降（−0.0005～−0.0026），連隨機剔除同數量 item 也一樣，與「被增強的 item 變少」一致；語意剪枝在 NDCG 上並未優於隨機剔除（prune20 − rand20：−0.0018）。所有去噪版本相對 α=0 的增益（Recall +3.6%、NDCG +1.3%～+1.4%）都保留。建議直接保留全部增強特徵，不需額外清洗。
-7. **PageRank 篩選等同熱門度篩選；增強效益隨「被增強 item 覆蓋的互動比例」飽和**：二部圖上 PageRank 與 degree 幾乎相同（Spearman 0.9989）。Recall 增益在被增強 item 覆蓋約 48% 以上的互動時完整保留，覆蓋約 20–24% 時剩約一半，約 9–10% 時消失；在覆蓋相近時，剔除高 PageRank item 與隨機剔除沒有可靠差異（prhigh30 vs rand80：Recall p=0.12、NDCG p=0.64），因此 PageRank 沒有帶來超越熱門度的去噪效果。例外是 prhigh50 對 rand90（兩者都動到約 91% 互動，前者較好），原因未釐清。**成本效益（推算）**：只對熱門度／PageRank 前 50% 的 item 生成（prlow50）約可省一半 item 端生成量，Recall 不變、NDCG 約低 0.4%（p=0.064）；相同生成量下隨機選 50% 的 NDCG 低 1.2%（p<0.001）。
+7. **PageRank 篩選等同熱門度篩選；增強效益隨「被增強 item 覆蓋的互動比例」飽和**：二部圖上 PageRank 與 degree 幾乎相同（Spearman 0.9989）。Recall 增益在被增強 item 覆蓋約 48% 以上的互動時完整保留，覆蓋約 20–24% 時剩約一半，約 9–10% 時消失；在覆蓋相近時，剔除高 PageRank item 與隨機剔除沒有可靠差異（prhigh30 vs rand80：Recall p=0.12、NDCG p=0.64），因此 PageRank 沒有帶來超越熱門度的去噪效果。例外是 prhigh50 對 rand90（兩者都動到約 91% 互動，前者較好），原因未釐清。**成本效益（推算）**：只對熱門度／PageRank 前 50% 的 item 生成（prlow50）約可省一半 item 端生成量，Recall 不變、NDCG 約低 0.4%（p=0.064）；相同生成量下隨機選 50% 的 NDCG 低 1.2%（p<0.001）（Step C 已實測，見發現 13）。
 8. **增益落在熱門 item，而不是長尾 item**（Week 7，探索性）：item-only 增強帶來的額外命中幾乎全來自最熱門的四分之一 item（T4 Recall +0.0019，5/5 seed 為正）；依各層 test 正樣本數粗估，T4 貢獻約九成以上的額外命中。最冷門兩層（T1、T2，合計佔 test 正樣本約 15%）的 Recall 幾乎為 0，增強沒有改善、T2 還略降（−0.0002，p=0.047，未校正）。模型的 top-20 有 98.6%～99.0% 都推薦給最熱門的四分之一 item，增強只讓目錄覆蓋率微增 2.5 個百分點。**換言之，單靠 item 端 LLM 屬性增強並沒有把推薦推向長尾；與 Week 5「保留熱門 item 的增強就保留大部分增益」一致。**
 9. **增益對低活躍度 user 較大**（Week 7，探索性）：雖然只增強 item，最不活躍的兩個四分位 user 的 Recall 相對增益為 +5.7%、+4.1%（各 5/5 seed 為正），最活躍的四分位為 +2.4% 且 CI 含 0。各層的 CI 有重疊，「增益隨活躍度遞減」是趨勢描述，未做層間差異的直接檢定；各層平均 recall 的基準值不同（重度 user 的 test 正樣本多，Recall@20 上限較低），因此宜看相對增益。
 10. **增強讓 item embedding 的類型結構更清楚，但熱門度仍是主軸**（Week 7，探索性）：item-only 增強使 item embedding 的 kNN 類型純度由 0.656 升到 0.826（5/5 seed，輪廓係數 0.006 → 0.183），甚至高於原始 LLM 文字 embedding 本身（0.784）；同時 embedding 長度與 item 熱門度的 Spearman 由 0.892 升到 0.932，顯示熱門度仍是 embedding 的主要組織方向，與發現 8（推薦集中熱門 item）一致。**注意**：LLM 生成時的 prompt 含 MovieLens 既有類型，因此類型凝聚度有一部分是承襲輸入標籤，並非 LLM 獨立產生的新知識；這項數字說明「增強把語意結構注入 embedding」，不能單獨證明它造成了推薦效果。
 11. **錯誤分析**（Week 7，見上表）：沒有找到「LLM 幻覺」造成的明確錯誤；增強後變差的案例主要是熱門度偏誤、語意擴散（推測）或單純排序微擾，變好的案例多為稀疏 user 與 LLM 補充屬性（如 Family）帶來的新資訊，兩模型都失敗的案例推測來自興趣隨時間漂移。LLM 簡體殘留／重試標記在變好與變差的案例中都出現，看不出噪音是主因。
-12. **限制**：相對增益約 +2%～+5%（絕對值 +0.0003～+0.0048），test 僅約 973 位 user，且已排除冷啟動 user/item；p 值只反映訓練隨機性；語意剪枝、PageRank 與分層分析僅 5 seed、隨機對照只用一份剔除名單；PageRank 只做 item 層級篩選（未改圖傳播權重）；噪音只以「格式」與「類型內語意一致性」兩種操作型定義檢驗；結論限於 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`。結論請以配對差與 95% CI（`results/paired_ci_table.md`）為準，不宜過度外推。
+12. **增益是否來自 LLM 生成（Step A，item-only 100%、α=1.0、10 seed）**：只用「片名＋類型」的 metadata 嵌入，Recall 增益 +0.0030，與 LLM 版的 +0.0027 無可偵測差異（差 +0.0004，p=0.100）；NDCG 則 LLM 版高出 metadata 0.0061（p<0.001），metadata 相對 α=0 沒有 NDCG 增益（固定 epoch 下 −0.0019，early stopping 下 0.0000）。把 LLM 嵌入在 item 間打亂後增益幾乎消失（Recall +0.0006、NDCG +0.0003），排除「只是多了參數」。MostPop 基準為 Recall 0.0651／NDCG 0.2429（LightGCN α=0：0.0786／0.2714）。**結論**：Recall 的增益可由免費的 metadata 取得；LLM 生成的額外價值在 NDCG。
+13. **熱門優先的覆蓋曲線（Step C，item-only、α=1.0、5 seed，探索性）**：只生成最熱門的 10% item（0.39 小時）即取得約 99% 的 item-100% Recall 增益（隨機順序同覆蓋僅 31%）；NDCG 在 10／20／30／50% 都優於隨機順序（5/5 seed 為正），但只取得 item-100% NDCG 增益的 43／41／52／70%。熱門優先涵蓋的互動量遠高於隨機（10% 時 43.5% 對 11.1%），因此無法區分「選熱門 item」與「覆蓋較多互動」。
+14. **穩健性（Step B）**：以 early stopping（5 seed）重跑，LLM 相對 α=0 的增益不縮小（Recall +0.0038、NDCG +0.0056），metadata 的 Recall 仍追得上 LLM；LLM 對 metadata 的 NDCG 差（+0.0057）方向與幅度相同，但 5 seed 下 p=0.021，未過確認性門檻 0.0125。基準調參篩選（單因子、2 seed、依驗證集 Recall）只有 dim 128 達事前訂定的門檻，第二階段確認進行中。
+15. **限制**：相對增益約 +2%～+5%（絕對值 +0.0003～+0.0048），test 僅約 973 位 user，且已排除冷啟動 user/item；p 值只反映訓練隨機性；語意剪枝、PageRank 與分層分析僅 5 seed、隨機對照只用一份剔除名單；PageRank 只做 item 層級篩選（未改圖傳播權重）；噪音只以「格式」與「類型內語意一致性」兩種操作型定義檢驗；結論限於 MovieLens-1M、本 prompt 與 `qwen2.5:7b-instruct-q4_K_M`；metadata 對照只有一種文字設計、shuffle 只用一份置換，Step B／C 僅 5 seed。結論請以配對差與 95% CI（`results/paired_ci_table.md`）為準，不宜過度外推。
 
 完整表格見 `results/week6_tier_table.csv`，每週詳細統計見 [`docs/experiment-log.md`](./docs/experiment-log.md)。
 
