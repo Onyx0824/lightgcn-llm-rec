@@ -596,3 +596,69 @@ top-20 名額給 T4：98.95%（α=0）→ 98.59%（增強）；目錄覆蓋率 2
 - 評估集已排除冷啟動 user/item，因此「增強能否解決冷啟動」沒有被直接檢驗；分層分析是最接近的間接證據。
 - 錯誤分析為人工、少量案例，主因判斷含推測。
 - t-SNE／PCA 圖的軸線無法跨面板比較，結論以類型純度與輪廓係數為準。
+
+
+## Step A–C（11/1–11/7）對照實驗與穩健性檢查
+
+動機：Week 4–7 的結論都以「LLM 增強 vs α=0」為基準。本階段檢查（A）增益是否真的來自 LLM 生成、（C）預算有限時先生成哪些 item、（B）固定 25 epoch 與未調參的基準是否影響結論。三項都不需要重新跑 LLM 生成。
+
+### Step A：metadata／shuffle／MostPop 對照（item-only、100%、α=1.0、固定 25 epoch、seed 0–9）
+- `scripts/build_control_embeddings.py`：**metadata**＝每個 item 只用「類型：…。片名：…」（正是 LLM prompt 的輸入）以同一個 bge-small-zh-v1.5 嵌入；**shuffle**＝把 LLM item 嵌入在 item 之間以固定置換（種子 0）打亂一次（3,408 個 item 被置換，2 個固定點）。輸出在 `results/stepA/{meta,shuffle}/`（`.npy` 不進版控）。
+- `scripts/mostpop.py`：訓練集互動數最多、且 user 在 train+valid 未互動的前 20 部；同一批 973 位測試 user。
+- 一鍵執行：`scripts/run_stepA.ps1`（約 1.5 小時）。
+
+| 條件 | Recall@20 | NDCG@20 | ΔRecall vs α=0 | ΔNDCG vs α=0 | ΔRecall vs LLM | ΔNDCG vs LLM |
+|---|---|---|---|---|---|---|
+| MostPop | 0.0651 | 0.2429 | — | — | — | — |
+| LightGCN α=0 | 0.0786 | 0.2714 | — | — | — | — |
+| LLM item-only | 0.0812 | 0.2756 | +0.0027 | +0.0042 | — | — |
+| metadata item-only | 0.0816 | 0.2695 | +0.0030（p<0.001） | −0.0019（p=0.002） | +0.0004（p=0.100） | −0.0061（p<0.001） |
+| shuffle item-only | 0.0792 | 0.2717 | +0.0006（p=0.003） | +0.0003（p=0.39） | −0.0021（p<0.001） | −0.0039（p<0.001） |
+
+**結論**：Recall 的增益可由免費的 metadata 取得（與 LLM 版無可偵測差異）；NDCG 的增益需要 LLM 文字；shuffle 後增益消失，排除「只是多了參數」。「metadata 傷害 NDCG」在 early stopping 下不成立（見 B1），保守說法是「metadata 沒有 NDCG 增益」。
+
+### Step C：熱門優先的覆蓋曲線（item-only、α=1.0、固定 25 epoch、seed 0–4）
+- 作法：`prune_pagerank.py --score degree --drop low` 只保留訓練互動數最多的前 10／20／30／50% item；隨機順序對照在 10%、30% 另跑，20%、50% 沿用主實驗。一鍵執行 `scripts/run_stepC.ps1`，摘要 `scripts/stepC_summary.py` → `results/stepC/summary.csv`、`pop_vs_random.png`。生成時間以被選 item 的逐筆實際耗時加總。
+
+| 覆蓋 | 互動占比 pop／rand | 生成小時 pop／rand | ΔRecall pop | ΔRecall rand | Recall pop−rand（p） | ΔNDCG pop | ΔNDCG rand | NDCG pop−rand（p） |
+|---|---|---|---|---|---|---|---|---|
+| 10% | 43.5%／11.1% | 0.39／0.38 | +0.0029 | +0.0009 | +0.0020（0.002） | +0.0020 | −0.0012 | +0.0032（0.001） |
+| 20% | 63.8%／21.1% | 0.79／0.76 | +0.0019 | +0.0020 | −0.0002（0.73） | +0.0020 | +0.0006 | +0.0014（0.017） |
+| 30% | 76.5%／30.9% | 1.17／1.13 | +0.0021 | +0.0021 | −0.0000（0.94） | +0.0025 | +0.0000 | +0.0025（0.001） |
+| 50% | 91.1%／51.2% | 1.94／1.89 | +0.0031 | +0.0035 | −0.0004（0.38） | +0.0033 | +0.0026 | +0.0008（0.024） |
+
+參照：item 100%（3.83 小時，同 5 seed）Recall +0.0030、NDCG +0.0048。
+
+**觀察**：熱門優先 10% 就取得約 99% 的 Recall 增益；NDCG 在四個比例都優於隨機，但只取得 item 100% 增益的 43／41／52／70%。優勢可由「覆蓋較多互動」解釋，無法區分「選熱門」與「覆蓋互動量」。8 個比較皆為探索性（Bonferroni 約 0.006）。
+
+### Step B1：early stopping 穩健性檢查（item-only、100%、α=1.0、seed 0–4）
+- `scripts/run_stepB1.ps1`、`scripts/stepB_summary.py`、`scripts/make_stepB_configs.py`；結果在 `results/stepB/es/`。early stopping＝每 5 epoch 以驗證集 Recall@20 評估，耐心 5 次。
+
+| 比較 | Recall（ES） | Recall（fixed） | NDCG（ES） | NDCG（fixed） |
+|---|---|---|---|---|
+| LLM − α=0 | +0.0038（p=0.0005） | +0.0030（p=0.0005） | +0.0056（p=0.007） | +0.0048（p=0.005） |
+| metadata − α=0 | +0.0030（p=0.034） | +0.0033（p=0.006） | +0.0000（p=0.99） | −0.0016（p=0.13） |
+| LLM − metadata | +0.0009（p=0.26） | −0.0003（p=0.43） | +0.0057（p=0.021） | +0.0064（p=0.001） |
+
+α=0 在 early stopping 下標準差明顯較大（Recall 0.0018、NDCG 0.0040；固定 epoch 為 0.0006、0.0008），支持主實驗用固定 epoch。LLM 對 metadata 的 NDCG 差在 5 seed 下 p=0.021，未過確認性門檻 0.0125，只有方向性證據。
+
+### Step B2 第一階段：基準是否調參不足（α=0、early stopping、seed 0–1、依**驗證集** Recall@20）
+- 單因子變更；事前訂定採用規則：平均驗證 Recall ≥ 預設 + 0.001 且每個 seed 都高於預設的最佳 seed。
+
+| 設定 | 驗證 Recall@20 |
+|---|---|
+| 預設（lr 1e-3、wd 1e-4、3 層、dim 64） | 0.0925 |
+| dim 128 | 0.0945（**達標**） |
+| layers 2／layers 4 | 0.0923／0.0923 |
+| wd 1e-3 | 0.0913 |
+| lr 3e-3 | 0.0893 |
+
+只有 dim 128 達標；差距與 seed 間波動同量級（僅 2 seed），第二階段（以 dim 128 重跑 α=0 與 LLM item-only 各 5 seed）進行中。
+
+### 尚未完成（無結果，不列入上述結論）
+- B2 第二階段（`run_stepB2.ps1` 的 `$best = "dim128"`）。
+
+### 限制
+- A 的 metadata 對照只有一種文字設計（中文類型＋英文片名經中文 bge 編碼），可能低估 metadata；shuffle 只用一份置換。
+- C、B1 僅 5 seed；C 的比較在被增強互動量上不匹配。
+- B2 篩選只有 2 seed，單因子（未做交互作用）。

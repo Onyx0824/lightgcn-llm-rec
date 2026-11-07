@@ -1,0 +1,14 @@
+data_dir: data/processed
+results_dir: results/stepB/tune/lr3e-3
+checkpoint_dir: checkpoints
+embed_dim: 64
+n_layers: 3
+lr: 0.003
+weight_decay: 0.0001
+batch_size: 2048
+n_epochs: 100
+eval_every: 5
+patience: 5
+k: 20
+use_gpu: true
+save_checkpoint: true

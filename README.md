@@ -101,6 +101,15 @@ Raw Interaction Data (MovieLens-1M)
 │   ├── popularity_strata.py          # item 熱門度 / user 活躍度分層分析（Week 7）
 │   ├── error_analysis.py             # 挑錯誤分析候選案例並附證據（Week 7）
 │   ├── visualize_embeddings.py       # item embedding 的 PCA / t-SNE 與類型凝聚度數字（Week 7）
+│   ├── mostpop.py                    # MostPop 基準（Step A）
+│   ├── build_control_embeddings.py   # metadata／shuffle 對照嵌入（Step A）
+│   ├── stepC_summary.py              # 熱門優先 vs 隨機順序的覆蓋曲線摘要與圖（Step C）
+│   ├── stepB_summary.py              # early stopping 穩健性與基準調參摘要（Step B）
+│   ├── make_stepB_configs.py         # 由 baseline.yaml 產生 Step B 的設定檔
+│   ├── run_stepA.ps1                 # Step A 一鍵執行（10 seed，約 1.5 小時）
+│   ├── run_stepB1.ps1                # Step B1：early stopping 重跑（5 seed，約 2.5 小時）
+│   ├── run_stepB2.ps1                # Step B2：基準單因子調參篩選與確認
+│   ├── run_stepC.ps1                 # Step C：熱門優先覆蓋曲線（5 seed，約 2.2 小時）
 │   ├── run_week5_denoise.ps1         # Week 5 格式過濾去噪一鍵執行（10 seed）
 │   ├── run_week5_prune.ps1           # Week 5 語意剪枝 + 隨機對照一鍵執行（5 seed）
 │   ├── run_week5_pagerank.ps1        # Week 5 PageRank + rand30/50/80/90 對照一鍵執行（5 seed）
@@ -167,7 +176,11 @@ python -m pytest tests -q
 - [x] item 熱門度 / user 活躍度分層分析（Week 7：`results/week7/strata_item.md`、`strata_user.md`）
 - [x] 錯誤分析（Week 7：`scripts/error_analysis.py` 產生候選案例，已人工挑 9 筆分類，見下方「錯誤分析」與 experiment-log Week 7）
 - [x] embedding 視覺化與類型凝聚度（Week 7：`results/week7/embeddings_*.png`、`embedding_cohesion.md`）
-- [ ] 報告撰寫（大綱見 [`docs/report-outline.md`](./docs/report-outline.md)）
+- [x] 報告撰寫（`report/main_zh.tex`；Step A–C 對照與穩健性見 experiment-log）
+- [x] Step A：metadata／shuffle／MostPop 對照
+- [x] Step C：熱門優先覆蓋曲線
+- [x] Step B1：early stopping 穩健性檢查
+- [ ] Step B2 第二階段：dim 128 確認（進行中）
 
 > 完整時程規劃見 [`docs/project-plan-detailed.md`](./docs/project-plan-detailed.md)（9/22–11/30，共 10 週）。
 
@@ -362,6 +375,17 @@ python scripts/visualize_embeddings.py            # → embeddings_pca.png、emb
 ```
 
 `w7` 標籤的結果檔（`week4fe_aug_w7*`）與主實驗分開存放，不會覆蓋 `week4fe_aug_*`。
+
+```powershell
+# Step A：對照實驗（metadata / shuffle / MostPop）
+.\scripts\run_stepA.ps1
+# Step C：熱門優先的覆蓋曲線
+.\scripts\run_stepC.ps1
+# Step B：early stopping 穩健性、基準調參
+.\scripts\run_stepB1.ps1
+.\scripts\run_stepB2.ps1      # 第二階段需先把 $best 設成篩選勝出的設定名稱
+```
+結果摘要：`docs/experiment-log.md` 的「Step A–C」一節。
 
 ### 5. 測試
 
